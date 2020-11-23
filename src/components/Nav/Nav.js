@@ -1,9 +1,12 @@
+/*-----> CORE <-----*/
 import React from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+/*-----> CORE <-----*/
+
+/*-----> MATERIAL-UI IMPORTS FOR NAV <-----*/
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -17,26 +20,24 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
-import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import { mainListItems, secondaryListItems } from './listitems';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import DashboardIcon from '@material-ui/icons/Dashboard';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import PeopleIcon from '@material-ui/icons/People';
+import BarChartIcon from '@material-ui/icons/BarChart';
+import LayersIcon from '@material-ui/icons/Layers';
+import AssignmentIcon from '@material-ui/icons/Assignment';
+/*-----> MATERIAL-UI IMPORTS FOR NAV <-----*/
 
+/*-----> MAPBOX COMPONENT <-----*/
 import MapBox from '../MapBox/MapBox';
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+/*-----> MAPBOX COMPONENT <-----*/
 
 const drawerWidth = 240;
 
@@ -119,7 +120,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Dashboard() {
+function Dashboard() {
+  let state = {
+    isMapOn: true,
+  };
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -178,62 +182,51 @@ export default function Dashboard() {
           </IconButton>
         </div>
         <Divider />
-        <List>{mainListItems}</List>
+        <List>
+          <Link to="/profile">
+            <ListItem button>
+              <ListItemIcon>
+                <DashboardIcon />
+              </ListItemIcon>
+              <ListItemText primary="Profile" />
+            </ListItem>
+          </Link>
+          <ListItem button>
+            <ListItemIcon>
+              <ShoppingCartIcon />
+            </ListItemIcon>
+            <ListItemText primary="Make A Trip" />
+          </ListItem>
+          <ListItem button>
+            <ListItemIcon>
+              <PeopleIcon />
+            </ListItemIcon>
+            <ListItemText primary="Near Me" />
+          </ListItem>
+          <ListItem button>
+            <ListItemIcon>
+              <BarChartIcon />
+            </ListItemIcon>
+            <ListItemText primary="Speedtest" />
+          </ListItem>
+          <ListItem button>
+            <ListItemIcon>
+              <LayersIcon />
+            </ListItemIcon>
+            <ListItemText primary="Leaderboards" />
+          </ListItem>
+        </List>
         <Divider />
-        <List>{secondaryListItems}</List>
+        <List></List>
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-          <Box pt={4}>
-            <MapBox></MapBox>
-            <Copyright />
-          </Box>
+          <Box pt={4}></Box>
         </Container>
       </main>
     </div>
   );
 }
 
-// const Nav = (props) => {
-//   let loginLinkData = {
-//     path: '/login',
-//     text: 'Login / Register',
-//   };
-
-//   if (props.store.user.id != null) {
-//     loginLinkData.path = '/user';
-//     loginLinkData.text = 'Home';
-//   }
-
-//   return (
-//     <div className="nav">
-//       <Link to="/home">
-//         <h2 className="nav-title">Prime Solo Project</h2>
-//       </Link>
-//       <div className="nav-right">
-//         <Link className="nav-link" to={loginLinkData.path}>
-//           {/* Show this link if they are logged in or not,
-//           but call this link 'Home' if they are logged in,
-//           and call this link 'Login / Register' if they are not */}
-//           {loginLinkData.text}
-//         </Link>
-//         {/* Show the link to the info page and the logout button if the user is logged in */}
-//         {props.store.user.id && (
-//           <>
-//             <Link className="nav-link" to="/info">
-//               Info Page
-//             </Link>
-//             <LogOutButton className="nav-link" />
-//           </>
-//         )}
-//         {/* Always show this link since the about page is not protected */}
-//         <Link className="nav-link" to="/about">
-//           About
-//         </Link>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default connect(mapStoreToProps)(Nav);
+export default connect()(Dashboard);

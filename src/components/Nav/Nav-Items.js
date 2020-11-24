@@ -1,32 +1,31 @@
+/*-----> MATERIAL-UI <-----*/
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import ListSubheader from '@material-ui/core/ListSubheader';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import PeopleIcon from '@material-ui/icons/People';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import LayersIcon from '@material-ui/icons/Layers';
-import AssignmentIcon from '@material-ui/icons/Assignment';
+/*-----> MATERIAL-UI <-----*/
+
+/*-----> COMPONENTS <-----*/
+import NavProfileLogin from './Nav-ProfileLogin';
+/*-----> COMPONENTS <-----*/
 
 export const mainListItems = (
   <div>
-    <Link to="/profile">
+    <NavProfileLogin />
+    <Link to="/make_a_trip">
       <ListItem button>
         <ListItemIcon>
-          <DashboardIcon />
+          <ShoppingCartIcon />
         </ListItemIcon>
-        <ListItemText primary="Profile" />
+        <ListItemText primary="Make A Trip" />
       </ListItem>
     </Link>
-    <ListItem button>
-      <ListItemIcon>
-        <ShoppingCartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Make A Trip" />
-    </ListItem>
     <ListItem button>
       <ListItemIcon>
         <PeopleIcon />

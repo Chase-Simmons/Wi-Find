@@ -22,11 +22,11 @@ import Container from '@material-ui/core/Container';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import { mainListItems, secondaryListItems } from './Nav-Items';
 /*-----> MATERIAL-UI IMPORTS FOR NAV <-----*/
 
 /*-----> MAPBOX COMPONENT <-----*/
-import MapBox from '../MapBox/MapBox';
+import { mainListItems, secondaryListItems } from './Nav-Items';
+import NavSearch from './Nav-Search';
 /*-----> MAPBOX COMPONENT <-----*/
 
 const drawerWidth = 240;
@@ -150,7 +150,7 @@ function Dashboard() {
             noWrap
             className={classes.title}
           >
-            Dashboard
+            <NavSearch />
           </Typography>
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
@@ -176,12 +176,6 @@ function Dashboard() {
         <Divider />
         <List></List>
       </Drawer>
-      <main className={classes.content}>
-        <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
-          <Box pt={4}></Box>
-        </Container>
-      </main>
     </div>
   );
 }

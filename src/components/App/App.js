@@ -20,6 +20,9 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 
+import MakeATripPage from '../../pages/MakeATripPage/MakeATripPage';
+import ProfilePage from '../../pages/ProfilePage/ProfilePage';
+
 import './App.css';
 
 class App extends Component {
@@ -37,6 +40,27 @@ class App extends Component {
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
 
             <Redirect exact from="/" to="/home" />
+
+            <Route
+              // shows HomePage at all times (logged in or not)
+              exact
+              path="/home"
+              component={LandingPage}
+            />
+
+            <Route
+              // shows HomePage at all times (logged in or not)
+              exact
+              path="/make_a_trip"
+              component={MakeATripPage}
+            />
+
+            <Route
+              // shows HomePage at all times (logged in or not)
+              exact
+              path="/profile"
+              component={ProfilePage}
+            />
 
             {/* Visiting localhost:3000/about will show the about page. */}
 
@@ -56,14 +80,14 @@ class App extends Component {
               // logged in shows UserPage else shows LoginPage
               exact
               path="/user"
-              component={LandingPage}
+              component={UserPage}
             />
 
             <ProtectedRoute
               // logged in shows InfoPage else shows LoginPage
               exact
               path="/info"
-              component={LandingPage}
+              component={InfoPage}
             />
 
             {/* When a value is supplied for the authRedirect prop the user will
@@ -76,8 +100,8 @@ class App extends Component {
               // - else shows LoginPage at /login
               exact
               path="/login"
-              component={LandingPage}
-              authRedirect="/user"
+              component={LoginPage}
+              authRedirect="/profile"
             />
             <ProtectedRoute
               // with authRedirect:
@@ -85,8 +109,8 @@ class App extends Component {
               // - else shows RegisterPage at "/registration"
               exact
               path="/registration"
-              component={LandingPage}
-              authRedirect="/user"
+              component={RegisterPage}
+              authRedirect="/home"
             />
             <ProtectedRoute
               // with authRedirect:
@@ -95,7 +119,7 @@ class App extends Component {
               exact
               path="/home"
               component={LandingPage}
-              authRedirect="/user"
+              authRedirect="/home"
             />
 
             {/* If none of the other routes matched, we will show a 404. */}

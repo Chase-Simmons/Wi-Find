@@ -8,12 +8,19 @@ class NavSearch extends Component {
     this.setState(
       {
         ...this.state,
-        key: event.target.value,
+        [key]: event.target.value,
       },
       () => {
-        console.log(this.state);
+        this.searchInputField();
       }
     );
+  };
+
+  searchInputField = (event) => {
+    this.props.dispatch({
+      type: 'FETCH_OPEN_CAGE',
+      payload: { search_string: this.state.search_input },
+    });
   };
   render() {
     return (

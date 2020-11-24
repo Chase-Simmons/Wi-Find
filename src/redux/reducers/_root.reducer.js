@@ -3,6 +3,7 @@ import errors from './errors.reducer';
 import user from './user.reducer';
 import locations from './location.reducer';
 import cordReducer from './cord.reducer';
+import user_stats from './user_stats.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   user, // will have an id and username if someone is logged in
   locations,
   cordReducer,
+  user_stats,
 });
 
 export default rootReducer;

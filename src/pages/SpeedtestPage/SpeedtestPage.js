@@ -4,9 +4,9 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import LogOutButton from '../../components/LogOutButton/LogOutButton';
 import Grid from '@material-ui/core/Grid';
 
-import './ProfilePage.css';
+import './SpeedtestPage.css';
 
-class ProfilePage extends Component {
+class SpeedtestPage extends Component {
   state = {
     stats: null, //This is what our data will eventually be loaded into
   };
@@ -29,8 +29,8 @@ class ProfilePage extends Component {
 
     return (
       <div className="fix-over-nav">
-        <div className="profile">
-          <div className="profile-content">
+        <div className="speedtest">
+          <div className="speedtest-content">
             <Grid container>
               <Grid container>
                 <Grid item xs={2}></Grid>
@@ -63,4 +63,4 @@ class ProfilePage extends Component {
   }
 }
 
-export default connect(mapStoreToProps)(ProfilePage);
+export default connect(mapStoreToProps)(SpeedtestPage);

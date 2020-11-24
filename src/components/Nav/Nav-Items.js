@@ -17,6 +17,14 @@ import NavProfileLogin from './Nav-ProfileLogin';
 
 export const mainListItems = (
   <div>
+    <Link to="/home">
+      <ListItem button>
+        <ListItemIcon>
+          <DashboardIcon />
+        </ListItemIcon>
+        <ListItemText primary="Home" />
+      </ListItem>
+    </Link>
     <NavProfileLogin />
     <Link to="/make_a_trip">
       <ListItem button>

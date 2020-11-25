@@ -4,6 +4,7 @@ import user from './user.reducer';
 import locations from './location.reducer';
 import cordReducer from './cord.reducer';
 import user_stats from './user_stats.reducer';
+import user_trips from './user_trips.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   locations,
   cordReducer,
   user_stats,
+  user_trips,
 });
 
 export default rootReducer;

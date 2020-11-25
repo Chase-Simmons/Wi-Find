@@ -8,14 +8,14 @@ const router = express.Router();
 router.get('/:id', (req, res) => {
   pool
     .query(
-      `SELECT "user".username, "user_stats".points, "user_stats".achievements, "user_stats".unique_speedtest, "user_stats".unique_connection, "user_stats".rank FROM "user" 
-    JOIN "user_stats" ON "user".id = "user_stats".user_id
+      `SELECT "user_trips".id, "user_trips".trip_name FROM "user" 
+    JOIN "user_trips" ON "user".id = "user_trips".user_id
     WHERE "user".id = $1;`,
       [req.params.id]
     )
     .then((result) => {
-      console.log(result.rows[0]);
-      res.send(result.rows[0]);
+      console.log(result.rows);
+      res.send(result.rows);
     })
     .catch((err) => {
       console.log('Failed to get location data ', err);

@@ -18,7 +18,7 @@ class MapBox extends Component {
       viewport: {
         latitude: 39.0997,
         longitude: -94.5786,
-        zoom: 6,
+        zoom: 9,
         width: '100vw',
         height: '100vh',
         bearing: 0,
@@ -43,7 +43,7 @@ class MapBox extends Component {
     this.setState({
       ...this.state,
       markersLoaded: false,
-      locationArray: [this.props.store.locations],
+      locationArray: this.props.store.locations,
       viewport: {
         ...this.state.viewport,
         latitude: this.props.store.cordReducer.lat,
@@ -67,19 +67,19 @@ class MapBox extends Component {
       this.forceUpdate();
     }
 
-    const getMarkers = this.state.locationArray.map(function (item, index) {
-      if (this.props.store.cordReducer.updateNeeded) {
-        return (
-          <Marker
-            key={index}
-            latitude={item.latitude}
-            longitude={item.longitude}
-          >
-            <div>Wi-FI</div>
-          </Marker>
-        );
-      }
-    });
+    // const getMarkers = this.state.locationArray.map(function (item, index) {
+    //   if (this.props.store.cordReducer.updateNeeded) {
+    //     return (
+    //       <Marker
+    //         key={index}
+    //         latitude={item.latitude}
+    //         longitude={item.longitude}
+    //       >
+    //         <div>Wi-FI</div>
+    //       </Marker>
+    //     );
+    //   }
+    // });
     return (
       <div className="mapbox-container" onClick={this.getMarkers}>
         <MapGL
@@ -91,7 +91,7 @@ class MapBox extends Component {
           mapboxApiAccessToken={MAPBOX_TOKEN}
           onClick={this.clickMap}
         >
-          {getMarkers}
+          {/* {getMarkers} */}
         </MapGL>
       </div>
     );

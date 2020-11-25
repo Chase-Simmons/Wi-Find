@@ -1,3 +1,4 @@
+/*-----> CORE <-----*/
 import React, { Component } from 'react';
 import {
   HashRouter as Router,
@@ -5,29 +6,37 @@ import {
   Redirect,
   Switch,
 } from 'react-router-dom';
-
 import { connect } from 'react-redux';
+/*-----> CORE <-----*/
 
+/*-----> COMPONENTS <-----*/
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
+/*-----> COMPONENTS <-----*/
 
+/*-----> SECURITY <-----*/
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import InvertedProtectedRoute from '../ProtectedRoute/InvertedProtectedRoute.js';
+/*-----> SECURITY <-----*/
 
+/*-----> PAGES <-----*/
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-
 import MakeATripPage from '../../pages/MakeATripPage/MakeATripPage';
 import ProfilePage from '../../pages/ProfilePage/ProfilePage';
+import SpeedtestPage from '../../pages/SpeedtestPage/SpeedtestPage';
+/*-----> PAGES <-----*/
 
 import './App.css';
 
 class App extends Component {
   componentDidMount() {
     this.props.dispatch({ type: 'FETCH_USER' });
+    this.props.dispatch({ type: 'GET_LOCATION' });
   }
 
   render() {
@@ -37,88 +46,37 @@ class App extends Component {
           <Nav />
 
           <Switch>
-            {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
-
             <Redirect exact from="/" to="/home" />
 
-            <Route
-              // shows HomePage at all times (logged in or not)
-              exact
-              path="/home"
-              component={LandingPage}
-            />
+            <Route exact path="/home" component={LandingPage} />
 
-            <Route
-              // shows HomePage at all times (logged in or not)
-              exact
-              path="/make_a_trip"
-              component={MakeATripPage}
-            />
+            <Route exact path="/make_a_trip" component={MakeATripPage} />
 
-            <Route
-              // shows HomePage at all times (logged in or not)
+            <Route exact path="/speedtest" component={SpeedtestPage} />
+
+            <Route exact path="/about" component={AboutPage} />
+
+            <InvertedProtectedRoute
               exact
               path="/profile"
               component={ProfilePage}
+              authRedirect="/home"
             />
 
-            {/* Visiting localhost:3000/about will show the about page. */}
+            <ProtectedRoute exact path="/user" component={UserPage} />
 
-            <Route
-              // shows AboutPage at all times (logged in or not)
-              exact
-              path="/about"
-              component={AboutPage}
-            />
-
-            {/* For protected routes, the view could show one of several things on the same route.
-            Visiting localhost:3000/user will show the UserPage if the user is logged in.
-            If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
-            Even though it seems like they are different pages, the user is always on localhost:3000/user */}
+            <ProtectedRoute exact path="/info" component={InfoPage} />
 
             <ProtectedRoute
-              // logged in shows UserPage else shows LoginPage
-              exact
-              path="/user"
-              component={UserPage}
-            />
-
-            <ProtectedRoute
-              // logged in shows InfoPage else shows LoginPage
-              exact
-              path="/info"
-              component={InfoPage}
-            />
-
-            {/* When a value is supplied for the authRedirect prop the user will
-            be redirected to the path supplied when logged in, otherwise they will
-            be taken to the component and path supplied. */}
-
-            <ProtectedRoute
-              // with authRedirect:
-              // - if logged in, redirects to "/user"
-              // - else shows LoginPage at /login
               exact
               path="/login"
               component={LoginPage}
               authRedirect="/profile"
             />
             <ProtectedRoute
-              // with authRedirect:
-              // - if logged in, redirects to "/user"
-              // - else shows RegisterPage at "/registration"
               exact
               path="/registration"
               component={RegisterPage}
-              authRedirect="/home"
-            />
-            <ProtectedRoute
-              // with authRedirect:
-              // - if logged in, redirects to "/user"
-              // - else shows LandingPage at "/home"
-              exact
-              path="/home"
-              component={LandingPage}
               authRedirect="/home"
             />
 

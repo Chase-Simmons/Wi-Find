@@ -40,12 +40,14 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Near Me" />
     </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <BarChartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Speedtest" />
-    </ListItem>
+    <Link to="/speedtest">
+      <ListItem button>
+        <ListItemIcon>
+          <BarChartIcon />
+        </ListItemIcon>
+        <ListItemText primary="Speedtest" />
+      </ListItem>
+    </Link>
     <ListItem button>
       <ListItemIcon>
         <LayersIcon />

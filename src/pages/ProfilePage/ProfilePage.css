@@ -8,10 +8,25 @@
 .profile-content {
   margin-left: 50px;
   width: 800px;
-  height: 800px;
+  height: 600px;
   border: 5px solid #222222;
-  background-color: #444444;
+  background-color: #e8e8e8;
   margin-left: auto;
   margin-right: auto;
-  color: whitesmoke;
+}
+
+.profile-details {
+  background-color: #cdf3ff;
+  color: #222222;
+  border-bottom: #222222 solid 3px;
+}
+
+.profile-my-trips {
+  text-align: center;
+  background-color: #e8e8e8;
+}
+
+.profile-trips {
+  text-align: center;
+  background-color: #e8e8e8;
 }

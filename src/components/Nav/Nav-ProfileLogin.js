@@ -28,21 +28,30 @@ class NavSearch extends Component {
   };
 
   onLoad = () => {
-    if (this.props.store.user.id) {
-      if (this.state.isAuth === false) {
-        this.changeState();
-      } else {
-      }
+    console.log(this.props.store.user.id);
+    if (this.props.store.user.id !== undefined) {
+      this.changeState();
     } else {
     }
   };
 
   componentDidUpdate() {
-    this.onLoad();
+    if (this.state.isAuth === false) {
+      this.onLoad();
+    }
+    if (this.props.store.user.id === undefined) {
+      if (this.state.isAuth === true) {
+        this.setState({
+          isAuth: false,
+          text: 'Login',
+          link: '/login',
+        });
+      }
+    }
   }
   render() {
     return (
-      <Link to={this.state.link} onClick={this.changeState}>
+      <Link to={this.state.link}>
         <ListItem button>
           <ListItemIcon>
             <DashboardIcon />

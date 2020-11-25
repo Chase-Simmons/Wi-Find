@@ -4,6 +4,8 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import LogOutButton from '../../components/LogOutButton/LogOutButton';
 import Grid from '@material-ui/core/Grid';
 
+import LandingPage from '../../components/LandingPage/LandingPage';
+
 import './ProfilePage.css';
 
 class ProfilePage extends Component {
@@ -22,36 +24,31 @@ class ProfilePage extends Component {
   }
 
   render() {
-    console.log(this.state);
-    if (this.state.stats === null) {
-      return <div />;
-    }
-
     return (
       <div className="fix-over-nav">
         <div className="profile">
           <div className="profile-content">
             <Grid container>
-              <Grid container>
+              <Grid container className="profile-details">
                 <Grid item xs={2}></Grid>
                 <Grid item xs={7}>
                   <h1 id="welcome">
                     Welcome, {this.props.store.user.username}!
                   </h1>
-                  <h2>Title</h2>
+                  <h2>Title: </h2>
                 </Grid>
                 <Grid item xs={3}>
                   <h1 id="rank">Rank: {this.props.store.user_stats.rank}</h1>
                   <LogOutButton className="log-in" />
                 </Grid>
               </Grid>
-              <Grid container>
+              <Grid container className="profile-my-trips">
                 <Grid item xs={12}>
-                  <h1>My Trips:</h1>
+                  <h1>My Trips</h1>
                 </Grid>
               </Grid>
               <Grid container>
-                <Grid item xs={12}>
+                <Grid item xs={12} className="profile-trips">
                   <h1>Trips</h1>
                 </Grid>
               </Grid>

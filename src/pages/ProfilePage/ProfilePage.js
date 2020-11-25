@@ -3,11 +3,16 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import LogOutButton from '../../components/LogOutButton/LogOutButton';
 import Grid from '@material-ui/core/Grid';
-import { FixedSizeList } from 'react-window';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 
 import './ProfilePage.css';
 import { authorize } from 'passport';
+
+import TripDelete from './unique_components/Profile-TripDelete';
+import TripGo from './unique_components/Profile-TripGo';
 
 class ProfilePage extends Component {
   state = {
@@ -26,18 +31,43 @@ class ProfilePage extends Component {
     });
   }
 
+  clickDelete = (trip) => () => {
+    console.log('delete', trip);
+  };
+
+  clickGo = (trip) => () => {
+    console.log('go', trip);
+  };
   render() {
     const hasData = this.state.trips;
     let trips;
+    let listConditional;
 
     if (hasData) {
+      listConditional = List;
       trips = this.state.trips.map((trip, key) => (
-        <div key={key}>
-          <p>{trip.trip_name}</p>
-        </div>
+        <ListItem button key={key}>
+          <ListItemText>
+            <div class="profile-list-item-block">
+              <div className="profile-icon">
+                <TripDelete clickDelete={this.clickDelete} trip={trip} />
+              </div>
+              <div className="profile-list-item-text">
+                <p>{trip.trip_name}</p>
+              </div>
+              <div className="profile-list-item-text">
+                <p>Stops: 0</p>
+              </div>
+              <div className="profile-icon">
+                <TripGo clickGo={this.clickGo} trip={trip} />
+              </div>
+            </div>
+          </ListItemText>
+        </ListItem>
       ));
     } else {
       trips = <p>no data</p>;
+      listConditional = <></>;
     }
 
     return (
@@ -67,13 +97,7 @@ class ProfilePage extends Component {
               </Grid>
               <Grid container>
                 <Grid item xs={12} className="profile-trips">
-                  {/* <FixedSizeList
-                    height={363}
-                    width={'100%'}
-                    itemSize={36}
-                    itemCount={10}
-                  ></FixedSizeList> */}
-                  {trips}
+                  <listConditional>{trips}</listConditional>
                 </Grid>
               </Grid>
             </Grid>

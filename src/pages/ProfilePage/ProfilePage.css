@@ -30,4 +30,28 @@
   text-align: center;
   background-color: #e8e8e8;
   border-top: #222222 1px solid;
+  overflow: scroll;
+  height: 378px;
+}
+
+.profile-list-item-text {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 10px;
+  font-weight: bold;
+  font-size: 24px;
+  width: 40%;
+}
+
+.profile-list-item-block {
+  display: inline-flex;
+  width: 100%;
+}
+.profile-icon {
+  text-align: center;
+  width: 10%;
+}
+
+p {
+  margin: 0;
 }

@@ -12,6 +12,7 @@ const userRouter = require('./routes/user.router');
 const locationRouter = require('./routes/location.router');
 const user_statsRouter = require('./routes/user_stats.router');
 const user_tripsRouter = require('./routes/user_trips.router');
+const trip_location = require('./routes/trip_location.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -29,6 +30,7 @@ app.use('/api/user', userRouter);
 app.use('/api/location', locationRouter);
 app.use('/api/user_stats', user_statsRouter);
 app.use('/api/user_trips', user_tripsRouter);
+app.use('/api/trip_location', trip_location);
 
 // Serve static files
 app.use(express.static('build'));

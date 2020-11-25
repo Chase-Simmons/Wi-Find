@@ -26,7 +26,7 @@ class NavSearch extends Component {
     return (
       <TextField
         id="filled-basic"
-        label="Filled"
+        label="Search"
         variant="filled"
         onChange={this.onChange('search_input')}
       />

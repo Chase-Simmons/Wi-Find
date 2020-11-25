@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import DashboardIcon from '@material-ui/icons/Dashboard';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 /*-----> MATERIAL-UI <-----*/
 
 class NavSearch extends Component {
@@ -54,7 +54,7 @@ class NavSearch extends Component {
       <Link to={this.state.link}>
         <ListItem button>
           <ListItemIcon>
-            <DashboardIcon />
+            <AccountCircleIcon />
           </ListItemIcon>
           <ListItemText primary={this.state.text} />
         </ListItem>

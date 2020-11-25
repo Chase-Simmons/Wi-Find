@@ -4,9 +4,10 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import LogOutButton from '../../components/LogOutButton/LogOutButton';
 import Grid from '@material-ui/core/Grid';
 
-import LandingPage from '../../components/LandingPage/LandingPage';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 import './ProfilePage.css';
+import { authorize } from 'passport';
 
 class ProfilePage extends Component {
   state = {
@@ -30,7 +31,9 @@ class ProfilePage extends Component {
           <div className="profile-content">
             <Grid container>
               <Grid container className="profile-details">
-                <Grid item xs={2}></Grid>
+                <Grid item xs={2}>
+                  <AccountCircleIcon style={{ fontSize: 125 }} />
+                </Grid>
                 <Grid item xs={7}>
                   <h1 id="welcome">
                     Welcome, {this.props.store.user.username}!

@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import DashboardIcon from '@material-ui/icons/Dashboard';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import PeopleIcon from '@material-ui/icons/People';
 import BarChartIcon from '@material-ui/icons/BarChart';
-import LayersIcon from '@material-ui/icons/Layers';
+import MapIcon from '@material-ui/icons/Map';
+import ExploreIcon from '@material-ui/icons/Explore';
+import RoomIcon from '@material-ui/icons/Room';
+import SpeedIcon from '@material-ui/icons/Speed';
 /*-----> MATERIAL-UI <-----*/
 
 /*-----> COMPONENTS <-----*/
@@ -20,7 +20,7 @@ export const mainListItems = (
     <Link to="/home">
       <ListItem button>
         <ListItemIcon>
-          <DashboardIcon />
+          <MapIcon />
         </ListItemIcon>
         <ListItemText primary="Home" />
       </ListItem>
@@ -29,28 +29,28 @@ export const mainListItems = (
     <Link to="/make_a_trip">
       <ListItem button>
         <ListItemIcon>
-          <ShoppingCartIcon />
+          <ExploreIcon />
         </ListItemIcon>
         <ListItemText primary="Make A Trip" />
       </ListItem>
     </Link>
     <ListItem button>
       <ListItemIcon>
-        <PeopleIcon />
+        <RoomIcon />
       </ListItemIcon>
       <ListItemText primary="Near Me" />
     </ListItem>
     <Link to="/speedtest">
       <ListItem button>
         <ListItemIcon>
-          <BarChartIcon />
+          <SpeedIcon />
         </ListItemIcon>
         <ListItemText primary="Speedtest" />
       </ListItem>
     </Link>
     <ListItem button>
       <ListItemIcon>
-        <LayersIcon />
+        <BarChartIcon />
       </ListItemIcon>
       <ListItemText primary="Leaderboards" />
     </ListItem>

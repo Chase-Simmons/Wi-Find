@@ -24,11 +24,9 @@ import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
-import LoginPage from '../LoginPage/LoginPage';
+import LoginPage from '../../pages/LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-import MakeATripPage from '../../pages/MakeATripPage/MakeATripPage';
 import ProfilePage from '../../pages/ProfilePage/ProfilePage';
-import SpeedtestPage from '../../pages/SpeedtestPage/SpeedtestPage';
 /*-----> PAGES <-----*/
 
 import './App.css';
@@ -49,10 +47,6 @@ class App extends Component {
             <Redirect exact from="/" to="/home" />
 
             <Route exact path="/home" component={LandingPage} />
-
-            <Route exact path="/make_a_trip" component={MakeATripPage} />
-
-            <Route exact path="/speedtest" component={SpeedtestPage} />
 
             <Route exact path="/about" component={AboutPage} />
 

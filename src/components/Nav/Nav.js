@@ -30,6 +30,7 @@ import NavHome from './Nav-Home';
 import NavNearMe from './Nav-NearMe';
 import NavSpeedtest from './Nav-Speedtest';
 import NavLeaderboard from './Nav-Leaderboards';
+import NavDrawerClose from './Nav-DrawerClose';
 /*-----> MAPBOX COMPONENT <-----*/
 
 const drawerWidth = 320;
@@ -177,11 +178,9 @@ function Dashboard() {
         open={open}
       >
         <div className={classes.toolbarIcon}>
-          <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon />
-          </IconButton>
+          <NavDrawerClose close={handleDrawerClose}></NavDrawerClose>
         </div>
-        <Divider />
+        <Divider style={{ backgroundColor: '#222222', height: 1 }} />
         {/* NAVBAR */}
         <List>
           <NavHome superReducer={superReducer} />
@@ -191,7 +190,7 @@ function Dashboard() {
           <NavSpeedtest superReducer={superReducer} />
           <NavLeaderboard superReducer={superReducer} />
         </List>
-        <Divider />
+        <Divider style={{ backgroundColor: '#222222', height: 3 }} />
         {/* COMPONENTS */}
         <List>
           <NavResponsiveComponent superReducer={superReducer} />

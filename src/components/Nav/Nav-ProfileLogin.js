@@ -49,14 +49,10 @@ class NavProfileLogin extends Component {
     }
   }
 
-  clearSuperReducer = () => {
-    console.log('hello');
-    this.props.superReducer({ call: 'SET', data: 'none' });
-  };
   render() {
     return (
       <Link to={this.state.link}>
-        <ListItem button onClick={this.clearSuperReducer}>
+        <ListItem button>
           <ListItemIcon>
             <AccountCircleIcon />
           </ListItemIcon>

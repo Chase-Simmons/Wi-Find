@@ -5,11 +5,10 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 /*-----> CORE <-----*/
 
 /*-----> MATERIAL-UI <-----*/
-import { Link } from 'react-router-dom';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import ExploreIcon from '@material-ui/icons/Explore';
+import CancelIcon from '@material-ui/icons/Cancel';
 /*-----> MATERIAL-UI <-----*/
 
 class NavSearch extends Component {
@@ -18,14 +17,15 @@ class NavSearch extends Component {
   };
   render() {
     return (
-      <Link onClick={this.dispatch}>
-        <ListItem button>
-          <ListItemIcon>
-            <ExploreIcon />
-          </ListItemIcon>
-          <ListItemText primary="Make A Trip" />
-        </ListItem>
-      </Link>
+      <ListItem
+        button
+        style={{ backgroundColor: '#ffc8b5', marginTop: '-8px' }}
+      >
+        <ListItemIcon>
+          <CancelIcon />
+        </ListItemIcon>
+        <ListItemText primary="Close" />
+      </ListItem>
     );
   }
 }

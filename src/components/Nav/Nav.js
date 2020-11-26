@@ -2,7 +2,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import './Nav.css';
-import mapStoreToProps from '../../redux/mapStoreToProps';
 /*-----> CORE <-----*/
 
 /*-----> MATERIAL-UI IMPORTS FOR NAV <-----*/
@@ -10,7 +9,6 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
-import Box from '@material-ui/core/Box';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
@@ -18,18 +16,23 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
-import Container from '@material-ui/core/Container';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 /*-----> MATERIAL-UI IMPORTS FOR NAV <-----*/
 
 /*-----> MAPBOX COMPONENT <-----*/
-import { mainListItems, secondaryListItems } from './Nav-Items';
 import NavSearch from './Nav-Search';
+import NavResponsiveComponent from '../NavResponsiveComponent/NavResponsiveComponent';
+import NavProfileLogin from './Nav-ProfileLogin';
+import NavMakeATrip from './Nav-MakeATrip';
+import NavHome from './Nav-Home';
+import NavNearMe from './Nav-NearMe';
+import NavSpeedtest from './Nav-Speedtest';
+import NavLeaderboard from './Nav-Leaderboards';
 /*-----> MAPBOX COMPONENT <-----*/
 
-const drawerWidth = 240;
+const drawerWidth = 320;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -111,9 +114,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Dashboard() {
-  let state = {
-    isMapOn: true,
-  };
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -123,6 +123,16 @@ function Dashboard() {
     setOpen(false);
   };
 
+  let superState = 'none';
+  const superReducer = (data) => {
+    switch (data.call) {
+      case 'GET':
+        return superState;
+      case 'SET':
+        superState = data.data;
+        return superState;
+    }
+  };
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -172,9 +182,20 @@ function Dashboard() {
           </IconButton>
         </div>
         <Divider />
-        <List>{mainListItems}</List>
+        {/* NAVBAR */}
+        <List>
+          <NavHome superReducer={superReducer} />
+          <NavProfileLogin superReducer={superReducer} />
+          <NavMakeATrip superReducer={superReducer} />
+          <NavNearMe superReducer={superReducer} />
+          <NavSpeedtest superReducer={superReducer} />
+          <NavLeaderboard superReducer={superReducer} />
+        </List>
         <Divider />
-        <List></List>
+        {/* COMPONENTS */}
+        <List>
+          <NavResponsiveComponent superReducer={superReducer} />
+        </List>
       </Drawer>
     </div>
   );

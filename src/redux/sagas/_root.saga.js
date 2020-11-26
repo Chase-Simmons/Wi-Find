@@ -6,6 +6,7 @@ import getLocationSaga from './locationSagas/getLocation';
 import openCageSaga from './opencage.saga';
 import getUser_statsSaga from './user_statsSaga/getUser_statsSaga';
 import getUser_tripsSaga from './user_tripsSaga/getUser_tripsSaga';
+import getTrip_locationsSaga from './trip_locationSaga/getTrip_locationSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -23,5 +24,6 @@ export default function* rootSaga() {
     openCageSaga(),
     getUser_statsSaga(),
     getUser_tripsSaga(),
+    getTrip_locationsSaga(),
   ]);
 }

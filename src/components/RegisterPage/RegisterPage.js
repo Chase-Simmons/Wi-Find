@@ -13,20 +13,22 @@ class RegisterPage extends Component {
 
   render() {
     return (
-      <div>
-        <RegisterForm />
+      <div className="fix-over-nav">
+        <div>
+          <RegisterForm />
 
-        <center>
-          <button
-            type="button"
-            className="btn btn_asLink"
-            onClick={() => {
-              this.props.history.push('/login');
-            }}
-          >
-            Login
-          </button>
-        </center>
+          <center>
+            <button
+              type="button"
+              className="btn btn_asLink"
+              onClick={() => {
+                this.props.history.push('/login');
+              }}
+            >
+              Login
+            </button>
+          </center>
+        </div>
       </div>
     );
   }

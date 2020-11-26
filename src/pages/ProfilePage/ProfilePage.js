@@ -9,10 +9,10 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
 import './ProfilePage.css';
-import { authorize } from 'passport';
 
 import TripDelete from './unique_components/Profile-TripDelete';
 import TripGo from './unique_components/Profile-TripGo';
+import TripStops from './unique_components/Profile-TripStops';
 
 class ProfilePage extends Component {
   state = {
@@ -41,14 +41,12 @@ class ProfilePage extends Component {
   render() {
     const hasData = this.state.trips;
     let trips;
-    let listConditional;
 
     if (hasData) {
-      listConditional = List;
       trips = this.state.trips.map((trip, key) => (
         <ListItem button key={key}>
           <ListItemText>
-            <div class="profile-list-item-block">
+            <div className="profile-list-item-block">
               <div className="profile-icon">
                 <TripDelete clickDelete={this.clickDelete} trip={trip} />
               </div>
@@ -56,7 +54,10 @@ class ProfilePage extends Component {
                 <p>{trip.trip_name}</p>
               </div>
               <div className="profile-list-item-text">
-                <p>Stops: 0</p>
+                <TripStops
+                  locations={this.props.store.trip_locations}
+                  trip={trip}
+                />
               </div>
               <div className="profile-icon">
                 <TripGo clickGo={this.clickGo} trip={trip} />
@@ -66,8 +67,13 @@ class ProfilePage extends Component {
         </ListItem>
       ));
     } else {
-      trips = <p>no data</p>;
-      listConditional = <></>;
+      trips = (
+        <ListItem>
+          <ListItemText>
+            <p>no data</p>
+          </ListItemText>
+        </ListItem>
+      );
     }
 
     return (
@@ -97,7 +103,7 @@ class ProfilePage extends Component {
               </Grid>
               <Grid container>
                 <Grid item xs={12} className="profile-trips">
-                  <listConditional>{trips}</listConditional>
+                  <List>{trips}</List>
                 </Grid>
               </Grid>
             </Grid>

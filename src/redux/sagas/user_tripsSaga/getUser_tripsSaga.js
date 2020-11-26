@@ -8,6 +8,7 @@ function* getUser_trips(action) {
       type: 'SET_USER_TRIPS',
       payload: response.data,
     });
+    yield put({ type: 'GET_TRIP_LOCATIONS', payload: action.payload });
   } catch (err) {
     console.log(err);
   }

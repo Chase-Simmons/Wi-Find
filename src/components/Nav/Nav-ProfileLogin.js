@@ -12,7 +12,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 /*-----> MATERIAL-UI <-----*/
 
-class NavSearch extends Component {
+class NavProfileLogin extends Component {
   state = {
     isAuth: false,
     text: 'Login',
@@ -28,7 +28,6 @@ class NavSearch extends Component {
   };
 
   onLoad = () => {
-    console.log(this.props.store.user.id);
     if (this.props.store.user.id !== undefined) {
       this.changeState();
     } else {
@@ -49,10 +48,15 @@ class NavSearch extends Component {
       }
     }
   }
+
+  clearSuperReducer = () => {
+    console.log('hello');
+    this.props.superReducer({ call: 'SET', data: 'none' });
+  };
   render() {
     return (
       <Link to={this.state.link}>
-        <ListItem button>
+        <ListItem button onClick={this.clearSuperReducer}>
           <ListItemIcon>
             <AccountCircleIcon />
           </ListItemIcon>
@@ -63,4 +67,4 @@ class NavSearch extends Component {
   }
 }
 
-export default connect(mapStoreToProps)(NavSearch);
+export default connect(mapStoreToProps)(NavProfileLogin);

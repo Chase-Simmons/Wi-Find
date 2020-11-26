@@ -14,3 +14,4 @@ class MapMarkerMap extends Component {
 }
 
 export default connect(mapStoreToProps)(MapMarkerMap);
+a;

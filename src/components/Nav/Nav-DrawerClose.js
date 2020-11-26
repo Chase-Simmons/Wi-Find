@@ -10,9 +10,16 @@ import IconButton from '@material-ui/core/IconButton';
 /*-----> MATERIAL-UI <-----*/
 
 class NavDrawerClose extends Component {
+  closer = () => {
+    this.props.close();
+    this.props.dispatch({
+      type: 'SET_TRIP_TITLE',
+      payload: '',
+    });
+  };
   render() {
     return (
-      <IconButton onClick={this.props.close}>
+      <IconButton onClick={this.closer}>
         <ChevronLeftIcon />
       </IconButton>
     );

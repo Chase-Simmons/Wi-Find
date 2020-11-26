@@ -14,6 +14,7 @@ import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import EditIcon from '@material-ui/icons/Edit';
 /*-----> MATERIAL-UI <-----*/
 
+import swal from 'sweetalert';
 import './MakeATrip.css';
 
 class MakeATripItem extends Component {
@@ -39,25 +40,28 @@ class MakeATripItem extends Component {
   };
 
   acceptEdit = (event) => {
-    if (this.state.isContentAccepted === false) {
-      this.setState({
-        ...this.state,
-        isContentAccepted: true,
-        disabled: true,
-        size: 0,
-      });
-      this.dispatch();
+    if (this.state.location !== '') {
+      if (this.state.isContentAccepted === false) {
+        this.setState({
+          ...this.state,
+          isContentAccepted: true,
+          disabled: true,
+          size: 0,
+        });
+        this.dispatch();
+      } else {
+        this.setState({
+          ...this.state,
+          isContentAccepted: false,
+          disabled: false,
+        });
+      }
     } else {
-      this.setState({
-        ...this.state,
-        isContentAccepted: false,
-        disabled: false,
-      });
+      swal('Please make sure the Trip has a name before submitting');
     }
   };
 
   dispatch = () => {
-    console.log('hit');
     this.props.dispatch({
       type: 'SET_TRIP_TITLE',
       payload: this.state.location,
@@ -74,10 +78,25 @@ class MakeATripItem extends Component {
       return <></>;
     } else {
       return (
-        <ListItem style={{ height: 75, fontSize: 40, marginTop: '8px' }}>
+        <ListItem
+          style={{
+            height: 75,
+            fontSize: 40,
+            marginTop: '8px',
+            borderBottom: '2px #222222 solid',
+            borderTop: '2px #222222 solid',
+          }}
+        >
           <ListItemIcon></ListItemIcon>
           <ListItemText>
             <TextField
+              inputProps={{
+                style: {
+                  textAlign: 'center',
+                  fontWeight: 'bold',
+                  fontSize: 24,
+                },
+              }}
               disabled={this.state.disabled}
               primary="Title"
               onChange={this.onChange}

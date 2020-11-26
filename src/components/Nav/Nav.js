@@ -183,7 +183,7 @@ function Dashboard() {
         </div>
         <Divider style={{ backgroundColor: '#222222', height: 1 }} />
         {/* NAVBAR */}
-        <List>
+        <List style={{ paddingBottom: 0 }}>
           <NavHome superReducer={superReducer} />
           <NavProfileLogin superReducer={superReducer} />
           <NavMakeATrip
@@ -196,7 +196,7 @@ function Dashboard() {
         </List>
         <Divider style={{ backgroundColor: '#222222', height: 3 }} />
         {/* COMPONENTS */}
-        <List>
+        <List style={{ paddingBottom: 0 }}>
           <NavResponsiveComponent superReducer={superReducer} />
         </List>
       </Drawer>

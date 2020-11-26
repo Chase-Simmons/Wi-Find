@@ -16,6 +16,7 @@ import MakeATripItem from './MakeATripItem';
 import MakeATripTitle from './MakeATripTitle';
 /*-----> COMPONENT <-----*/
 
+import swal from 'sweetalert';
 import './MakeATrip.css';
 
 class NavSearch extends Component {
@@ -25,6 +26,10 @@ class NavSearch extends Component {
   };
   closeClick = () => {
     this.props.superReducer({ call: 'SET', data: 'none' });
+    this.props.dispatch({
+      type: 'SET_TRIP_TITLE',
+      payload: '',
+    });
   };
 
   updateState() {
@@ -67,28 +72,54 @@ class NavSearch extends Component {
 
   render() {
     const AddLocationItem = () => {
-      this.updateState();
+      if (this.props.store.make_a_trip_title !== '') {
+        this.updateState();
+      } else {
+        swal('Please set a Trip name before continuing!');
+      }
     };
 
     if (this.state.tripStarted === false) {
-      this.ButtonToRender = (
-        <ListItem
-          button
-          style={{ backgroundColor: '#b5fffe', textAlign: 'center' }}
-          onClick={AddLocationItem}
-        >
-          <ListItemText primary="Begin Trip!" />
-        </ListItem>
-      );
+      this.ButtonToRender = <></>;
+      if (this.props.store.make_a_trip_title !== '') {
+        AddLocationItem();
+      }
     } else {
       this.ButtonToRender = (
-        <ListItem
-          button
-          style={{ backgroundColor: '#b5fffe', textAlign: 'center' }}
-          onClick={AddLocationItem}
-        >
-          <ListItemText primary="Add Location" />
-        </ListItem>
+        <span>
+          <ListItem
+            button
+            style={{
+              backgroundColor: '#b5fffe',
+              textAlign: 'center',
+              width: '50%',
+              display: 'inline-block',
+              borderBottom: '2px #222222 solid',
+              borderTop: '2px #222222 solid',
+              borderRight: '1px #222222 solid',
+            }}
+            onClick={AddLocationItem}
+          >
+            <ListItemText primary="Add Location" />
+          </ListItem>
+
+          <ListItem
+            button
+            style={{
+              backgroundColor: '#b5ffb6',
+              textAlign: 'center',
+              width: '50%',
+              display: 'inline-block',
+
+              borderBottom: '2px #222222 solid',
+              borderTop: '2px #222222 solid',
+              borderLeft: '1px #222222 solid',
+            }}
+            onClick={AddLocationItem}
+          >
+            <ListItemText primary="Save" />
+          </ListItem>
+        </span>
       );
     }
 
@@ -107,7 +138,11 @@ class NavSearch extends Component {
       <>
         <ListItem
           button
-          style={{ backgroundColor: '#ffc8b5', marginTop: '-8px' }}
+          style={{
+            backgroundColor: '#ffc8b5',
+            marginTop: '-8px',
+            marginBottom: '-8px',
+          }}
           onClick={this.closeClick}
         >
           <ListItemIcon>
@@ -119,13 +154,6 @@ class NavSearch extends Component {
         {this.ComponentToRender}
 
         {this.ButtonToRender}
-        <ListItem
-          button
-          style={{ backgroundColor: '#b5ffb6', textAlign: 'center' }}
-          onClick={AddLocationItem}
-        >
-          <ListItemText primary="Save" />
-        </ListItem>
       </>
     );
   }

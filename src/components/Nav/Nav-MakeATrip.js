@@ -16,13 +16,20 @@ class NavMakeATrip extends Component {
   state = {
     load: 0,
   };
+
+  open = () => {
+    this.props.openDrawer();
+
+    setTimeout(() => {
+      this.dispatch();
+    }, 100);
+  };
   dispatch = () => {
     this.props.superReducer({ call: 'SET', data: 'make' });
-    this.props.dispatch({ type: 'SET_NAV_COMPONENT', payload: 'make' });
   };
   render() {
     return (
-      <ListItem button onClick={this.dispatch}>
+      <ListItem button onClick={this.open}>
         <ListItemIcon>
           <ExploreIcon />
         </ListItemIcon>

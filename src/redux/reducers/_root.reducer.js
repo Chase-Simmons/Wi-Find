@@ -7,6 +7,7 @@ import user_stats from './user_stats.reducer';
 import user_trips from './user_trips.reducer';
 import trip_locations from './trip_locations.reducer';
 import nav_responsive_component from './nav_responsive_component.reducer';
+import make_a_trip_title from './make_a_trip_title.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   user_trips,
   trip_locations,
   nav_responsive_component,
+  make_a_trip_title,
 });
 
 export default rootReducer;

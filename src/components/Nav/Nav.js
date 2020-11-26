@@ -21,8 +21,9 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 /*-----> MATERIAL-UI IMPORTS FOR NAV <-----*/
 
-/*-----> MAPBOX COMPONENT <-----*/
+/*-----> COMPONENT <-----*/
 import NavSearch from './Nav-Search';
+// import NavDrawerMain from './Nav-DrawerMain';
 import NavResponsiveComponent from '../NavResponsiveComponent/NavResponsiveComponent';
 import NavProfileLogin from './Nav-ProfileLogin';
 import NavMakeATrip from './Nav-MakeATrip';
@@ -31,7 +32,7 @@ import NavNearMe from './Nav-NearMe';
 import NavSpeedtest from './Nav-Speedtest';
 import NavLeaderboard from './Nav-Leaderboards';
 import NavDrawerClose from './Nav-DrawerClose';
-/*-----> MAPBOX COMPONENT <-----*/
+/*-----> COMPONENT <-----*/
 
 const drawerWidth = 320;
 
@@ -185,7 +186,10 @@ function Dashboard() {
         <List>
           <NavHome superReducer={superReducer} />
           <NavProfileLogin superReducer={superReducer} />
-          <NavMakeATrip superReducer={superReducer} />
+          <NavMakeATrip
+            superReducer={superReducer}
+            openDrawer={handleDrawerOpen}
+          />
           <NavNearMe superReducer={superReducer} />
           <NavSpeedtest superReducer={superReducer} />
           <NavLeaderboard superReducer={superReducer} />

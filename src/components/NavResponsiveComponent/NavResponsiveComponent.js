@@ -37,11 +37,11 @@ class NavResponsiveComponent extends Component {
         } else {
           this.callReload({ type: 'none' });
         }
-      }, 500);
+      }, 250);
     }
 
     if (this.state.type === 'make') {
-      ComponentToRender = <MakeATrip />;
+      ComponentToRender = <MakeATrip superReducer={this.props.superReducer} />;
     } else if (this.state.type === 'none') {
       ComponentToRender = <></>;
     }

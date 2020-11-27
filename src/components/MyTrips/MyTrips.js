@@ -15,13 +15,29 @@ import EditIcon from '@material-ui/icons/Edit';
 import CancelIcon from '@material-ui/icons/Cancel';
 /*-----> MATERIAL-UI <-----*/
 
+import MyTripsContent from './MyTripsContent';
 import swal from 'sweetalert';
 
 class MyTrips extends Component {
+  reducer = this.props.store;
+  componentDidMount() {
+    console.log(this.reducer.user_trips, this.reducer.trip_locations);
+  }
   closeClick = () => {
     this.props.superReducer({ call: 'SET', data: 'none' });
   };
+
+  ContentComponent;
   render() {
+    this.ContentComponent = this.reducer.user_trips.map((trip, key) => {
+      return (
+        <MyTripsContent
+          trip={trip}
+          key={key}
+          superReducer={this.props.superReducer}
+        />
+      );
+    });
     return (
       <>
         <ListItem
@@ -30,6 +46,7 @@ class MyTrips extends Component {
             backgroundColor: '#ffc8b5',
             marginTop: '-8px',
             marginBottom: '-8px',
+            borderBottom: '1px #222222 solid',
           }}
           onClick={this.closeClick}
         >
@@ -38,31 +55,7 @@ class MyTrips extends Component {
           </ListItemIcon>
           <ListItemText primary="Close" />
         </ListItem>
-        <ListItem
-          style={{
-            height: 75,
-            fontSize: 40,
-            marginTop: '8px',
-            borderBottom: '2px #222222 solid',
-            borderTop: '2px #222222 solid',
-          }}
-        >
-          <ListItemIcon></ListItemIcon>
-          <ListItemText>
-            <TextField
-              inputProps={{
-                style: {
-                  textAlign: 'center',
-                  fontWeight: 'bold',
-                  fontSize: 24,
-                },
-              }}
-              primary="Title"
-              placeholder="TRIP NAME"
-            />
-          </ListItemText>
-          <ListItemIcon></ListItemIcon>
-        </ListItem>
+        {this.ContentComponent}
       </>
     );
   }

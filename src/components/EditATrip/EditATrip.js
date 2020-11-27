@@ -18,7 +18,6 @@ import EditATripTitle from './EditATripTitle';
 
 import swal from 'sweetalert';
 import './EditATrip.css';
-import MakeATripItem from '../MakeATrip/MakeATripItem';
 
 class NavSearch extends Component {
   state = {
@@ -88,7 +87,7 @@ class NavSearch extends Component {
         this.ComponentToRender = (
           <>
             {this.ComponentToRender}
-            <MakeATripItem location={this.props.store.trip_locations[i]} />
+            <EditATripItem location={this.props.store.trip_locations[i]} />
           </>
         );
       }

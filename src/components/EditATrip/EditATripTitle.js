@@ -12,52 +12,74 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import TextField from '@material-ui/core/TextField';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import EditIcon from '@material-ui/icons/Edit';
+import NavigationIcon from '@material-ui/icons/Navigation';
 /*-----> MATERIAL-UI <-----*/
 
+/*-----> MISC <-----*/
 import swal from 'sweetalert';
 import './EditATrip.css';
+/*-----> MISC <-----*/
 
+/*-----> VARS <-----*/
 let TripTitle = 'Loading...';
 let TripId = null;
+/*-----> VARS <-----*/
 
 class MakeATripItem extends Component {
+  /*-----> THIS STATE <-----*/
   state = {
-    isContentAccepted: false,
+    isContentAccepted: true,
     isContentsDeleted: false,
-    disabled: false,
-    location: '',
+    disabled: true,
+    trip: '',
     size: 24,
   };
+  /*-----> THIS STATE <-----*/
+
+  /*-----> HANDLES ON CHANGE FOR INPUT <-----*/
   onChange = (event) => {
     this.setState({
       ...this.state,
-      location: event.target.value,
+      trip: event.target.value,
     });
   };
+  /*-----> HANDLES ON CHANGE FOR INPUT <-----*/
 
-  deleteContents = () => {
-    this.props.superReducer({ call: 'SET', data: 'none' });
-    this.setState(
-      {
+  /*-----> SWITCH STATE FROM EDIT MODE OR DELETE CONTENT <-----*/
+  editOrDeleteContents = () => {
+    if (this.state.isContentAccepted === true) {
+      this.setState({
         ...this.state,
-        isContentsDeleted: true,
-      },
-      () => {
-        this.props.dispatch({
-          type: 'HANDLE_CURRENT_TRIP',
-          payload: {
-            data: { id: this.props.store.user.id },
-            id: TripId,
-            call: 'DELETE',
-          },
-        });
-      }
-    );
+        isContentAccepted: false,
+        disabled: false,
+      });
+    } else {
+      this.props.superReducer({ call: 'SET', data: 'none' });
+      this.setState(
+        {
+          ...this.state,
+          isContentsDeleted: true,
+          disabled: true,
+        },
+        () => {
+          this.props.dispatch({
+            type: 'HANDLE_CURRENT_TRIP',
+            payload: {
+              data: { id: this.props.store.user.id },
+              id: TripId,
+              call: 'DELETE',
+            },
+          });
+        }
+      );
+    }
   };
+  /*-----> SWITCH STATE FROM EDIT MODE OR DELETE CONTENT <-----*/
 
-  acceptEdit = (event) => {
-    if (this.state.location !== '') {
-      if (this.state.isContentAccepted === false) {
+  /*-----> HANDLES ACCEPT EDITED CONTENT <-----*/
+  acceptNavigate = (event) => {
+    if (this.state.isContentAccepted === false) {
+      if (TripTitle !== '' || TripTitle !== 'Loading...') {
         this.setState({
           ...this.state,
           isContentAccepted: true,
@@ -65,47 +87,61 @@ class MakeATripItem extends Component {
         });
         this.dispatch();
       } else {
-        this.setState({
-          ...this.state,
-          isContentAccepted: false,
-          disabled: false,
-        });
+        swal('Please make sure the Trip has a name before submitting');
       }
     } else {
-      swal('Please make sure the Trip has a name before submitting');
+      this.setState({
+        ...this.state,
+        isContentAccepted: false,
+        disabled: false,
+      });
     }
   };
+  /*-----> HANDLES ACCEPT EDITED CONTENT <-----*/
 
+  /*-----> CALL TO DISPATCH <-----*/
   dispatch = () => {
-    this.props.dispatch({
-      type: 'HANDLE_CURRENT_TRIP',
-      payload: {
-        data: TripId,
-        user: this.props.store.user.id,
-        call: 'POST',
-      },
-    });
+    // this.props.dispatch({
+    //   type: 'HANDLE_CURRENT_TRIP',
+    //   payload: {
+    //     data: TripId,
+    //     user: this.props.store.user.id,
+    //     call: 'POST',
+    //   },
+    // });
   };
+  /*-----> CALL TO DISPATCH <-----*/
 
+  /*-----> HAS CONTENT LOADED? <-----*/
   hasLoaded = () => {
     this.setState({
       ...this.state,
       hasLoaded: true,
     });
   };
+  /*-----> HAS CONTENT LOADED? <-----*/
 
+  /*-----> DOES PAGE NEED TO BE LOADED? <-----*/
   callNewLoad = () => {
     this.setState({
       ...this.state,
       hasLoaded: false,
     });
   };
+  /*-----> DOES PAGE NEED TO BE LOADED? <-----*/
 
-  AcceptOrEdit;
+  /*-----> CHANGEABLE ICON COMPONENTS <-----*/
+  AcceptOrNavigate;
+  EditOrDelete;
+  /*-----> CHANGEABLE ICON COMPONENTS <-----*/
   render() {
+    /*-----> DOES CONTENT NEED TO BE LOADED? <-----*/
     if (TripId !== this.props.store.current_edit) {
       this.callNewLoad();
     }
+    /*-----> DOES CONTENT NEED TO BE LOADED? <-----*/
+
+    /*-----> CONTENT NEEDS TO BE LOADED -> HERE IS THE CONTENT <-----*/
     if (this.state.hasLoaded !== true) {
       for (let i = 0; i !== this.props.store.user_trips.length; i++) {
         if (
@@ -115,16 +151,28 @@ class MakeATripItem extends Component {
           TripId = this.props.store.user_trips[i].id;
         }
       }
+      /*-----> CONTENT NO LONGER NEEDS TO BE LOADED <-----*/
       this.hasLoaded();
+      /*-----> CONTENT NO LONGER NEEDS TO BE LOADED <-----*/
     }
+    /*-----> CONTENT NEEDS TO BE LOADED -> HERE IS THE CONTENT <-----*/
+
+    /*-----> ICON COMPONENT CONTROLLER <-----*/
     if (this.state.isContentAccepted === true) {
-      this.AcceptOrEdit = EditIcon;
+      this.EditOrDelete = EditIcon;
+      this.AcceptOrNavigate = NavigationIcon;
     } else {
-      this.AcceptOrEdit = CheckBoxIcon;
+      this.EditOrDelete = DeleteIcon;
+      this.AcceptOrNavigate = CheckBoxIcon;
     }
+    /*-----> ICON COMPONENT CONTROLLER <-----*/
+
+    /*-----> HAS DATA BEEN DELETED? <-----*/
     if (this.state.isContentsDeleted === true) {
       return <></>;
+      /*-----> HAS DATA BEEN DELETED? <-----*/
     } else {
+      /*-----> CONTENT! <-----*/
       return (
         <ListItem
           style={{
@@ -136,7 +184,10 @@ class MakeATripItem extends Component {
           }}
         >
           <ListItemIcon>
-            <DeleteIcon onClick={this.deleteContents} className="onHover" />
+            <this.EditOrDelete
+              onClick={this.editOrDeleteContents}
+              className="onHover"
+            />
           </ListItemIcon>
           <ListItemText>
             <TextField
@@ -150,18 +201,19 @@ class MakeATripItem extends Component {
               disabled={this.state.disabled}
               primary="Title"
               onChange={this.onChange}
-              placeholder={TripTitle}
+              value={TripTitle}
             />
           </ListItemText>
           <ListItemIcon>
-            <this.AcceptOrEdit
+            <this.AcceptOrNavigate
               style={{ marginLeft: 30, fontSize: this.state.size }}
-              onClick={this.acceptEdit}
+              onClick={this.acceptNavigate}
               className="onHover"
             />
           </ListItemIcon>
         </ListItem>
       );
+      /*-----> CONTENT! <-----*/
     }
   }
 }

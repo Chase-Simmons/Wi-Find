@@ -23,7 +23,7 @@ class MakeATripItem extends Component {
     id: null,
     isContentAccepted: false,
     isContentsDeleted: false,
-    disabled: false,
+    disabled: true,
     location: '',
     size: 24,
   };
@@ -116,7 +116,7 @@ class MakeATripItem extends Component {
               disabled={this.state.disabled}
               primary="location"
               onChange={this.onChange}
-              placeholder="STOP LOCATION"
+              value={this.props.location.location_name}
               inputProps={{
                 style: {
                   textAlign: 'center',

@@ -22,7 +22,6 @@ import InvertedProtectedRoute from '../ProtectedRoute/InvertedProtectedRoute.js'
 /*-----> PAGES <-----*/
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../../pages/LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
@@ -58,8 +57,6 @@ class App extends Component {
             />
 
             <ProtectedRoute exact path="/user" component={UserPage} />
-
-            <ProtectedRoute exact path="/info" component={InfoPage} />
 
             <ProtectedRoute
               exact

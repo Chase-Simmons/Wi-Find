@@ -5,7 +5,6 @@ export default class TripStops extends Component {
     const Props = this.props;
     let foundLocations = 0;
 
-    console.log(Props.locations);
     for (let i = 0; i < Props.locations.length; i++) {
       if (Props.locations[i].trip_id === Props.trip.id) {
         foundLocations++;

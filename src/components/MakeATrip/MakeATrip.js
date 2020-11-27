@@ -27,8 +27,12 @@ class NavSearch extends Component {
   closeClick = () => {
     this.props.superReducer({ call: 'SET', data: 'none' });
     this.props.dispatch({
-      type: 'SET_TRIP_TITLE',
-      payload: '',
+      type: 'HANDLE_CURRENT_TRIP',
+      payload: {
+        data: '',
+        id: this.props.store.make_a_trip_title.id,
+        call: 'DELETE',
+      },
     });
   };
 
@@ -81,7 +85,7 @@ class NavSearch extends Component {
 
     if (this.state.tripStarted === false) {
       this.ButtonToRender = <></>;
-      if (this.props.store.make_a_trip_title !== '') {
+      if (this.props.store.make_a_trip_title.data !== '') {
         AddLocationItem();
       }
     } else {

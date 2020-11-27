@@ -1,4 +1,4 @@
-const initialState = '';
+const initialState = { data: '', id: null, call: 'NONE' };
 
 const makeATripTitleReducer = (state = initialState, action) => {
   switch (action.type) {

@@ -32,7 +32,16 @@ class ProfilePage extends Component {
   }
 
   clickDelete = (trip) => () => {
-    console.log('delete', trip);
+    this.props.dispatch({
+      type: 'DELETE_USER_TRIPS',
+      payload: {
+        trip_id: trip.id,
+        id: this.props.store.user.id,
+      },
+    });
+    setTimeout(() => {
+      this.loadData();
+    }, 250);
   };
 
   clickGo = (trip) => () => {

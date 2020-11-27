@@ -13,8 +13,12 @@ class NavDrawerClose extends Component {
   closer = () => {
     this.props.close();
     this.props.dispatch({
-      type: 'SET_TRIP_TITLE',
-      payload: '',
+      type: 'HANDLE_CURRENT_TRIP',
+      payload: {
+        data: '',
+        id: this.props.store.make_a_trip_title.id,
+        call: 'DELETE',
+      },
     });
   };
   render() {

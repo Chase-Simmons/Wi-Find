@@ -63,8 +63,12 @@ class MakeATripItem extends Component {
 
   dispatch = () => {
     this.props.dispatch({
-      type: 'SET_TRIP_TITLE',
-      payload: this.state.location,
+      type: 'HANDLE_CURRENT_TRIP',
+      payload: {
+        data: this.state.location,
+        user: this.props.store.user.id,
+        call: 'POST',
+      },
     });
   };
   AcceptOrEdit;

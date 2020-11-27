@@ -5,7 +5,7 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 /*-----> CORE <-----*/
 
 /*-----> MATERIAL-UI <-----*/
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -29,12 +29,14 @@ class NavMakeATrip extends Component {
   };
   render() {
     return (
-      <ListItem button onClick={this.open}>
-        <ListItemIcon>
-          <ExploreIcon />
-        </ListItemIcon>
-        <ListItemText primary="Make A Trip" />
-      </ListItem>
+      <Link to="/home">
+        <ListItem button onClick={this.open}>
+          <ListItemIcon>
+            <ExploreIcon />
+          </ListItemIcon>
+          <ListItemText primary="Make A Trip" />
+        </ListItem>
+      </Link>
     );
   }
 }

@@ -2,9 +2,6 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-/**
- * GET route template
- */
 router.get('/:id', (req, res) => {
   pool
     .query(
@@ -21,14 +18,43 @@ router.get('/:id', (req, res) => {
       console.log('Failed to get location data ', err);
       res.sendStatus(500);
     });
-  // GET route code here
 });
 
-/**
- * POST route template
- */
-router.post('/', (req, res) => {
-  // POST route code here
+router.post('/:id', (req, res) => {
+  pool
+    .query(
+      `INSERT INTO "user_trips" ("user_id", "trip_name")
+      VALUES ($1, $2)
+      RETURNING "id";`,
+      [req.params.id, req.body.data]
+    )
+    .then((result) => {
+      res.send(result.rows[0]);
+    })
+    .catch((err) => {
+      console.log('Failed to get location data ', err);
+      res.sendStatus(500);
+    });
 });
 
+router.delete('/:id', (req, res) => {
+  pool
+    .query(`DELETE FROM "trip_location" WHERE trip_id=$1;`, [req.params.id])
+    .then((dbResponse) => {
+      pool
+        .query(`DELETE FROM "user_trips" WHERE id=$1;`, [req.params.id])
+        .then((dbResponse) => {
+          res.sendStatus(200);
+        })
+        .catch((err) => {
+          console.log(err);
+          res.sendStatus(500);
+        });
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(500);
+    });
+});
 module.exports = router;

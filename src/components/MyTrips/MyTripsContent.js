@@ -61,9 +61,14 @@ class MyTripsContent extends Component {
       navigateColor: 'black',
     });
   };
+
+  deleteData = () => {
+    this.setState({
+      dataDeleted: true,
+    });
+  };
   render() {
     const clickDelete = () => {
-      console.log(this.props.trip.id, this.props.store.user.id, 'in delete');
       this.props.dispatch({
         type: 'DELETE_USER_TRIPS',
         payload: {
@@ -71,70 +76,73 @@ class MyTripsContent extends Component {
           id: this.props.store.user.id,
         },
       });
-      setTimeout(() => {
-        this.loadData();
-      }, 250);
+      this.deleteData();
     };
-    return (
-      <ListItem
-        button
-        style={{
-          height: 50,
-          fontSize: 40,
-          marginTop: '8px',
-          marginBottom: '-8px',
-          borderBottom: '1px #222222 solid',
-          borderTop: '1px #222222 solid',
-        }}
-      >
-        <ListItemIcon style={{ minWidth: 10 }}>
-          <DeleteIcon
-            onMouseEnter={this.onEnterDelete}
-            onMouseLeave={this.onLeaveDelete}
-            style={{ color: this.state.deleteColor }}
-            onClick={clickDelete}
-          />
-        </ListItemIcon>
-        <ListItemText>
-          <TextField
-            disabled
-            inputProps={{
-              style: {
-                textAlign: 'left',
-                fontWeight: 'bold',
-                fontSize: 16,
-                color: '#222222',
-                minWidth: '140px',
-                marginLeft: '5px',
-              },
-            }}
-            value={this.props.trip.trip_name}
-          />
-        </ListItemText>
-        <ListItemText>
-          <TextField
-            disabled
-            inputProps={{
-              style: {
-                textAlign: 'center',
-                fontWeight: 'bold',
-                fontSize: 16,
-                color: '#222222',
-                minWidth: '140px',
-              },
-            }}
-            value=" Stops: 0"
-          />
-        </ListItemText>
-        <ListItemIcon style={{ minWidth: 10 }}>
-          <NavigationIcon
-            onMouseEnter={this.onEnterNavigate}
-            onMouseLeave={this.onLeaveNavigate}
-            style={{ color: this.state.navigateColor, marginLeft: '24px' }}
-          />
-        </ListItemIcon>
-      </ListItem>
-    );
+
+    if (this.state.dataDeleted === true) {
+      return <></>;
+    } else {
+      return (
+        <ListItem
+          button
+          style={{
+            height: 50,
+            fontSize: 40,
+            marginTop: '8px',
+            marginBottom: '-8px',
+            borderBottom: '1px #222222 solid',
+            borderTop: '1px #222222 solid',
+          }}
+        >
+          <ListItemIcon style={{ minWidth: 10 }}>
+            <DeleteIcon
+              onMouseEnter={this.onEnterDelete}
+              onMouseLeave={this.onLeaveDelete}
+              style={{ color: this.state.deleteColor }}
+              onClick={clickDelete}
+            />
+          </ListItemIcon>
+          <ListItemText>
+            <TextField
+              disabled
+              inputProps={{
+                style: {
+                  textAlign: 'left',
+                  fontWeight: 'bold',
+                  fontSize: 16,
+                  color: '#222222',
+                  minWidth: '140px',
+                  marginLeft: '5px',
+                },
+              }}
+              value={this.props.trip.trip_name}
+            />
+          </ListItemText>
+          <ListItemText>
+            <TextField
+              disabled
+              inputProps={{
+                style: {
+                  textAlign: 'center',
+                  fontWeight: 'bold',
+                  fontSize: 16,
+                  color: '#222222',
+                  minWidth: '140px',
+                },
+              }}
+              value=" Stops: 0"
+            />
+          </ListItemText>
+          <ListItemIcon style={{ minWidth: 10 }}>
+            <NavigationIcon
+              onMouseEnter={this.onEnterNavigate}
+              onMouseLeave={this.onLeaveNavigate}
+              style={{ color: this.state.navigateColor, marginLeft: '24px' }}
+            />
+          </ListItemIcon>
+        </ListItem>
+      );
+    }
   }
 }
 

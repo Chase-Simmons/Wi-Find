@@ -19,7 +19,14 @@ class NavMyTrips extends Component {
 
   open = () => {
     this.props.openDrawer();
-
+    this.props.dispatch({
+      type: 'HANDLE_CURRENT_TRIP',
+      payload: {
+        data: '',
+        id: this.props.store.make_a_trip_title.id,
+        call: 'DELETE',
+      },
+    });
     setTimeout(() => {
       this.dispatch();
     }, 100);

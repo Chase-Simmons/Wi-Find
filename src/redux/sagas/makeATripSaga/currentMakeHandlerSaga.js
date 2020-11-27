@@ -66,6 +66,7 @@ function* currentMakeATrip(action) {
           payload: { data: '', id: null, call: 'NONE' },
         });
       }
+      yield put({ type: 'GET_USER_TRIPS', payload: action.payload.data.id });
     }
   } catch (err) {
     console.log(err);

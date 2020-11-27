@@ -12,12 +12,13 @@ import CancelIcon from '@material-ui/icons/Cancel';
 /*-----> MATERIAL-UI <-----*/
 
 /*-----> COMPONENT <-----*/
-import MakeATripItem from './EditATripItem';
-import MakeATripTitle from './EditATripTitle';
+import EditATripItem from './EditATripItem';
+import EditATripTitle from './EditATripTitle';
 /*-----> COMPONENT <-----*/
 
 import swal from 'sweetalert';
 import './EditATrip.css';
+import MakeATripItem from '../MakeATrip/MakeATripItem';
 
 class NavSearch extends Component {
   state = {
@@ -75,12 +76,24 @@ class NavSearch extends Component {
     }
   };
 
-  TitleComponent;
-  LocationComponent;
   ComponentToRender;
-  ButtonToRender;
-
   render() {
+    this.ComponentToRender = <></>;
+    for (let i = 0; i < this.props.store.trip_locations.length; i++) {
+      if (
+        this.props.store.current_edit ===
+        this.props.store.trip_locations[i].trip_id
+      ) {
+        console.log(this.props.store.trip_locations[i]);
+        this.ComponentToRender = (
+          <>
+            {this.ComponentToRender}
+            <MakeATripItem location={this.props.store.trip_locations[i]} />
+          </>
+        );
+      }
+    }
+
     const AddLocationItem = () => {
       if (this.props.store.make_a_trip_title !== '') {
         this.updateState();
@@ -118,7 +131,7 @@ class NavSearch extends Component {
     if (this.state.render === true) {
       this.ComponentToRender = (
         <>
-          <MakeATripItem updateStateByProp={this.updateStateByProp} />
+          <EditATripItem updateStateByProp={this.updateStateByProp} />
           {this.ComponentToRender}
         </>
       );
@@ -142,7 +155,7 @@ class NavSearch extends Component {
           </ListItemIcon>
           <ListItemText primary="Close" />
         </ListItem>
-        <MakeATripTitle />
+        <EditATripTitle superReducer={this.props.superReducer} />
         {this.ComponentToRender}
 
         {this.ButtonToRender}

@@ -17,6 +17,9 @@ import EditIcon from '@material-ui/icons/Edit';
 import swal from 'sweetalert';
 import './EditATrip.css';
 
+let TripTitle = 'Loading...';
+let TripId = null;
+
 class MakeATripItem extends Component {
   state = {
     isContentAccepted: false,
@@ -33,10 +36,23 @@ class MakeATripItem extends Component {
   };
 
   deleteContents = () => {
-    this.setState({
-      ...this.state,
-      isContentsDeleted: true,
-    });
+    this.props.superReducer({ call: 'SET', data: 'none' });
+    this.setState(
+      {
+        ...this.state,
+        isContentsDeleted: true,
+      },
+      () => {
+        this.props.dispatch({
+          type: 'HANDLE_CURRENT_TRIP',
+          payload: {
+            data: { id: this.props.store.user.id },
+            id: TripId,
+            call: 'DELETE',
+          },
+        });
+      }
+    );
   };
 
   acceptEdit = (event) => {
@@ -64,14 +80,43 @@ class MakeATripItem extends Component {
     this.props.dispatch({
       type: 'HANDLE_CURRENT_TRIP',
       payload: {
-        data: this.state.location,
+        data: TripId,
         user: this.props.store.user.id,
         call: 'POST',
       },
     });
   };
+
+  hasLoaded = () => {
+    this.setState({
+      ...this.state,
+      hasLoaded: true,
+    });
+  };
+
+  callNewLoad = () => {
+    this.setState({
+      ...this.state,
+      hasLoaded: false,
+    });
+  };
+
   AcceptOrEdit;
   render() {
+    if (TripId !== this.props.store.current_edit) {
+      this.callNewLoad();
+    }
+    if (this.state.hasLoaded !== true) {
+      for (let i = 0; i !== this.props.store.user_trips.length; i++) {
+        if (
+          this.props.store.current_edit === this.props.store.user_trips[i].id
+        ) {
+          TripTitle = this.props.store.user_trips[i].trip_name;
+          TripId = this.props.store.user_trips[i].id;
+        }
+      }
+      this.hasLoaded();
+    }
     if (this.state.isContentAccepted === true) {
       this.AcceptOrEdit = EditIcon;
     } else {
@@ -90,7 +135,9 @@ class MakeATripItem extends Component {
             borderTop: '2px #222222 solid',
           }}
         >
-          <ListItemIcon></ListItemIcon>
+          <ListItemIcon>
+            <DeleteIcon onClick={this.deleteContents} className="onHover" />
+          </ListItemIcon>
           <ListItemText>
             <TextField
               inputProps={{
@@ -103,7 +150,7 @@ class MakeATripItem extends Component {
               disabled={this.state.disabled}
               primary="Title"
               onChange={this.onChange}
-              placeholder="TRIP NAME"
+              placeholder={TripTitle}
             />
           </ListItemText>
           <ListItemIcon>

@@ -12,12 +12,12 @@ import CancelIcon from '@material-ui/icons/Cancel';
 /*-----> MATERIAL-UI <-----*/
 
 /*-----> COMPONENT <-----*/
-import MakeATripItem from './MakeATripItem';
-import MakeATripTitle from './MakeATripTitle';
+import MakeATripItem from './EditATripItem';
+import MakeATripTitle from './EditATripTitle';
 /*-----> COMPONENT <-----*/
 
 import swal from 'sweetalert';
-import './MakeATrip.css';
+import './EditATrip.css';
 
 class NavSearch extends Component {
   state = {
@@ -37,18 +37,7 @@ class NavSearch extends Component {
   };
 
   saveClick = () => {
-    this.props.dispatch({
-      type: 'SET_CURRENT_EDIT',
-      payload: this.props.store.make_a_trip_title.id,
-    });
-    this.props.dispatch({
-      type: 'GET_USER_TRIPS',
-      payload: this.props.store.user.id,
-    });
-
-    setTimeout(() => {
-      this.props.superReducer({ call: 'SET', data: 'edit' });
-    }, 250);
+    this.props.superReducer({ call: 'SET', data: 'none' });
   };
 
   updateState() {
@@ -86,6 +75,8 @@ class NavSearch extends Component {
     }
   };
 
+  TitleComponent;
+  LocationComponent;
   ComponentToRender;
   ButtonToRender;
 
@@ -109,26 +100,8 @@ class NavSearch extends Component {
           <ListItem
             button
             style={{
-              backgroundColor: '#b5fffe',
-              textAlign: 'center',
-              width: '50%',
-              display: 'inline-block',
-              borderBottom: '2px #222222 solid',
-              borderTop: '2px #222222 solid',
-              borderRight: '1px #222222 solid',
-            }}
-            onClick={AddLocationItem}
-          >
-            <ListItemText primary="Add Location" />
-          </ListItem>
-
-          <ListItem
-            button
-            style={{
               backgroundColor: '#b5ffb6',
               textAlign: 'center',
-              width: '50%',
-              display: 'inline-block',
 
               borderBottom: '2px #222222 solid',
               borderTop: '2px #222222 solid',

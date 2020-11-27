@@ -15,7 +15,7 @@ import EditIcon from '@material-ui/icons/Edit';
 /*-----> MATERIAL-UI <-----*/
 
 import swal from 'sweetalert';
-import './MakeATrip.css';
+import './EditATrip.css';
 
 class MakeATripItem extends Component {
   state = {

@@ -45,7 +45,18 @@ class ProfilePage extends Component {
   };
 
   clickGo = (trip) => () => {
-    console.log('go', trip);
+    this.props.dispatch({
+      type: 'SET_CURRENT_EDIT',
+      payload: trip.id,
+    });
+    this.props.dispatch({
+      type: 'GET_USER_TRIPS',
+      payload: this.props.store.user.id,
+    });
+
+    setTimeout(() => {
+      this.props.superReducer({ call: 'SET', data: 'edit' });
+    }, 250);
   };
   render() {
     const hasData = this.state.trips;

@@ -1,0 +1,4 @@
+.onHover:hover {
+  cursor: pointer;
+  outline: 1px solid #ffb9b9;
+}

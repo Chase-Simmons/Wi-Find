@@ -15,12 +15,10 @@ import EditIcon from '@material-ui/icons/Edit';
 /*-----> MATERIAL-UI <-----*/
 
 import swal from 'sweetalert';
-import './MakeATrip.css';
+import './EditATrip.css';
 
 class MakeATripItem extends Component {
   state = {
-    lookingForID: false,
-    id: null,
     isContentAccepted: false,
     isContentsDeleted: false,
     disabled: false,
@@ -35,22 +33,10 @@ class MakeATripItem extends Component {
   };
 
   deleteContents = () => {
-    this.setState(
-      {
-        ...this.state,
-        isContentsDeleted: true,
-      },
-      () => {
-        this.props.dispatch({
-          type: 'HANDLE_CURRENT_TRIP',
-          payload: {
-            data: '',
-            id: this.state.id,
-            call: 'DELETE_LOCATION',
-          },
-        });
-      }
-    );
+    this.setState({
+      ...this.state,
+      isContentsDeleted: true,
+    });
   };
 
   acceptEdit = (event) => {
@@ -58,22 +44,19 @@ class MakeATripItem extends Component {
       if (this.state.isContentAccepted === false) {
         this.setState({
           ...this.state,
-          lookingForID: true,
           isContentAccepted: true,
           disabled: true,
-          size: 0,
         });
         this.dispatch();
       } else {
         this.setState({
           ...this.state,
-          lookingForID: false,
           isContentAccepted: false,
           disabled: false,
         });
       }
     } else {
-      swal('Please make sure the location has a name before submitting');
+      swal('Please make sure the Trip has a name before submitting');
     }
   };
 
@@ -82,22 +65,13 @@ class MakeATripItem extends Component {
       type: 'HANDLE_CURRENT_TRIP',
       payload: {
         data: this.state.location,
-        id: this.props.store.make_a_trip_title.id,
-        call: 'POST_LOCATION',
+        user: this.props.store.user.id,
+        call: 'POST',
       },
     });
   };
   AcceptOrEdit;
   render() {
-    if (this.state.lookingForID === true) {
-      setTimeout(() => {
-        this.setState({
-          ...this.state,
-          lookingForID: false,
-          id: this.props.store.make_a_trip_location.id,
-        });
-      }, 250);
-    }
     if (this.state.isContentAccepted === true) {
       this.AcceptOrEdit = EditIcon;
     } else {
@@ -107,21 +81,29 @@ class MakeATripItem extends Component {
       return <></>;
     } else {
       return (
-        <ListItem>
-          <ListItemIcon>
-            <DeleteIcon onClick={this.deleteContents} className="onHover" />
-          </ListItemIcon>
+        <ListItem
+          style={{
+            height: 75,
+            fontSize: 40,
+            marginTop: '8px',
+            borderBottom: '2px #222222 solid',
+            borderTop: '2px #222222 solid',
+          }}
+        >
+          <ListItemIcon></ListItemIcon>
           <ListItemText>
             <TextField
-              disabled={this.state.disabled}
-              primary="location"
-              onChange={this.onChange}
-              placeholder="STOP LOCATION"
               inputProps={{
                 style: {
                   textAlign: 'center',
+                  fontWeight: 'bold',
+                  fontSize: 24,
                 },
               }}
+              disabled={this.state.disabled}
+              primary="Title"
+              onChange={this.onChange}
+              placeholder="TRIP NAME"
             />
           </ListItemText>
           <ListItemIcon>

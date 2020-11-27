@@ -12,7 +12,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ExploreIcon from '@material-ui/icons/Explore';
 /*-----> MATERIAL-UI <-----*/
 
-class NavMakeATrip extends Component {
+class NavMyTrips extends Component {
   state = {
     load: 0,
   };
@@ -25,7 +25,7 @@ class NavMakeATrip extends Component {
     }, 100);
   };
   dispatch = () => {
-    this.props.superReducer({ call: 'SET', data: 'make' });
+    this.props.superReducer({ call: 'SET', data: 'my_trips' });
   };
   render() {
     return (
@@ -33,10 +33,10 @@ class NavMakeATrip extends Component {
         <ListItemIcon>
           <ExploreIcon />
         </ListItemIcon>
-        <ListItemText primary="Make A Trip" />
+        <ListItemText primary="My Trips" />
       </ListItem>
     );
   }
 }
 
-export default connect(mapStoreToProps)(NavMakeATrip);
+export default connect(mapStoreToProps)(NavMyTrips);

@@ -32,6 +32,7 @@ import NavNearMe from './Nav-NearMe';
 import NavSpeedtest from './Nav-Speedtest';
 import NavLeaderboard from './Nav-Leaderboards';
 import NavDrawerClose from './Nav-DrawerClose';
+import NavMyTrips from './Nav-MyTrips';
 /*-----> COMPONENT <-----*/
 
 const drawerWidth = 320;
@@ -186,6 +187,10 @@ function Dashboard() {
         <List style={{ paddingBottom: 0 }}>
           <NavHome superReducer={superReducer} />
           <NavProfileLogin superReducer={superReducer} />
+          <NavMyTrips
+            superReducer={superReducer}
+            openDrawer={handleDrawerOpen}
+          />
           <NavMakeATrip
             superReducer={superReducer}
             openDrawer={handleDrawerOpen}

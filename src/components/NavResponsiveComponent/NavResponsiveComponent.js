@@ -4,15 +4,10 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 /*-----> CORE <-----*/
 
-/*-----> MATERIAL-UI <-----*/
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-/*-----> MATERIAL-UI <-----*/
-
 /*-----> COMPONENTS <-----*/
 import MakeATrip from '../MakeATrip/MakeATrip';
+import EditATrip from '../EditATrip/EditATrip';
+import MyTrips from '../MyTrips/MyTrips';
 /*-----> COMPONENTS <-----*/
 
 class NavResponsiveComponent extends Component {
@@ -21,31 +16,47 @@ class NavResponsiveComponent extends Component {
     reload: true,
   };
 
+  /*-----> CALLS FOR STATE UPDATE <-----*/
   callReload = (data) => {
     this.setState({
       type: data.type,
       reload: true,
     });
   };
+  /*-----> CALLS FOR STATE UPDATE <-----*/
   render() {
+    /*-----> DETERMINES WHAT WILL RENDER <-----*/
     let ComponentToRender;
+    /*-----> DETERMINES WHAT WILL RENDER <-----*/
 
+    /*-----> CHECKS SUPERREDUCER COMPONENT TO SEE IF A UPDATE IS NEEDED <-----*/
     if (this.state.reload === true) {
       setTimeout(() => {
         if (this.props.superReducer({ call: 'GET' }) === 'make') {
           this.callReload({ type: 'make' });
+        } else if (this.props.superReducer({ call: 'GET' }) === 'edit') {
+          this.callReload({ type: 'edit' });
+        } else if (this.props.superReducer({ call: 'GET' }) === 'my_trips') {
+          this.callReload({ type: 'my_trips' });
         } else {
           this.callReload({ type: 'none' });
         }
       }, 250);
     }
+    /*-----> CHECKS SUPER-REDUCER COMPONENT TO SEE IF A UPDATE IS NEEDED <-----*/
 
+    /*-----> CONDITION RENDER FROM SUPER-REDUCER <-----*/
     if (this.state.type === 'make') {
       ComponentToRender = <MakeATrip superReducer={this.props.superReducer} />;
+    } else if (this.state.type === 'edit') {
+      ComponentToRender = <EditATrip superReducer={this.props.superReducer} />;
+    } else if (this.state.type === 'my_trips') {
+      ComponentToRender = <MyTrips superReducer={this.props.superReducer} />;
     } else if (this.state.type === 'none') {
       ComponentToRender = <></>;
     }
     return <>{ComponentToRender}</>;
+    /*-----> CONDITION RENDER FROM SUPER-REDUCER <-----*/
   }
 }
 

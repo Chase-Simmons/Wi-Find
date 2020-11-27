@@ -21,7 +21,6 @@ import InvertedProtectedRoute from '../ProtectedRoute/InvertedProtectedRoute.js'
 
 /*-----> PAGES <-----*/
 import AboutPage from '../AboutPage/AboutPage';
-import UserPage from '../UserPage/UserPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../../pages/LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
@@ -55,9 +54,6 @@ class App extends Component {
               component={ProfilePage}
               authRedirect="/home"
             />
-
-            <ProtectedRoute exact path="/user" component={UserPage} />
-
             <ProtectedRoute
               exact
               path="/login"

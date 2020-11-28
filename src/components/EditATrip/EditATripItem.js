@@ -12,127 +12,192 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import TextField from '@material-ui/core/TextField';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import EditIcon from '@material-ui/icons/Edit';
+import NavigationIcon from '@material-ui/icons/Navigation';
 /*-----> MATERIAL-UI <-----*/
 
+/*-----> MISC <-----*/
 import swal from 'sweetalert';
 import './EditATrip.css';
+/*-----> MISC <-----*/
+
+/*-----> VARS <-----*/
+let LocationId = null;
+/*-----> VARS <-----*/
 
 class MakeATripItem extends Component {
+  /*-----> THIS STATE <-----*/
   state = {
-    lookingForID: false,
-    id: null,
-    isContentAccepted: false,
+    isContentAccepted: true,
     isContentsDeleted: false,
     disabled: true,
-    location: '',
+    trip: 'Loading...',
     size: 24,
   };
+  /*-----> THIS STATE <-----*/
+
+  /*-----> HANDLES ON CHANGE FOR INPUT <-----*/
   onChange = (event) => {
     this.setState({
       ...this.state,
-      location: event.target.value,
+      trip: event.target.value,
     });
   };
+  /*-----> HANDLES ON CHANGE FOR INPUT <-----*/
 
-  deleteContents = () => {
-    this.setState(
-      {
+  /*-----> SWITCH STATE FROM EDIT MODE OR DELETE CONTENT <-----*/
+  editOrDeleteContents = () => {
+    if (this.state.isContentAccepted === true) {
+      this.setState({
         ...this.state,
-        isContentsDeleted: true,
-      },
-      () => {
-        this.props.dispatch({
-          type: 'HANDLE_CURRENT_TRIP',
-          payload: {
-            data: '',
-            id: this.state.id,
-            call: 'DELETE_LOCATION',
-          },
-        });
-      }
-    );
+        isContentAccepted: false,
+        disabled: false,
+      });
+    } else {
+      this.props.superReducer({ call: 'SET', data: 'none' });
+      this.setState(
+        {
+          ...this.state,
+          isContentsDeleted: true,
+          disabled: true,
+        }
+        // () => {
+        //   this.props.dispatch({
+        //     type: 'HANDLE_CURRENT_TRIP',
+        //     payload: {
+        //       data: { id: this.props.store.user.id },
+        //       id: TripId,
+        //       call: 'DELETE',
+        //     },
+        //   });
+        // }
+      );
+    }
   };
+  /*-----> SWITCH STATE FROM EDIT MODE OR DELETE CONTENT <-----*/
 
-  acceptEdit = (event) => {
-    if (this.state.location !== '') {
-      if (this.state.isContentAccepted === false) {
+  /*-----> HANDLES ACCEPT EDITED CONTENT <-----*/
+  acceptNavigate = (event) => {
+    if (this.state.isContentAccepted === false) {
+      if (this.state.trip !== '' || this.state.trip !== 'Loading...') {
         this.setState({
           ...this.state,
-          lookingForID: true,
           isContentAccepted: true,
           disabled: true,
-          size: 0,
         });
         this.dispatch();
       } else {
-        this.setState({
-          ...this.state,
-          lookingForID: false,
-          isContentAccepted: false,
-          disabled: false,
-        });
+        swal('Please make sure the Trip has a name before submitting');
       }
     } else {
-      swal('Please make sure the location has a name before submitting');
+      this.setState({
+        ...this.state,
+        isContentAccepted: false,
+        disabled: false,
+      });
     }
   };
+  /*-----> HANDLES ACCEPT EDITED CONTENT <-----*/
 
+  /*-----> CALL TO DISPATCH <-----*/
   dispatch = () => {
-    this.props.dispatch({
-      type: 'HANDLE_CURRENT_TRIP',
-      payload: {
-        data: this.state.location,
-        id: this.props.store.make_a_trip_title.id,
-        call: 'POST_LOCATION',
-      },
+    // this.props.dispatch({
+    //   type: 'PUT_USER_TRIPS',
+    //   payload: {
+    //     id: TripId,
+    //     name: this.state.trip,
+    //     user_id: this.props.store.user.id,
+    //   },
+    // });
+  };
+  /*-----> CALL TO DISPATCH <-----*/
+
+  /*-----> HAS CONTENT LOADED? <-----*/
+  hasLoaded = () => {
+    this.setState({
+      ...this.state,
+      trip: this.props.location.location_name,
+      hasLoaded: true,
     });
   };
-  AcceptOrEdit;
+  /*-----> HAS CONTENT LOADED? <-----*/
+
+  /*-----> DOES PAGE NEED TO BE LOADED? <-----*/
+  callNewLoad = () => {
+    // this.setState({
+    //   ...this.state,
+    //   hasLoaded: false,
+    // });
+  };
+  /*-----> DOES PAGE NEED TO BE LOADED? <-----*/
+
+  /*-----> CHANGEABLE ICON COMPONENTS <-----*/
+  AcceptOrNavigate;
+  EditOrDelete;
+  /*-----> CHANGEABLE ICON COMPONENTS <-----*/
   render() {
-    if (this.state.lookingForID === true) {
-      setTimeout(() => {
-        this.setState({
-          ...this.state,
-          lookingForID: false,
-          id: this.props.store.make_a_trip_location.id,
-        });
-      }, 250);
+    console.log(this.props.location);
+    /*-----> DOES CONTENT NEED TO BE LOADED? <-----*/
+    // if (LocationId !== this.props.store.current_edit) {
+    //   this.callNewLoad();
+    // }
+    /*-----> DOES CONTENT NEED TO BE LOADED? <-----*/
+
+    /*-----> CONTENT NO LONGER NEEDS TO BE LOADED <-----*/
+    if (this.state.hasLoaded !== true) {
+      this.hasLoaded();
     }
+    /*-----> CONTENT NO LONGER NEEDS TO BE LOADED <-----*/
+
+    /*-----> ICON COMPONENT CONTROLLER <-----*/
     if (this.state.isContentAccepted === true) {
-      this.AcceptOrEdit = EditIcon;
+      this.EditOrDelete = EditIcon;
+      this.AcceptOrNavigate = NavigationIcon;
     } else {
-      this.AcceptOrEdit = CheckBoxIcon;
+      this.EditOrDelete = DeleteIcon;
+      this.AcceptOrNavigate = CheckBoxIcon;
     }
+    /*-----> ICON COMPONENT CONTROLLER <-----*/
+
+    /*-----> HAS DATA BEEN DELETED? <-----*/
     if (this.state.isContentsDeleted === true) {
       return <></>;
+      /*-----> HAS DATA BEEN DELETED? <-----*/
     } else {
+      /*-----> CONTENT! <-----*/
       return (
         <ListItem>
           <ListItemIcon>
-            <DeleteIcon onClick={this.deleteContents} className="onHover" />
+            <this.EditOrDelete
+              onClick={this.editOrDeleteContents}
+              className="onHover"
+            />
           </ListItemIcon>
+
           <ListItemText>
             <TextField
-              disabled={this.state.disabled}
-              primary="location"
-              onChange={this.onChange}
-              value={this.props.location.location_name}
               inputProps={{
                 style: {
                   textAlign: 'center',
+                  fontWeight: 'bold',
+                  fontSize: 24,
                 },
               }}
+              disabled={this.state.disabled}
+              primary="Title"
+              onChange={this.onChange}
+              value={this.state.trip}
             />
           </ListItemText>
           <ListItemIcon>
-            <this.AcceptOrEdit
+            <this.AcceptOrNavigate
               style={{ marginLeft: 30, fontSize: this.state.size }}
-              onClick={this.acceptEdit}
+              onClick={this.acceptNavigate}
               className="onHover"
             />
           </ListItemIcon>
         </ListItem>
       );
+      /*-----> CONTENT! <-----*/
     }
   }
 }

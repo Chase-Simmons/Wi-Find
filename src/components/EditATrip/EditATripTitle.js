@@ -150,7 +150,6 @@ class MakeATripItem extends Component {
         ) {
           TripId = this.props.store.user_trips[i].id;
           TripName = this.props.store.user_trips[i].trip_name;
-          console.log(TripName);
         }
       }
       /*-----> CONTENT NO LONGER NEEDS TO BE LOADED <-----*/

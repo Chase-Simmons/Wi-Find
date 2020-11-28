@@ -7,7 +7,8 @@ router.get('/:id', (req, res) => {
     .query(
       `SELECT "user_trips".id, "user_trips".trip_name FROM "user" 
     JOIN "user_trips" ON "user".id = "user_trips".user_id
-    WHERE "user".id = $1;`,
+    WHERE "user".id = $1
+    ORDER BY "user_trips".id;`,
       [req.params.id]
     )
     .then((result) => {
@@ -15,7 +16,7 @@ router.get('/:id', (req, res) => {
       res.send(result.rows);
     })
     .catch((err) => {
-      console.log('Failed to get location data ', err);
+      console.log('Failed to get trip data ', err);
       res.sendStatus(500);
     });
 });
@@ -32,7 +33,7 @@ router.post('/:id', (req, res) => {
       res.send(result.rows[0]);
     })
     .catch((err) => {
-      console.log('Failed to get location data ', err);
+      console.log('Failed to post trip data ', err);
       res.sendStatus(500);
     });
 });
@@ -53,7 +54,25 @@ router.delete('/:id', (req, res) => {
       res.sendStatus(200);
     })
     .catch((err) => {
-      console.log(err);
+      console.log('Failed to delete trip data ', err);
+      res.sendStatus(500);
+    });
+});
+
+router.put('/:id', (req, res) => {
+  console.log(req.body);
+  pool
+    .query(
+      `UPDATE user_trips
+  SET "trip_name" = $2
+  WHERE id=$1;`,
+      [req.params.id, req.body.name]
+    )
+    .then(() => {
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.log('Failed to put trip data ', err);
       res.sendStatus(500);
     });
 });

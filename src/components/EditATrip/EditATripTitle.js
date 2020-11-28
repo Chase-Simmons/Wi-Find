@@ -21,8 +21,8 @@ import './EditATrip.css';
 /*-----> MISC <-----*/
 
 /*-----> VARS <-----*/
-let TripTitle = 'Loading...';
 let TripId = null;
+let TripName;
 /*-----> VARS <-----*/
 
 class MakeATripItem extends Component {
@@ -31,7 +31,7 @@ class MakeATripItem extends Component {
     isContentAccepted: true,
     isContentsDeleted: false,
     disabled: true,
-    trip: '',
+    trip: 'Loading...',
     size: 24,
   };
   /*-----> THIS STATE <-----*/
@@ -79,7 +79,7 @@ class MakeATripItem extends Component {
   /*-----> HANDLES ACCEPT EDITED CONTENT <-----*/
   acceptNavigate = (event) => {
     if (this.state.isContentAccepted === false) {
-      if (TripTitle !== '' || TripTitle !== 'Loading...') {
+      if (this.state.trip !== '' || this.state.trip !== 'Loading...') {
         this.setState({
           ...this.state,
           isContentAccepted: true,
@@ -101,14 +101,14 @@ class MakeATripItem extends Component {
 
   /*-----> CALL TO DISPATCH <-----*/
   dispatch = () => {
-    // this.props.dispatch({
-    //   type: 'HANDLE_CURRENT_TRIP',
-    //   payload: {
-    //     data: TripId,
-    //     user: this.props.store.user.id,
-    //     call: 'POST',
-    //   },
-    // });
+    this.props.dispatch({
+      type: 'PUT_USER_TRIPS',
+      payload: {
+        id: TripId,
+        name: this.state.trip,
+        user_id: this.props.store.user.id,
+      },
+    });
   };
   /*-----> CALL TO DISPATCH <-----*/
 
@@ -116,6 +116,7 @@ class MakeATripItem extends Component {
   hasLoaded = () => {
     this.setState({
       ...this.state,
+      trip: TripName,
       hasLoaded: true,
     });
   };
@@ -147,8 +148,9 @@ class MakeATripItem extends Component {
         if (
           this.props.store.current_edit === this.props.store.user_trips[i].id
         ) {
-          TripTitle = this.props.store.user_trips[i].trip_name;
           TripId = this.props.store.user_trips[i].id;
+          TripName = this.props.store.user_trips[i].trip_name;
+          console.log(TripName);
         }
       }
       /*-----> CONTENT NO LONGER NEEDS TO BE LOADED <-----*/
@@ -201,7 +203,7 @@ class MakeATripItem extends Component {
               disabled={this.state.disabled}
               primary="Title"
               onChange={this.onChange}
-              value={TripTitle}
+              value={this.state.trip}
             />
           </ListItemText>
           <ListItemIcon>

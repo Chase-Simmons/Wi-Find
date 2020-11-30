@@ -91,7 +91,7 @@ class MapBox extends Component {
             <Marker
               longitude={item.long}
               latitude={item.lat}
-              offsetTop={-size / 1.5}
+              offsetTop={-size / 2}
               offsetLeft={-size / 2}
             >
               <img

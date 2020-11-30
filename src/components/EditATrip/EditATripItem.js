@@ -84,11 +84,19 @@ class MakeATripItem extends Component {
         swal('Please make sure the Trip has a name before submitting');
       }
     } else {
-      this.setState({
-        ...this.state,
-        isContentAccepted: false,
-        disabled: false,
-      });
+      this.setState(
+        {
+          ...this.state,
+          // isContentAccepted: false,
+          // disabled: false,
+        },
+        () => {
+          this.props.dispatch({
+            type: 'FETCH_OPEN_CAGE',
+            payload: { search_string: this.state.location },
+          });
+        }
+      );
     }
   };
   /*-----> HANDLES ACCEPT EDITED CONTENT <-----*/

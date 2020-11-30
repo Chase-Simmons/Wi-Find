@@ -3,13 +3,13 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import * as React from 'react';
 import { Component } from 'react';
 import { render } from 'react-dom';
-import { Marker } from 'react-map-gl';
-import MapGL from 'react-map-gl';
-import 'mapbox-gl/dist/mapbox-gl.css';
-import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
+import MapGL, { Marker } from 'react-map-gl';
+
 import './mapbox-gl.css';
+import Pin from './pin';
 
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
+const markerIcon = require('./mapbox-icon.png');
 
 class MapBox extends Component {
   constructor(props) {
@@ -68,19 +68,14 @@ class MapBox extends Component {
       this.forceUpdate();
     }
 
-    // const getMarkers = this.state.locationArray.map(function (item, index) {
-    //   if (this.props.store.cordReducer.updateNeeded) {
-    //     return (
-    //       <Marker
-    //         key={index}
-    //         latitude={item.latitude}
-    //         longitude={item.longitude}
-    //       >
-    //         <div>Wi-FI</div>
-    //       </Marker>
-    //     );
-    //   }
-    // });
+    let size;
+
+    if (this.state.viewport.zoom < 9) {
+      size = 0;
+    } else {
+      size = (this.state.viewport.zoom - 5) ** 2 / 4 + 25;
+    }
+    console.log(size, this.state.viewport.zoom);
     return (
       <div className="mapbox-container" onClick={this.getMarkers}>
         <MapGL
@@ -92,7 +87,22 @@ class MapBox extends Component {
           mapboxApiAccessToken={MAPBOX_TOKEN}
           onClick={this.clickMap}
         >
-          {/* {getMarkers} */}
+          {this.props.store.locations.map((item, index) => (
+            <Marker
+              longitude={item.long}
+              latitude={item.lat}
+              offsetTop={-size / 1.5}
+              offsetLeft={-size / 2}
+            >
+              <img
+                src={markerIcon}
+                style={{
+                  width: size,
+                  height: size,
+                }}
+              />
+            </Marker>
+          ))}
         </MapGL>
       </div>
     );

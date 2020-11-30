@@ -19,6 +19,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Passport Session Configuration //
+
 app.use(sessionMiddleware);
 
 // start up passport sessions

@@ -14,23 +14,23 @@ import SpeedIcon from '@material-ui/icons/Speed';
 
 const FastSpeedtest = require('fast-speedtest-api');
 
-const speedtestToken = process.env;
+const speedtestToken = process.env.REACT_APP_SPEEDTEST_TOKEN;
 
 let speedtest = new FastSpeedtest({
-  token: 'YXNkZmFzZGxmbnNkYWZoYXNkZmhrYWxm', // required
+  token: speedtestToken, // required
   verbose: true, // default: false
   timeout: 10000, // default: 5000
-  https: true, // default: true
+  https: false, // default: true
   urlCount: 5, // default: 5
   bufferSize: 8, // default: 8
   unit: FastSpeedtest.UNITS.Mbps, // default: Bps
-  proxy: 'https://api.fast.com',
+  proxy: 'http://localhost:3000',
 });
 
 class NavSpeedtest extends Component {
   getSpeed = () => {
     speedtest
-      .getSpeed({ mode: 'no-cors' })
+      .getSpeed()
       .then((s) => {
         console.log(`Speed: ${s} Mbps`);
       })
@@ -38,10 +38,8 @@ class NavSpeedtest extends Component {
         console.error(e.message);
       });
   };
-  render() {
-    console.log(speedtestToken);
-    console.log(speedtest.getSpeed);
 
+  render() {
     return (
       <ListItem button onClick={this.getSpeed}>
         <ListItemIcon>

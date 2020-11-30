@@ -120,6 +120,7 @@ class MakeATripItem extends Component {
               inputProps={{
                 style: {
                   textAlign: 'center',
+                  fontSize: 14,
                 },
               }}
             />

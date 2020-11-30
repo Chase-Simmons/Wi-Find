@@ -47,7 +47,7 @@ class NavSearch extends Component {
     });
 
     setTimeout(() => {
-      this.props.superReducer({ call: 'SET', data: 'edit' });
+      this.props.superReducer({ call: 'SET', data: 'none' });
     }, 250);
   };
 

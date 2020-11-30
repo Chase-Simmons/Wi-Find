@@ -20,17 +20,13 @@ import swal from 'sweetalert';
 import './EditATrip.css';
 /*-----> MISC <-----*/
 
-/*-----> VARS <-----*/
-let LocationId = null;
-/*-----> VARS <-----*/
-
 class MakeATripItem extends Component {
   /*-----> THIS STATE <-----*/
   state = {
     isContentAccepted: true,
     isContentsDeleted: false,
     disabled: true,
-    trip: 'Loading...',
+    location: 'Loading...',
     size: 24,
   };
   /*-----> THIS STATE <-----*/
@@ -39,7 +35,7 @@ class MakeATripItem extends Component {
   onChange = (event) => {
     this.setState({
       ...this.state,
-      trip: event.target.value,
+      location: event.target.value,
     });
   };
   /*-----> HANDLES ON CHANGE FOR INPUT <-----*/
@@ -53,7 +49,6 @@ class MakeATripItem extends Component {
         disabled: false,
       });
     } else {
-      this.props.superReducer({ call: 'SET', data: 'none' });
       this.setState(
         {
           ...this.state,
@@ -100,14 +95,14 @@ class MakeATripItem extends Component {
 
   /*-----> CALL TO DISPATCH <-----*/
   dispatch = () => {
-    // this.props.dispatch({
-    //   type: 'PUT_USER_TRIPS',
-    //   payload: {
-    //     id: TripId,
-    //     name: this.state.trip,
-    //     user_id: this.props.store.user.id,
-    //   },
-    // });
+    this.props.dispatch({
+      type: 'PUT_TRIP_LOCATION',
+      payload: {
+        id: this.props.location.id,
+        name: this.state.location,
+        user_id: this.props.store.user.id,
+      },
+    });
   };
   /*-----> CALL TO DISPATCH <-----*/
 
@@ -115,7 +110,7 @@ class MakeATripItem extends Component {
   hasLoaded = () => {
     this.setState({
       ...this.state,
-      trip: this.props.location.location_name,
+      location: this.props.location.location_name,
       hasLoaded: true,
     });
   };
@@ -135,7 +130,7 @@ class MakeATripItem extends Component {
   EditOrDelete;
   /*-----> CHANGEABLE ICON COMPONENTS <-----*/
   render() {
-    console.log(this.props.location);
+    console.log(this.state);
     /*-----> DOES CONTENT NEED TO BE LOADED? <-----*/
     // if (LocationId !== this.props.store.current_edit) {
     //   this.callNewLoad();
@@ -179,13 +174,13 @@ class MakeATripItem extends Component {
                 style: {
                   textAlign: 'center',
                   fontWeight: 'bold',
-                  fontSize: 24,
+                  fontSize: 14,
                 },
               }}
               disabled={this.state.disabled}
               primary="Title"
               onChange={this.onChange}
-              value={this.state.trip}
+              value={this.state.location}
             />
           </ListItemText>
           <ListItemIcon>

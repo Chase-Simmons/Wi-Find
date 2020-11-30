@@ -10,6 +10,7 @@ import getTrip_locationsSaga from './trip_locationSaga/getTrip_locationSaga';
 import handleCurrentTripSaga from './makeATripSaga/currentMakeHandlerSaga';
 import deleteUser_tripsSaga from './user_tripsSaga/deleteUser_tripsSaga';
 import putUser_tripsSaga from './user_tripsSaga/putUser_tripsSaga';
+import putTrip_locationSaga from './trip_locationSaga/putTrip_locationSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -31,5 +32,6 @@ export default function* rootSaga() {
     handleCurrentTripSaga(),
     deleteUser_tripsSaga(),
     putUser_tripsSaga(),
+    putTrip_locationSaga(),
   ]);
 }

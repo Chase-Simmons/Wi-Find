@@ -5,7 +5,8 @@ import { Component } from 'react';
 import { render } from 'react-dom';
 import { Marker } from 'react-map-gl';
 import MapGL from 'react-map-gl';
-
+import 'mapbox-gl/dist/mapbox-gl.css';
+import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
 import './mapbox-gl.css';
 
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;

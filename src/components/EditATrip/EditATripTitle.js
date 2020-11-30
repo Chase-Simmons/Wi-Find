@@ -54,7 +54,6 @@ class MakeATripItem extends Component {
         disabled: false,
       });
     } else {
-      this.props.superReducer({ call: 'SET', data: 'none' });
       this.setState(
         {
           ...this.state,
@@ -70,6 +69,7 @@ class MakeATripItem extends Component {
               call: 'DELETE',
             },
           });
+          this.props.superReducer({ call: 'SET', data: 'none' });
         }
       );
     }

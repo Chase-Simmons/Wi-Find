@@ -60,8 +60,14 @@ class ProfilePage extends Component {
   };
   render() {
     const hasData = this.state.trips;
+    let rank;
     let trips;
 
+    for (let i = 0; i < this.props.store.leader_points.length; i++) {
+      if (this.props.store.leader_points[i].id === this.props.store.user.id) {
+        rank = i + 1;
+      }
+    }
     if (hasData) {
       trips = this.state.trips.map((trip, key) => (
         <ListItem button key={key}>
@@ -112,13 +118,13 @@ class ProfilePage extends Component {
                   <h4>Title: </h4>
                 </Grid>
                 <Grid item xs={3}>
-                  <h1 id="rank">Rank: {this.props.store.user_stats.rank}</h1>
+                  <h1 id="rank">Rank: {rank}</h1>
                   <LogOutButton className="log-in" />
                 </Grid>
               </Grid>
               <Grid container className="profile-my-trips">
                 <Grid item xs={12}>
-                  <h1>My Trips</h1>
+                  <h1>My Stats</h1>
                 </Grid>
               </Grid>
               <Grid container>

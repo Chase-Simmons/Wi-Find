@@ -4,7 +4,6 @@ import axios from 'axios';
 function* getUser_stats(action) {
   try {
     const response = yield axios.get(`/api/user_stats/${action.payload}`);
-    console.log(response.data);
     yield put({
       type: 'SET_USER_STATS',
       payload: response.data,

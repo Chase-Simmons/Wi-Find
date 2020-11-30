@@ -197,7 +197,10 @@ function Dashboard() {
           />
           <NavNearMe superReducer={superReducer} />
           <NavSpeedtest superReducer={superReducer} />
-          <NavLeaderboard superReducer={superReducer} />
+          <NavLeaderboard
+            superReducer={superReducer}
+            openDrawer={handleDrawerOpen}
+          />
         </List>
         <Divider style={{ backgroundColor: '#222222', height: 3 }} />
         {/* COMPONENTS */}

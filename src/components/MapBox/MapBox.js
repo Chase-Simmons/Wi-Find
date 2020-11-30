@@ -93,6 +93,7 @@ class MapBox extends Component {
               latitude={item.lat}
               offsetTop={-size / 2}
               offsetLeft={-size / 2}
+              key={index}
             >
               <img
                 src={markerIcon}

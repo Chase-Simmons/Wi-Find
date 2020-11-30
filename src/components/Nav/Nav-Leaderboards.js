@@ -13,9 +13,18 @@ import BarChartIcon from '@material-ui/icons/BarChart';
 /*-----> MATERIAL-UI <-----*/
 
 class NavLeaderboard extends Component {
+  open = () => {
+    this.props.openDrawer();
+    setTimeout(() => {
+      this.dispatch();
+    }, 100);
+  };
+  dispatch = () => {
+    this.props.superReducer({ call: 'SET', data: 'leaderboards' });
+  };
   render() {
     return (
-      <ListItem button>
+      <ListItem button onClick={this.open}>
         <ListItemIcon>
           <BarChartIcon />
         </ListItemIcon>

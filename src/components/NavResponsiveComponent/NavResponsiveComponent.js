@@ -8,6 +8,7 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import MakeATrip from '../MakeATrip/MakeATrip';
 import EditATrip from '../EditATrip/EditATrip';
 import MyTrips from '../MyTrips/MyTrips';
+import Leaderboards from '../Leaderboards/Leaderboards';
 /*-----> COMPONENTS <-----*/
 
 class NavResponsiveComponent extends Component {
@@ -38,6 +39,10 @@ class NavResponsiveComponent extends Component {
           this.callReload({ type: 'edit' });
         } else if (this.props.superReducer({ call: 'GET' }) === 'my_trips') {
           this.callReload({ type: 'my_trips' });
+        } else if (
+          this.props.superReducer({ call: 'GET' }) === 'leaderboards'
+        ) {
+          this.callReload({ type: 'leaderboards' });
         } else {
           this.callReload({ type: 'none' });
         }
@@ -52,6 +57,10 @@ class NavResponsiveComponent extends Component {
       ComponentToRender = <EditATrip superReducer={this.props.superReducer} />;
     } else if (this.state.type === 'my_trips') {
       ComponentToRender = <MyTrips superReducer={this.props.superReducer} />;
+    } else if (this.state.type === 'leaderboards') {
+      ComponentToRender = (
+        <Leaderboards superReducer={this.props.superReducer} />
+      );
     } else if (this.state.type === 'none') {
       ComponentToRender = <></>;
     }

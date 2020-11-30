@@ -2,9 +2,6 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-/**
- * GET route template
- */
 router.get('/:id', (req, res) => {
   pool
     .query(
@@ -18,17 +15,25 @@ router.get('/:id', (req, res) => {
       res.send(result.rows[0]);
     })
     .catch((err) => {
-      console.log('Failed to get location data ', err);
+      console.log('Failed to get user_stats data ', err);
       res.sendStatus(500);
     });
-  // GET route code here
 });
 
-/**
- * POST route template
- */
-router.post('/', (req, res) => {
-  // POST route code here
+router.post('/:id', (req, res) => {
+  pool
+    .query(
+      `INSERT INTO "user_stats" ("user_id")
+      VALUES ($1);`,
+      [req.params.id]
+    )
+    .then((result) => {
+      res.send(result.rows[0]);
+    })
+    .catch((err) => {
+      console.log('Failed to post user_stats data ', err);
+      res.sendStatus(500);
+    });
 });
 
 module.exports = router;

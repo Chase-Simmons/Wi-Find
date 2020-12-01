@@ -11,6 +11,7 @@ import make_a_trip_location from './make_a_trip_location.reducer';
 import current_edit from './current_edit';
 import leader_points from './leader_points.reducer';
 import leader_achievements from './leader_achievements.reducer';
+import SSID from './SSID.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -31,6 +32,7 @@ const rootReducer = combineReducers({
   current_edit,
   leader_points,
   leader_achievements,
+  SSID,
 });
 
 export default rootReducer;

@@ -23,6 +23,7 @@ function* fetchUser() {
     yield put({ type: 'GET_USER_TRIPS', payload: response.data.id });
     yield put({ type: 'GET_LEADER_POINTS' });
     yield put({ type: 'GET_LEADER_ACHIEVEMENTS' });
+    yield put({ type: 'GET_SSID' });
   } catch (error) {
     console.log('User get request failed', error);
   }

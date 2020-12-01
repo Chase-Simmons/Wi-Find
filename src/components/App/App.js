@@ -25,6 +25,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../../pages/LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import ProfilePage from '../../pages/ProfilePage/ProfilePage';
+
 /*-----> PAGES <-----*/
 
 import './App.css';

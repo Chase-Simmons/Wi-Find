@@ -17,13 +17,12 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
 import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 /*-----> MATERIAL-UI IMPORTS FOR NAV <-----*/
 
 /*-----> COMPONENT <-----*/
 import NavSearch from './Nav-Search';
-// import NavDrawerMain from './Nav-DrawerMain';
+// import NavDrawerMain from './Nav-DrawerMain'; COMPONENT NOT WORKING YET
 import NavResponsiveComponent from '../NavResponsiveComponent/NavResponsiveComponent';
 import NavProfileLogin from './Nav-ProfileLogin';
 import NavMakeATrip from './Nav-MakeATrip';

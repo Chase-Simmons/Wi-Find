@@ -8,27 +8,26 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import DeleteIcon from '@material-ui/icons/Delete';
-import TextField from '@material-ui/core/TextField';
-import CheckBoxIcon from '@material-ui/icons/CheckBox';
-import EditIcon from '@material-ui/icons/Edit';
 import CancelIcon from '@material-ui/icons/Cancel';
 /*-----> MATERIAL-UI <-----*/
 
+/*-----> COMPONENTS <-----*/
 import MyTripsContent from './MyTripsContent';
-import swal from 'sweetalert';
+/*-----> COMPONENTS <-----*/
 
 class MyTrips extends Component {
-  reducer = this.props.store;
-  componentDidMount() {
-    console.log(this.reducer.user_trips, this.reducer.trip_locations);
-  }
+  /*-----> ON CLICK CLOSE CONTENT WINDOW <-----*/
   closeClick = () => {
     this.props.superReducer({ call: 'SET', data: 'none' });
   };
+  /*-----> ON CLICK CLOSE CONTENT WINDOW <-----*/
 
+  /*-----> PLACEHOLDER COMPONENT <-----*/
   ContentComponent;
+  /*-----> PLACEHOLDER COMPONENT <-----*/
+
   render() {
+    /*-----> MAP REDUCER -> COMPONENT <-----*/
     this.ContentComponent = this.reducer.user_trips.map((trip, key) => {
       return (
         <MyTripsContent
@@ -38,6 +37,7 @@ class MyTrips extends Component {
         />
       );
     });
+    /*-----> MAP REDUCER -> COMPONENT <-----*/
     return (
       <>
         <ListItem

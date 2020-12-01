@@ -21,13 +21,14 @@ import './ProfilePage.css';
 
 class ProfilePage extends Component {
   render() {
+    /*-----> CALCULATES USER'S RANK <-----*/
     let rank;
-
     for (let i = 0; i < this.props.store.leader_points.length; i++) {
       if (this.props.store.leader_points[i].id === this.props.store.user.id) {
         rank = i + 1;
       }
     }
+    /*-----> CALCULATES USER'S RANK <-----*/
 
     return (
       <div className="fix-over-nav">

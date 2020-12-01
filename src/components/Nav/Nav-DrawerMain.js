@@ -21,6 +21,7 @@ import NavDrawerClose from './Nav-DrawerClose';
 /*-----> COMPONENTS <-----*/
 
 class NavDrawerMain extends Component {
+  /*-----> COMPONENT NOT IN USE AND NOT WORKING :( <-----*/
   render() {
     return (
       <Drawer

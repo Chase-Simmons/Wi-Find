@@ -5,7 +5,6 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 /*-----> CORE <-----*/
 
 /*-----> MATERIAL-UI <-----*/
-// import { Link } from 'react-router-dom';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -13,10 +12,9 @@ import ExploreIcon from '@material-ui/icons/Explore';
 /*-----> MATERIAL-UI <-----*/
 
 class NavMyTrips extends Component {
-  state = {
-    load: 0,
-  };
+  state = {};
 
+  /*-----> OPEN DRAWER IF CLOSED <-----*/
   open = () => {
     this.props.openDrawer();
     this.props.dispatch({
@@ -31,9 +29,13 @@ class NavMyTrips extends Component {
       this.dispatch();
     }, 100);
   };
+  /*-----> OPEN DRAWER IF CLOSED <-----*/
+
+  /*-----> CALL FOR UPDATE TO SUPERREDCUER <-----*/
   dispatch = () => {
     this.props.superReducer({ call: 'SET', data: 'my_trips' });
   };
+  /*-----> CALL FOR UPDATE TO SUPERREDCUER <-----*/
   render() {
     return (
       <ListItem button onClick={this.open}>

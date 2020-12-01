@@ -4,6 +4,7 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import TextField from '@material-ui/core/TextField';
 
 class NavSearch extends Component {
+  /*-----> ON KEYSTROKE UPDATE SEARCH PARAMS <-----*/
   onChange = (key) => (event) => {
     this.setState(
       {
@@ -15,13 +16,16 @@ class NavSearch extends Component {
       }
     );
   };
+  /*-----> ON KEYSTROKE UPDATE SEARCH PARAMS <-----*/
 
+  /*-----> DISPATCH SEARCH PARAMS <-----*/
   searchInputField = (event) => {
     this.props.dispatch({
       type: 'FETCH_OPEN_CAGE',
       payload: { search_string: this.state.search_input },
     });
   };
+  /*-----> DISPATCH SEARCH PARAMS <-----*/
   render() {
     return (
       <TextField

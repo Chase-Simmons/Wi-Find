@@ -13,6 +13,7 @@ import MapIcon from '@material-ui/icons/Map';
 /*-----> MATERIAL-UI <-----*/
 
 class NavHome extends Component {
+  /*-----> TAKE ME HOME... TO THE PLACE... I BELONG!!! <-----*/
   render() {
     return (
       <Link to="/home">

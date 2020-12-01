@@ -19,6 +19,7 @@ class NavProfileLogin extends Component {
     link: '/login',
   };
 
+  /*-----> SWITCH FROM LOGIN BUTTON -> PROFILE BUTTON  <-----*/
   changeState = (event) => {
     this.setState({
       isAuth: true,
@@ -26,18 +27,26 @@ class NavProfileLogin extends Component {
       link: '/profile',
     });
   };
+  /*-----> SWITCH FROM LOGIN BUTTON -> PROFILE BUTTON <-----*/
 
+  /*-----> CHANGE STATE ON LOAD <-----*/
   onLoad = () => {
     if (this.props.store.user.id !== undefined) {
       this.changeState();
     } else {
     }
   };
+  /*-----> CHANGE STATE ON LOAD <-----*/
 
   componentDidUpdate() {
+    /*-----> IF LOGGED IN CHANGE STATE <-----*/
     if (this.state.isAuth === false) {
       this.onLoad();
     }
+
+    /*-----> IF LOGGED IN CHANGE STATE <-----*/
+
+    /*-----> IF NOT LOGGED IN CHANGE STATE <-----*/
     if (this.props.store.user.id === undefined) {
       if (this.state.isAuth === true) {
         this.setState({
@@ -47,6 +56,7 @@ class NavProfileLogin extends Component {
         });
       }
     }
+    /*-----> IF NOT LOGGED IN CHANGE STATE <-----*/
   }
 
   render() {

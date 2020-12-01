@@ -10,6 +10,7 @@ import IconButton from '@material-ui/core/IconButton';
 /*-----> MATERIAL-UI <-----*/
 
 class NavDrawerClose extends Component {
+  /*-----> CLOSER DRAWER -> DELETE CURRENT TRIP FOR [MAKE A TRIP COMPONENT] <-----*/
   closer = () => {
     this.props.close();
     this.props.dispatch({
@@ -21,6 +22,7 @@ class NavDrawerClose extends Component {
       },
     });
   };
+  /*-----> CLOSER DRAWER -> DELETE CURRENT TRIP FOR [MAKE A TRIP COMPONENT] <-----*/
   render() {
     return (
       <IconButton onClick={this.closer}>

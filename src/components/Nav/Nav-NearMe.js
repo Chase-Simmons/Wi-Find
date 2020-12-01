@@ -13,6 +13,7 @@ import RoomIcon from '@material-ui/icons/Room';
 /*-----> MATERIAL-UI <-----*/
 
 class NavNearMe extends Component {
+  /*-----> GO TO MY LOCATION <-----*/
   findNearMe = () => {
     navigator.geolocation.getCurrentPosition((position) => {
       console.log('Latitude is :', position.coords.latitude);
@@ -27,6 +28,7 @@ class NavNearMe extends Component {
       });
     });
   };
+  /*-----> GO TO MY LOCATION <-----*/
   render() {
     return (
       <ListItem button onClick={this.findNearMe}>

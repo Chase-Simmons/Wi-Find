@@ -19,23 +19,28 @@ class ProfilePage extends Component {
   state = {
     stats: null,
   };
-
+  /*-----> ON LOAD SET STATE <-----*/
   componentDidMount() {
     this.loadData();
   }
+  /*-----> ON LOAD SET STATE <-----*/
 
+  /*-----> REDUCER -> STATE <-----*/
   loadData() {
     this.setState({
       stats: this.props.store.user_stats,
     });
   }
+  /*-----> REDUCER -> STATE <-----*/
   render() {
+    /*-----> PROGRESSION CALCULATION [NOT COMPLETE] <-----*/
     const tier1 = 200;
     const pointProgress = (this.props.store.user_stats.points / tier1) * 100;
     const connectionProgress =
       (this.props.store.user_stats.unique_connection / tier1) * 100;
     const speedtestProgress =
       (this.props.store.user_stats.unique_speedtest / tier1) * 100;
+    /*-----> PROGRESSION CALCULATION [NOT COMPLETE] <-----*/
     return (
       <>
         {/*  */}

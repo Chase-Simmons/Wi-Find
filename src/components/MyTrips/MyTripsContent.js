@@ -11,9 +11,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import DeleteIcon from '@material-ui/icons/Delete';
 import TextField from '@material-ui/core/TextField';
 import NavigationIcon from '@material-ui/icons/Navigation';
-import CheckBoxIcon from '@material-ui/icons/CheckBox';
-import EditIcon from '@material-ui/icons/Edit';
-import CancelIcon from '@material-ui/icons/Cancel';
 /*-----> MATERIAL-UI <-----*/
 
 import './MyTrips.css';
@@ -26,50 +23,70 @@ class MyTripsContent extends Component {
     hasLoaded: false,
   };
 
+  /*-----> ON MOUNT LOAD DATA <-----*/
   componentDidMount() {
     this.loadData();
   }
+  /*-----> ON MOUNT LOAD DATA <-----*/
 
+  /*-----> REDUCER -> STATE <-----*/
   loadData() {
     this.setState({
       ...this.state,
       trips: this.props.store.user_trips,
     });
   }
+  /*-----> REDUCER -> STATE <-----*/
 
+  /*-----> ON HOVER CHANGE COLOR [DELETE] <-----*/
   onEnterDelete = () => {
     this.setState({
       ...this.state,
       deleteColor: 'red',
     });
   };
+  /*-----> ON HOVER CHANGE COLOR [DELETE] <-----*/
+
+  /*-----> ON LEAVE HOVER CHANGE COLOR [DELETE] <-----*/
   onLeaveDelete = () => {
     this.setState({
       ...this.state,
       deleteColor: 'black',
     });
   };
+  /*-----> ON LEAVE HOVER CHANGE COLOR [DELETE] <-----*/
 
+  /*-----> ON HOVER CHANGE COLOR [NAVIGATE] <-----*/
   onEnterNavigate = () => {
     this.setState({
       ...this.state,
       navigateColor: 'aqua',
     });
   };
+  /*-----> ON HOVER CHANGE COLOR [NAVIGATE] <-----*/
+
+  /*-----> ON LEAVE HOVER CHANGE COLOR [NAVIGATE] <-----*/
   onLeaveNavigate = () => {
     this.setState({
       ...this.state,
       navigateColor: 'black',
     });
   };
+  /*-----> ON LEAVE HOVER CHANGE COLOR [NAVIGATE] <-----*/
 
+  /*-----> HAS DATA BEEN DELETED? <-----*/
   deleteData = () => {
     this.setState({
       dataDeleted: true,
     });
   };
+  /*-----> HAS DATA BEEN DELETED? <-----*/
 
+  /*-----> PLACEHOLDER BEFORE LOAD <-----*/
   foundLocations = 0;
+  /*-----> PLACEHOLDER BEFORE LOAD <-----*/
+
+  /*-----> GET AMOUNT OF STOPS FOR LOCATION <-----*/
   getLocationsTotal = () => {
     this.setState(
       {
@@ -88,12 +105,16 @@ class MyTripsContent extends Component {
       }
     );
   };
+  /*-----> GET AMOUNT OF STOPS FOR LOCATION <-----*/
 
   render() {
+    /*-----> IF DATA HAS NOT BEEN LOADED -> LOAD DATA <-----*/
     if (this.state.hasLoaded === false) {
       this.getLocationsTotal();
     }
+    /*-----> IF DATA HAS NOT BEEN LOADED -> LOAD DATA <-----*/
 
+    /*-----> DELETE TRIP <-----*/
     const clickDelete = () => {
       this.props.dispatch({
         type: 'DELETE_USER_TRIPS',
@@ -104,7 +125,9 @@ class MyTripsContent extends Component {
       });
       this.deleteData();
     };
+    /*-----> DELETE TRIP <-----*/
 
+    /*-----> GO TO TRIP DETAILS <-----*/
     const clickNavigate = () => {
       this.props.dispatch({
         type: 'SET_CURRENT_EDIT',
@@ -119,7 +142,7 @@ class MyTripsContent extends Component {
         this.props.superReducer({ call: 'SET', data: 'edit' });
       }, 250);
     };
-
+    /*-----> GO TO TRIP DETAILS <-----*/
     if (this.state.dataDeleted === true) {
       return <></>;
     } else {

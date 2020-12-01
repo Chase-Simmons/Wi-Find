@@ -1,14 +1,20 @@
+/*-----> CORE <-----*/
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import * as React from 'react';
 import { Component } from 'react';
+/*-----> CORE <-----*/
 
+/*-----> REACT-MAP-GL <-----*/
 import MapGL, { Marker } from 'react-map-gl';
+/*-----> REACT-MAP-GL <-----*/
 
 import './mapbox-gl.css';
 
+/*-----> TOKEN/MARKER IMG <-----*/
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
 const markerIcon = require('./mapbox-icon.png');
+/*-----> TOKEN/MARKER IMG <-----*/
 
 class MapBox extends Component {
   constructor(props) {

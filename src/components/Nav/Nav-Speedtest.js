@@ -5,7 +5,6 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 /*-----> CORE <-----*/
 
 /*-----> MATERIAL-UI <-----*/
-// import { Link } from 'react-router-dom';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -14,10 +13,9 @@ import SpeedIcon from '@material-ui/icons/Speed';
 
 import swal from 'sweetalert';
 
+/*-----> SPEEDTEST-API <-----*/
 const FastSpeedtest = require('fast-speedtest-api');
-
 const speedtestToken = process.env.REACT_APP_SPEEDTEST_TOKEN;
-
 let speedtest = new FastSpeedtest({
   token: speedtestToken, // required
   verbose: true, // default: false
@@ -28,13 +26,18 @@ let speedtest = new FastSpeedtest({
   unit: FastSpeedtest.UNITS.Mbps, // default: Bps
   // proxy: 'http://localhost:3000',
 });
+/*-----> SPEEDTEST-API <-----*/
 
+/*-----> PLACEHOLDER BEFORE LOAD <-----*/
 let speed = 'running test...';
+/*-----> PLACEHOLDER BEFORE LOAD <-----*/
 
 class NavSpeedtest extends Component {
   state = {
     speedAlert: false,
   };
+
+  /*-----> SET STATE TO ALERT MODE -> RUN SPEEDTEST <-----*/
   getSpeedAlerter = () => {
     this.setState(
       {
@@ -45,7 +48,9 @@ class NavSpeedtest extends Component {
       }
     );
   };
+  /*-----> SET STATE TO ALERT MODE -> RUN SPEEDTEST <-----*/
 
+  /*-----> SPEEDTEST FUNCTION <-----*/
   getSpeed = () => {
     speedtest
       .getSpeed()
@@ -57,8 +62,9 @@ class NavSpeedtest extends Component {
         console.error(e.message);
       });
   };
-
+  /*-----> SPEEDTEST FUNCTION <-----*/
   render() {
+    /*-----> POP-UP CONDITIONAL FOR SPEEDTEST <-----*/
     let speedbox = <></>;
     if (this.state.speedAlert === true) {
       speedbox = () => (
@@ -78,6 +84,7 @@ class NavSpeedtest extends Component {
         ></div>
       );
     }
+    /*-----> POP-UP CONDITIONAL FOR SPEEDTEST <-----*/
     return (
       <>
         {speedbox}

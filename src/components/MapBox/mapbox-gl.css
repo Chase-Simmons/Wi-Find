@@ -18,3 +18,10 @@
   border-radius: 50%;
   cursor: pointer;
 }
+
+.onHoverMarker:hover {
+  filter: grayscale(100%);
+  filter: brightness(100);
+  cursor: pointer;
+  border: 2px solid #e6e6e600;
+}

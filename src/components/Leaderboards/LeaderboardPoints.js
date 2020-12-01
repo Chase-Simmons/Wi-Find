@@ -13,8 +13,7 @@ export default class Leaderboards extends Component {
       <ListItem
         key={this.props.key}
         style={{
-          borderBottom: '1px #222222 solid',
-          borderTop: '1px #222222 solid',
+          borderBottom: '2px #222222 solid',
         }}
       >
         <ListItemText>

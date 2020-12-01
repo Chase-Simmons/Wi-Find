@@ -2,11 +2,10 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import * as React from 'react';
 import { Component } from 'react';
-import { render } from 'react-dom';
+
 import MapGL, { Marker } from 'react-map-gl';
 
 import './mapbox-gl.css';
-import Pin from './pin';
 
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
 const markerIcon = require('./mapbox-icon.png');
@@ -75,7 +74,8 @@ class MapBox extends Component {
     } else {
       size = (this.state.viewport.zoom - 5) ** 2 / 4 + 25;
     }
-    console.log(size, this.state.viewport.zoom);
+
+    // console.log(size, this.state.viewport.zoom);
     return (
       <div className="mapbox-container" onClick={this.getMarkers}>
         <MapGL
@@ -94,8 +94,10 @@ class MapBox extends Component {
               offsetTop={-size / 2}
               offsetLeft={-size / 2}
               key={index}
+              data-index={item.id}
             >
               <img
+                className="onHoverMarker"
                 src={markerIcon}
                 style={{
                   width: size,

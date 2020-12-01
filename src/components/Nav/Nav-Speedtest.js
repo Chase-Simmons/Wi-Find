@@ -37,58 +37,33 @@ class NavSpeedtest extends Component {
     speedAlert: false,
   };
 
-  /*-----> SET STATE TO ALERT MODE -> RUN SPEEDTEST <-----*/
-  getSpeedAlerter = () => {
-    this.setState(
-      {
-        speedAlert: true,
+  /*-----> OPEN DRAWER IF CLOSED <-----*/
+  open = () => {
+    this.props.openDrawer();
+    this.props.dispatch({
+      type: 'HANDLE_CURRENT_TRIP',
+      payload: {
+        data: '',
+        id: this.props.store.make_a_trip_title.id,
+        call: 'DELETE',
       },
-      () => {
-        this.getSpeed();
-      }
-    );
+    });
+    setTimeout(() => {
+      this.dispatch();
+    }, 100);
   };
-  /*-----> SET STATE TO ALERT MODE -> RUN SPEEDTEST <-----*/
+  /*-----> OPEN DRAWER IF CLOSED <-----*/
 
-  /*-----> SPEEDTEST FUNCTION <-----*/
-  getSpeed = () => {
-    speedtest
-      .getSpeed()
-      .then((s) => {
-        speed = `Speed: ${s} Mbps`;
-        console.log(speed);
-      })
-      .catch((e) => {
-        console.error(e.message);
-      });
+  /*-----> CALL FOR UPDATE TO SUPERREDCUER <-----*/
+  dispatch = () => {
+    this.props.superReducer({ call: 'SET', data: 'speedtest' });
   };
-  /*-----> SPEEDTEST FUNCTION <-----*/
+  /*-----> CALL FOR UPDATE TO SUPERREDCUER <-----*/
+
   render() {
-    /*-----> POP-UP CONDITIONAL FOR SPEEDTEST <-----*/
-    let speedbox = <></>;
-    if (this.state.speedAlert === true) {
-      speedbox = () => (
-        <div className="speedAlert">
-          <h1>hello</h1>
-        </div>
-      );
-    } else {
-      speedbox = () => (
-        <div
-          style={{
-            width: '400px',
-            height: '250px',
-            border: '2px solid black',
-            background: 'black',
-          }}
-        ></div>
-      );
-    }
-    /*-----> POP-UP CONDITIONAL FOR SPEEDTEST <-----*/
     return (
       <>
-        {speedbox}
-        <ListItem button onClick={this.getSpeedAlerter}>
+        <ListItem button onClick={this.open}>
           <ListItemIcon>
             <SpeedIcon />
           </ListItemIcon>

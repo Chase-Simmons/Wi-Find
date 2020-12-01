@@ -49,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-end',
     padding: '0 8px',
     ...theme.mixins.toolbar,
+    border: '0px',
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
@@ -195,7 +196,10 @@ function Dashboard() {
             openDrawer={handleDrawerOpen}
           />
           <NavNearMe superReducer={superReducer} />
-          <NavSpeedtest superReducer={superReducer} />
+          <NavSpeedtest
+            superReducer={superReducer}
+            openDrawer={handleDrawerOpen}
+          />
           <NavLeaderboard
             superReducer={superReducer}
             openDrawer={handleDrawerOpen}

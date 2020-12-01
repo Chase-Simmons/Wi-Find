@@ -28,7 +28,7 @@ class MyTrips extends Component {
 
   render() {
     /*-----> MAP REDUCER -> COMPONENT <-----*/
-    this.ContentComponent = this.reducer.user_trips.map((trip, key) => {
+    this.ContentComponent = this.props.store.user_trips.map((trip, key) => {
       return (
         <MyTripsContent
           trip={trip}

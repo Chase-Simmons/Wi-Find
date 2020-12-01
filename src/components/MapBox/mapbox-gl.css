@@ -25,3 +25,7 @@
   cursor: pointer;
   border: 2px solid #e6e6e600;
 }
+
+.markerInfo {
+  background: white;
+}

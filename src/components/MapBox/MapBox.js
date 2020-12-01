@@ -10,10 +10,10 @@ import MapGL, { Marker } from 'react-map-gl';
 /*-----> REACT-MAP-GL <-----*/
 
 import './mapbox-gl.css';
+import MarkerComponent from './Marker';
 
 /*-----> TOKEN/MARKER IMG <-----*/
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
-const markerIcon = require('./mapbox-icon.png');
 /*-----> TOKEN/MARKER IMG <-----*/
 
 class MapBox extends Component {
@@ -24,7 +24,7 @@ class MapBox extends Component {
       viewport: {
         latitude: 39.0997,
         longitude: -94.5786,
-        zoom: 9,
+        zoom: 8,
         width: '100vw',
         height: '100vh',
         bearing: 0,
@@ -65,7 +65,6 @@ class MapBox extends Component {
       ...this.state,
       locationArray: [this.props.store.locations],
     });
-    console.log(this.state.locationArray);
   };
 
   render() {
@@ -81,6 +80,9 @@ class MapBox extends Component {
       size = (this.state.viewport.zoom - 5) ** 2 / 4 + 25;
     }
 
+    const MARKERS = this.props.store.locations.map((item, index) => {
+      return <MarkerComponent item={item} index={index} size={size} />;
+    });
     // console.log(size, this.state.viewport.zoom);
     return (
       <div className="mapbox-container" onClick={this.getMarkers}>
@@ -93,25 +95,7 @@ class MapBox extends Component {
           mapboxApiAccessToken={MAPBOX_TOKEN}
           onClick={this.clickMap}
         >
-          {this.props.store.locations.map((item, index) => (
-            <Marker
-              longitude={item.long}
-              latitude={item.lat}
-              offsetTop={-size / 2}
-              offsetLeft={-size / 2}
-              key={index}
-              data-index={item.id}
-            >
-              <img
-                className="onHoverMarker"
-                src={markerIcon}
-                style={{
-                  width: size,
-                  height: size,
-                }}
-              />
-            </Marker>
-          ))}
+          {MARKERS}
         </MapGL>
       </div>
     );

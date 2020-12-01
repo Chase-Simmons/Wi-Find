@@ -6,7 +6,7 @@ const router = express.Router();
  * GET route template
  */
 router.get('/', (req, res) => {
-  const queryText = `	SELECT "location".lat, "location".long, "location".location_name FROM "location";`;
+  const queryText = `	SELECT * FROM "location";`;
   pool
     .query(queryText)
     .then((result) => {

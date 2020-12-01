@@ -10,12 +10,12 @@ router.get('/', (req, res) => {
 
   /*-----> SEARCH AREA FOR WIFI ROUTERS <-----*/
   // WiFiControl.scanForWiFi(function (err, response) {
-  //   res.send(response);
+  //   console.log(response);
+  // res.send(response);
   // });
   /*-----> SEARCH AREA FOR WIFI ROUTERS <-----*/
 
   const ifaceState = WiFiControl.getIfaceState();
-
   res.send(ifaceState.ssid);
 });
 

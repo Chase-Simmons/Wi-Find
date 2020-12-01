@@ -9,6 +9,7 @@ import MakeATrip from '../MakeATrip/MakeATrip';
 import EditATrip from '../EditATrip/EditATrip';
 import MyTrips from '../MyTrips/MyTrips';
 import Leaderboards from '../Leaderboards/Leaderboards';
+import Speedtest from '../Speedtest/Speedtest';
 /*-----> COMPONENTS <-----*/
 
 class NavResponsiveComponent extends Component {
@@ -43,6 +44,8 @@ class NavResponsiveComponent extends Component {
           this.props.superReducer({ call: 'GET' }) === 'leaderboards'
         ) {
           this.callReload({ type: 'leaderboards' });
+        } else if (this.props.superReducer({ call: 'GET' }) === 'speedtest') {
+          this.callReload({ type: 'speedtest' });
         } else {
           this.callReload({ type: 'none' });
         }
@@ -61,6 +64,8 @@ class NavResponsiveComponent extends Component {
       ComponentToRender = (
         <Leaderboards superReducer={this.props.superReducer} />
       );
+    } else if (this.state.type === 'speedtest') {
+      ComponentToRender = <Speedtest superReducer={this.props.superReducer} />;
     } else if (this.state.type === 'none') {
       ComponentToRender = <></>;
     }

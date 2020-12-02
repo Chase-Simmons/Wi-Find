@@ -41,7 +41,21 @@ class MARKERS extends Component {
             height: this.props.size * 4,
           }}
         >
-          <p>hello</p>
+          <div className="popup-content">
+            <div>
+              <h5 style={{ fontSize: this.props.size / 4 + 2 }}>
+                LOCATION : {this.props.item.location_name}
+              </h5>
+            </div>
+            <div>
+              <h5 style={{ fontSize: this.props.size / 4 + 2 }}>ADDRESS :</h5>
+            </div>
+            <div>
+              <h5 style={{ fontSize: this.props.size / 4 + 2 }}>
+                AVERAGE WI-FI SPEED :
+              </h5>
+            </div>
+          </div>
         </div>
       );
     }

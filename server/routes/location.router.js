@@ -2,9 +2,6 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-/**
- * GET route template
- */
 router.get('/', (req, res) => {
   const queryText = `	SELECT * FROM "location";`;
   pool
@@ -19,11 +16,21 @@ router.get('/', (req, res) => {
     });
 });
 
-/**
- * POST route template
- */
 router.post('/', (req, res) => {
-  // POST route code here
+  console.log(req.body);
+  pool
+    .query(
+      `INSERT INTO "location" ("long", "lat", "wifi_name", "location_name")
+      VALUES ($1, $2, $3, $4);`,
+      [req.body.long, req.body.lat, req.body.SSID, req.body.location_name]
+    )
+    .then((result) => {
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.log('Failed to post location data ', err);
+      res.sendStatus(500);
+    });
 });
 
 module.exports = router;

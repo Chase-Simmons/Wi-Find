@@ -5,7 +5,6 @@ import axios from 'axios';
 function* getLocation(action) {
   try {
     const response = yield axios.get('/api/location');
-    console.log(response.data);
     yield put({
       type: 'SET_LOCATIONS',
       payload: response.data,

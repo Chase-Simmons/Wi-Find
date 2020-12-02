@@ -20,13 +20,13 @@ class NavNearMe extends Component {
       console.log('Latitude is :', position.coords.latitude);
       console.log('Longitude is :', position.coords.longitude);
 
-      // this.props.dispatch({
-      //   type: 'FETCH_OPEN_CAGE',
-      //   payload: {
-      //     search_string:
-      //       position.coords.latitude + ' ' + position.coords.longitude,
-      //   },
-      // });
+      this.props.dispatch({
+        type: 'FETCH_OPEN_CAGE',
+        payload: {
+          search_string:
+            position.coords.latitude + ' ' + position.coords.longitude,
+        },
+      });
     });
   };
   /*-----> GO TO MY LOCATION <-----*/

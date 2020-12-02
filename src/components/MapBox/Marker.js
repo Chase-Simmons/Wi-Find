@@ -18,11 +18,11 @@ class MARKERS extends Component {
   render() {
     return (
       <Marker
+        key={this.props.index}
         longitude={this.props.item.long}
         latitude={this.props.item.lat}
         offsetTop={-this.props.size / 2}
         offsetLeft={-this.props.size / 2}
-        key={this.props.index}
       >
         <img
           onClick={this.getDetails}

@@ -68,6 +68,7 @@ class Speedtest extends Component {
           {
             testRan: 'true',
             speed: `Your speed is: ${s} Mbps`,
+            speedNum: s,
           },
           () => {
             console.log(this.state.speed);
@@ -107,36 +108,45 @@ class Speedtest extends Component {
         this.state.location_name
       );
 
-      this.props.dispatch({
-        type: 'POST_LOCATION',
-        payload: {
-          long: geocode.lng,
-          lat: geocode.lat,
-          SSID: this.props.store.SSID,
-          location_name: this.state.location_name,
-        },
-      });
+      // this.props.dispatch({
+      //   type: 'POST_LOCATION',
+      //   payload: {
+      //     long: geocode.lng,
+      //     lat: geocode.lat,
+      //     SSID: this.props.store.SSID,
+      //     location_name: this.state.location_name,
+      //   },
+      // });
 
       /*-----> WIP CONDITIONAL <-----*/
-      // for (let i = 0; i < this.props.store.locations.length; i++) {
-      //   if (
-      //     geocode.lng - this.props.store.locations[i].long < -0.01 ||
-      //     0.01 > geocode.lng - this.props.store.locations[i].long
-      //   ) {
-      //     if (
-      //       geocode.lat - this.props.store.locations[i].lat < -0.01 ||
-      //       0.01 > geocode.lat - this.props.store.locations[i].lat
-      //     ) {
-      //       // console.log(geocode.lng - this.props.store.locations[i].long);
-      //       // console.log(geocode.lat - this.props.store.locations[i].lat);
-
-      //       if (
-      //         this.props.store.SSID !== this.props.store.locations[i].wifi_name
-      //       ) {
-      //       }
-      //     }
-      //   }
-      // }
+      for (let i = 0; i < this.props.store.locations.length; i++) {
+        if (this.props.store.SSID === this.props.store.locations[i].wifi_name) {
+          if (
+            geocode.lng - this.props.store.locations[i].long > -0.001 &&
+            0.001 > geocode.lng - this.props.store.locations[i].long
+          ) {
+            if (
+              geocode.lat - this.props.store.locations[i].lat > -0.001 &&
+              0.001 > geocode.lat - this.props.store.locations[i].lat
+            ) {
+              console.log(
+                'matching SSID FOUND!',
+                this.props.store.locations[i].id
+              );
+              this.props.dispatch({
+                type: 'POST_SPEEDTEST',
+                payload: {
+                  user_id: this.props.store.user.id,
+                  location_id: this.props.store.locations[i].id,
+                  speed: this.state.speedNum,
+                },
+              });
+              console.log(geocode.lng - this.props.store.locations[i].long);
+              console.log(geocode.lat - this.props.store.locations[i].lat);
+            }
+          }
+        }
+      }
     });
 
     this.setState(
@@ -183,7 +193,7 @@ class Speedtest extends Component {
       Content = (
         <>
           <div className="speedtest-loader">
-            <img src={loading} className="speedtest-gif" />
+            <img src={loading} className="speedtest-gif" alt="loadingCircle" />
           </div>
         </>
       );

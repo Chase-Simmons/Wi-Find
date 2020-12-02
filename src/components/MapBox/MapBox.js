@@ -6,7 +6,7 @@ import { Component } from 'react';
 /*-----> CORE <-----*/
 
 /*-----> REACT-MAP-GL <-----*/
-import MapGL, { Marker } from 'react-map-gl';
+import MapGL from 'react-map-gl';
 /*-----> REACT-MAP-GL <-----*/
 
 import './mapbox-gl.css';
@@ -81,7 +81,7 @@ class MapBox extends Component {
     }
 
     const MARKERS = this.props.store.locations.map((item, index) => {
-      return <MarkerComponent item={item} index={index} size={size} />;
+      return <MarkerComponent item={item} key={index} size={size} />;
     });
     // console.log(size, this.state.viewport.zoom);
     return (

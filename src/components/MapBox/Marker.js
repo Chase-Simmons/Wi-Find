@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import MapGL, { Marker } from 'react-map-gl';
+import { Marker } from 'react-map-gl';
 /*-----> CORE <-----*/
 
 const markerIcon = require('./mapbox-icon.png');
@@ -18,13 +18,14 @@ class MARKERS extends Component {
   render() {
     return (
       <Marker
-        key={this.props.index}
+        key={this.props.key}
         longitude={this.props.item.long}
         latitude={this.props.item.lat}
         offsetTop={-this.props.size / 2}
         offsetLeft={-this.props.size / 2}
       >
         <img
+          alt={this.props.key}
           onClick={this.getDetails}
           className="onHoverMarker"
           src={markerIcon}

@@ -15,6 +15,7 @@ const user_tripsRouter = require('./routes/user_trips.router');
 const trip_location = require('./routes/trip_location.router');
 const leader_points = require('./routes/leader_points.router');
 const leader_achievements = require('./routes/leader_achievements.router');
+const speedtest = require('./routes/speedtest.router');
 const WiFind = require('./routes/wifind.router');
 
 // Body parser middleware
@@ -37,6 +38,7 @@ app.use('/api/user_trips', user_tripsRouter);
 app.use('/api/trip_location', trip_location);
 app.use('/api/leader_points', leader_points);
 app.use('/api/leader_achievements', leader_achievements);
+app.use('/api/speedtest', speedtest);
 app.use('/api/wifind', WiFind);
 
 // Serve static files

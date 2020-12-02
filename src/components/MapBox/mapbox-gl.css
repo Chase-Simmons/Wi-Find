@@ -29,3 +29,11 @@
 .markerInfo {
   background: white;
 }
+
+.marker-popup {
+  background-color: #fefefeda;
+  position: absolute;
+  z-index: 100;
+  border: solid 2px #222222;
+  border-radius: 15px;
+}

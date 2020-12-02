@@ -108,31 +108,22 @@ class Speedtest extends Component {
         this.state.location_name
       );
 
-      // this.props.dispatch({
-      //   type: 'POST_LOCATION',
-      //   payload: {
-      //     long: geocode.lng,
-      //     lat: geocode.lat,
-      //     SSID: this.props.store.SSID,
-      //     location_name: this.state.location_name,
-      //   },
-      // });
-
       /*-----> WIP CONDITIONAL <-----*/
+
+      let match = false;
       for (let i = 0; i < this.props.store.locations.length; i++) {
         if (this.props.store.SSID === this.props.store.locations[i].wifi_name) {
+          match = true;
           if (
             geocode.lng - this.props.store.locations[i].long > -0.001 &&
             0.001 > geocode.lng - this.props.store.locations[i].long
           ) {
+            match = true;
             if (
               geocode.lat - this.props.store.locations[i].lat > -0.001 &&
               0.001 > geocode.lat - this.props.store.locations[i].lat
             ) {
-              console.log(
-                'matching SSID FOUND!',
-                this.props.store.locations[i].id
-              );
+              match = true;
               this.props.dispatch({
                 type: 'POST_SPEEDTEST',
                 payload: {
@@ -141,11 +132,29 @@ class Speedtest extends Component {
                   speed: this.state.speedNum,
                 },
               });
-              console.log(geocode.lng - this.props.store.locations[i].long);
-              console.log(geocode.lat - this.props.store.locations[i].lat);
+              return;
+            } else {
+              match = false;
             }
+          } else {
+            match = false;
           }
+        } else {
+          match = false;
         }
+      }
+      if (match === false) {
+        this.props.dispatch({
+          type: 'POST_LOCATION',
+          payload: {
+            long: geocode.lng,
+            lat: geocode.lat,
+            SSID: this.props.store.SSID,
+            location_name: this.state.location_name,
+            user_id: this.props.store.user.id,
+            speed: this.state.speedNum,
+          },
+        });
       }
     });
 

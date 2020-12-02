@@ -151,6 +151,7 @@ class Speedtest extends Component {
             lat: geocode.lat,
             SSID: this.props.store.SSID,
             location_name: this.state.location_name,
+            location_address: this.state.address,
             user_id: this.props.store.user.id,
             speed: this.state.speedNum,
           },

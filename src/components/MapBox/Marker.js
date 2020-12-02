@@ -27,31 +27,68 @@ class MARKERS extends Component {
       });
     }
   };
+
+  openGoogle = () => {
+    window.open(
+      `https://www.google.com/maps/place/${this.props.item.location_address}`
+    );
+  };
   render() {
     let PopUp = <></>;
+    let Style = {};
 
     if (this.state.popup === true) {
+      Style = {
+        filter: 'grayscale(100%)',
+        filter: 'brightness(100)',
+        border: '2px solid #e6e6e600',
+      };
       PopUp = (
         <div
           className="marker-popup"
           style={{
-            marginLeft: -this.props.size * 2.5,
-            marginTop: -this.props.size * 4,
-            width: this.props.size * 6,
-            height: this.props.size * 4,
+            marginLeft: -this.props.size * 4,
+            marginTop: -this.props.size * 6,
+            width: this.props.size * 9,
+            height: this.props.size * 6,
+            zIndex: this.props.key,
           }}
         >
-          <div className="popup-content">
+          <div
+            className="popup-content"
+            style={{ marginTop: `${this.props.size * 0.5}px` }}
+          >
             <div>
-              <h5 style={{ fontSize: this.props.size / 4 + 2 }}>
+              <h5
+                style={{
+                  fontSize: this.props.size / 3.5 + 2,
+                  marginBottom: `${this.props.size * 1.4}px`,
+                }}
+                className="popup-item"
+              >
                 LOCATION : {this.props.item.location_name}
               </h5>
             </div>
             <div>
-              <h5 style={{ fontSize: this.props.size / 4 + 2 }}>ADDRESS :</h5>
+              <h5
+                style={{
+                  fontSize: this.props.size / 3.5 + 2,
+                  marginBottom: `${this.props.size * 1.4}px`,
+                }}
+                className="popup-item"
+                onClick={this.openGoogle}
+              >
+                ADDRESS :{' '}
+                <span style={{ color: 'blue' }} className="linkHover">
+                  {this.props.item.location_address}
+                </span>
+              </h5>
             </div>
             <div>
-              <h5 style={{ fontSize: this.props.size / 4 + 2 }}>
+              <h5
+                style={{ fontSize: this.props.size / 3.5 + 2 }}
+                className="popup-item"
+              >
                 AVERAGE WI-FI SPEED :
               </h5>
             </div>
@@ -75,6 +112,7 @@ class MARKERS extends Component {
           className="onHoverMarker"
           src={markerIcon}
           style={{
+            ...Style,
             width: this.props.size,
             height: this.props.size,
           }}

@@ -20,10 +20,16 @@ router.post('/', (req, res) => {
   console.log(req.body);
   pool
     .query(
-      `INSERT INTO "location" ("long", "lat", "wifi_name", "location_name")
-      VALUES ($1, $2, $3, $4)
+      `INSERT INTO "location" ("long", "lat", "wifi_name", "location_name", "location_address")
+      VALUES ($1, $2, $3, $4, $5)
       RETURNING id;`,
-      [req.body.long, req.body.lat, req.body.SSID, req.body.location_name]
+      [
+        req.body.long,
+        req.body.lat,
+        req.body.SSID,
+        req.body.location_name,
+        req.body.location_address,
+      ]
     )
     .then((result) => {
       res.send({

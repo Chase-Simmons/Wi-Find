@@ -40,7 +40,16 @@
 }
 
 .popup-content {
-  width: 80%;
+  width: 90%;
+  height: 100%;
   margin-left: auto;
   margin-right: auto;
+}
+
+.popup-item {
+}
+
+.linkHover {
+  cursor: pointer;
+  text-decoration: underline blue;
 }

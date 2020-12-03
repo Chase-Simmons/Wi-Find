@@ -38,12 +38,16 @@ class NavSearch extends Component {
 
   saveClick = () => {
     this.props.dispatch({
-      type: 'SET_CURRENT_EDIT',
-      payload: this.props.store.make_a_trip_title.id,
-    });
-    this.props.dispatch({
       type: 'GET_USER_TRIPS',
       payload: this.props.store.user.id,
+    });
+    this.props.dispatch({
+      type: 'SET_TRIP_TITLE',
+      payload: { data: null, id: null },
+    });
+    this.props.dispatch({
+      type: 'SET_TRIP_LOCATION',
+      payload: { data: null, id: null },
     });
 
     setTimeout(() => {
@@ -151,8 +155,6 @@ class NavSearch extends Component {
         </>
       );
       this.falseState();
-    } else {
-      this.ComponentToRender = this.ComponentToRender;
     }
     return (
       <>

@@ -124,10 +124,12 @@ class MakeATripItem extends Component {
 
   /*-----> DOES PAGE NEED TO BE LOADED? <-----*/
   callNewLoad = () => {
-    this.setState({
-      ...this.state,
-      hasLoaded: false,
-    });
+    setTimeout(() => {
+      this.setState({
+        ...this.state,
+        hasLoaded: false,
+      });
+    }, 250);
   };
   /*-----> DOES PAGE NEED TO BE LOADED? <-----*/
 
@@ -182,7 +184,6 @@ class MakeATripItem extends Component {
             marginTop: '8px',
             borderBottom: '2px #D5B0DC solid',
             boxShadow: '0 0px 8px #AC61B9',
-            backgroundColor: '#283C5E',
           }}
         >
           <ListItemIcon>

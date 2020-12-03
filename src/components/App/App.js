@@ -20,9 +20,9 @@ import InvertedProtectedRoute from '../ProtectedRoute/InvertedProtectedRoute.js'
 /*-----> SECURITY <-----*/
 
 /*-----> PAGES <-----*/
-import LandingPage from '../LandingPage/LandingPage';
+import LandingPage from '../../pages/LandingPage/LandingPage';
 import LoginPage from '../../pages/LoginPage/LoginPage';
-import RegisterPage from '../RegisterPage/RegisterPage';
+import RegisterPage from '../../pages/RegisterPage/RegisterPage';
 import ProfilePage from '../../pages/ProfilePage/ProfilePage';
 /*-----> PAGES <-----*/
 

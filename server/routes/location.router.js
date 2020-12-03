@@ -3,7 +3,9 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  const queryText = `	SELECT * FROM "location";`;
+  const queryText = `SELECT "location".id, "location".lat, "location".long, "location".wifi_name, "location".location_name, "location".location_address, ARRAY_AGG("speedtest".test_result) as avg_speed FROM "location"
+  LEFT JOIN "speedtest" ON "location".id = "speedtest".location_id
+  GROUP BY "location".id;`;
   pool
     .query(queryText)
     .then((result) => {

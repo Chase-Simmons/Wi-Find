@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import MapBox from '../MapBox/MapBox';
+import MapBox from '../../components/MapBox/MapBox';
 
 class LandingPage extends Component {
   render() {

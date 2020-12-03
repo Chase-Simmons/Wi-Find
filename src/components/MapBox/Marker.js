@@ -5,16 +5,31 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import { Marker } from 'react-map-gl';
 /*-----> CORE <-----*/
 
+import './mapbox-gl.css';
+
+/*-----> MATERIAL-UI <-----*/
+
+/*-----> MATERIAL-UI <-----*/
+
 const markerIcon = require('./mapbox-icon.png');
-
-/*-----> MATERIAL-UI <-----*/
-
-/*-----> MATERIAL-UI <-----*/
 
 class MARKERS extends Component {
   state = {
     popup: false,
+    speed: 0,
   };
+
+  componentDidMount() {
+    let total = 0;
+    for (let i = 0; i < this.props.item.avg_speed.length; i++) {
+      total = total + this.props.item.avg_speed[i];
+    }
+    total = total / this.props.item.avg_speed.length;
+    this.setState({
+      ...this.state,
+      speed: total.toFixed(2),
+    });
+  }
   getDetails = () => {
     console.log(this.props.item);
     if (this.state.popup === false) {
@@ -89,7 +104,7 @@ class MARKERS extends Component {
                 style={{ fontSize: this.props.size / 3.5 + 2 }}
                 className="popup-item"
               >
-                AVERAGE WI-FI SPEED :
+                AVERAGE WI-FI SPEED : {this.state.speed} Mbps
               </h5>
             </div>
           </div>
@@ -99,7 +114,7 @@ class MARKERS extends Component {
 
     return (
       <Marker
-        key={this.props.key}
+        key={this.props.item.id}
         longitude={this.props.item.long}
         latitude={this.props.item.lat}
         offsetTop={-this.props.size / 2}

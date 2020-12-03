@@ -8,7 +8,6 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import DeleteIcon from '@material-ui/icons/Delete';
 import TextField from '@material-ui/core/TextField';
 import NavigationIcon from '@material-ui/icons/Navigation';
 /*-----> MATERIAL-UI <-----*/
@@ -77,16 +76,16 @@ class MyTripsContent extends Component {
     /*-----> IF DATA HAS NOT BEEN LOADED -> LOAD DATA <-----*/
 
     /*-----> DELETE TRIP <-----*/
-    const clickDelete = () => {
-      this.props.dispatch({
-        type: 'DELETE_USER_TRIPS',
-        payload: {
-          trip_id: this.props.trip.id,
-          id: this.props.store.user.id,
-        },
-      });
-      this.deleteData();
-    };
+    // const clickDelete = () => {
+    //   this.props.dispatch({
+    //     type: 'DELETE_USER_TRIPS',
+    //     payload: {
+    //       trip_id: this.props.trip.id,
+    //       id: this.props.store.user.id,
+    //     },
+    //   });
+    //   this.deleteData();
+    // };
     /*-----> DELETE TRIP <-----*/
 
     /*-----> GO TO TRIP DETAILS <-----*/
@@ -95,11 +94,6 @@ class MyTripsContent extends Component {
         type: 'SET_CURRENT_EDIT',
         payload: this.props.trip.id,
       });
-      this.props.dispatch({
-        type: 'GET_USER_TRIPS',
-        payload: this.props.store.user.id,
-      });
-
       setTimeout(() => {
         this.props.superReducer({ call: 'SET', data: 'edit' });
       }, 250);
@@ -127,7 +121,7 @@ class MyTripsContent extends Component {
               className="onHover"
               onClick={clickDelete}
               style={{
-                marginright: '16px',
+                marginRight: '16px',
               }}
             />
           </ListItemIcon> */}

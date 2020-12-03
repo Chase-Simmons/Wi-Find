@@ -5,9 +5,9 @@ function* postSpeedtest(action) {
   try {
     yield axios.post('/api/speedtest', action.payload);
 
-    // yield put({
-    //   type: 'GET_SPEEDTEST',
-    // });
+    yield put({
+      type: 'GET_LOCATION',
+    });
   } catch (err) {
     console.log(err);
   }

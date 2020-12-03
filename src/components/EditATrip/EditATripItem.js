@@ -122,6 +122,14 @@ class MakeATripItem extends Component {
       hasLoaded: true,
     });
   };
+
+  waitForData = () => {
+    setTimeout(() => {
+      this.setState({
+        ...this.state,
+      });
+    }, 200);
+  };
   /*-----> HAS CONTENT LOADED? <-----*/
 
   /*-----> DOES PAGE NEED TO BE LOADED? <-----*/
@@ -138,7 +146,6 @@ class MakeATripItem extends Component {
   EditOrDelete;
   /*-----> CHANGEABLE ICON COMPONENTS <-----*/
   render() {
-    console.log(this.state);
     /*-----> DOES CONTENT NEED TO BE LOADED? <-----*/
     // if (LocationId !== this.props.store.current_edit) {
     //   this.callNewLoad();
@@ -146,9 +153,19 @@ class MakeATripItem extends Component {
     /*-----> DOES CONTENT NEED TO BE LOADED? <-----*/
 
     /*-----> CONTENT NO LONGER NEEDS TO BE LOADED <-----*/
-    if (this.state.hasLoaded !== true) {
-      this.hasLoaded();
+    console.log(this.state);
+    console.log(this.props);
+    console.log(this.props.location);
+    if (this.props.location !== undefined) {
+      if (this.state.hasLoaded !== true) {
+        this.hasLoaded();
+      }
+    } else {
+      if (this.state.hasLoaded !== true) {
+        this.waitForData();
+      }
     }
+
     /*-----> CONTENT NO LONGER NEEDS TO BE LOADED <-----*/
 
     /*-----> ICON COMPONENT CONTROLLER <-----*/

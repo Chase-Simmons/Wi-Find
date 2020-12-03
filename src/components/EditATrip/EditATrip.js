@@ -16,7 +16,7 @@ import EditATripItem from './EditATripItem';
 import EditATripTitle from './EditATripTitle';
 /*-----> COMPONENT <-----*/
 
-import swal from 'sweetalert';
+// import swal from 'sweetalert';
 import './EditATrip.css';
 
 class NavSearch extends Component {
@@ -26,14 +26,6 @@ class NavSearch extends Component {
   };
   closeClick = () => {
     this.props.superReducer({ call: 'SET', data: 'none' });
-    this.props.dispatch({
-      type: 'HANDLE_CURRENT_TRIP',
-      payload: {
-        data: '',
-        id: this.props.store.make_a_trip_title.id,
-        call: 'DELETE',
-      },
-    });
   };
 
   saveClick = () => {
@@ -93,39 +85,26 @@ class NavSearch extends Component {
       }
     }
 
-    const AddLocationItem = () => {
-      if (this.props.store.make_a_trip_title !== '') {
-        this.updateState();
-      } else {
-        swal('Please set a Trip name before continuing!');
-      }
-    };
-
-    if (this.state.tripStarted === false) {
-      this.ButtonToRender = <></>;
-      if (this.props.store.make_a_trip_title.data !== '') {
-        AddLocationItem();
-      }
-    } else {
-      this.ButtonToRender = (
-        <span>
-          <ListItem
-            button
-            style={{
-              backgroundColor: '#b5ffb6',
-              textAlign: 'center',
-
-              borderBottom: '2px #222222 solid',
-              borderTop: '2px #222222 solid',
-              borderLeft: '1px #222222 solid',
-            }}
-            onClick={this.saveClick}
-          >
-            <ListItemText primary="Save" />
-          </ListItem>
-        </span>
-      );
-    }
+    this.ButtonToRender = (
+      <span>
+        <ListItem
+          button
+          style={{
+            backgroundColor: '#56315C',
+            textAlign: 'center',
+            width: '100%',
+            display: 'inline-block',
+            boxShadow: '0 2px 8px #ac61b9',
+            borderBottom: '2px #D5B0DC solid',
+            borderTop: '2px #D5B0DC solid',
+            borderLeft: '1px #D5B0DC solid',
+          }}
+          onClick={this.saveClick}
+        >
+          <ListItemText primary="Save" />
+        </ListItem>
+      </span>
+    );
 
     if (this.state.render === true) {
       this.ComponentToRender = (
@@ -135,8 +114,6 @@ class NavSearch extends Component {
         </>
       );
       this.falseState();
-    } else {
-      this.ComponentToRender = this.ComponentToRender;
     }
     return (
       <div

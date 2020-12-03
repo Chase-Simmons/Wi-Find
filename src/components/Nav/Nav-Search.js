@@ -33,7 +33,7 @@ class NavSearch extends Component {
         color="primary"
         variant="filled"
         onChange={this.onChange('search_input')}
-        style={{ color: '#E4E8F3' }}
+        style={{ color: '#E4E8F3', height: '100%' }}
       />
     );
   }

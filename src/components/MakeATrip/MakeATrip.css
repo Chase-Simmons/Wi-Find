@@ -1,4 +1,4 @@
 .onHover:hover {
   cursor: pointer;
-  outline: 1px solid #ffb9b9;
+  border: 1px solid #00000000;
 }

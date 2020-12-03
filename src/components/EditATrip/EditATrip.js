@@ -139,13 +139,21 @@ class NavSearch extends Component {
       this.ComponentToRender = this.ComponentToRender;
     }
     return (
-      <>
+      <div
+        style={{
+          boxShadow: '0 2px 8px #AC61B9',
+          borderBottom: '1px solid #D5B0DC',
+          backgroundColor: '#283C5E',
+        }}
+      >
         <ListItem
           button
           style={{
-            backgroundColor: '#ffc8b5',
+            backgroundColor: '#AC61B9',
+            boxShadow: '0 8px 4px #00000033',
             marginTop: '-8px',
             marginBottom: '-8px',
+            borderBottom: '3px solid #D5B0DC',
           }}
           onClick={this.closeClick}
         >
@@ -158,7 +166,7 @@ class NavSearch extends Component {
         {this.ComponentToRender}
 
         {this.ButtonToRender}
-      </>
+      </div>
     );
   }
 }

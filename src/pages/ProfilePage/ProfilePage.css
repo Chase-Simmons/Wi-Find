@@ -11,7 +11,7 @@
   height: 600px;
   border: 3px solid #b675c2;
   border-radius: 10px;
-  background-color: #c9d1e6;
+  background-color: #c2d1e2;
   margin-left: auto;
   margin-right: auto;
   box-shadow: 0 1px 12px #ac61b9;
@@ -19,20 +19,21 @@
 }
 
 .profile-details {
-  background-color: #a0a9c2;
-  color: #222222;
+  background-color: #052346;
+  color: #e4e8f3;
   border-bottom: #b675c2 solid 3px;
+  box-shadow: '0 2px 8px #222222';
 }
 
 .profile-my-trips {
   text-align: center;
-  background-color: ##c9d1e6;
+  background-color: ##c2d1e2;
 }
 
 .profile-trips {
   text-align: center;
-  background-color: #c9d1e6;
-  border-top: #b675c2 1px solid;
+  background-color: #c2d1e2;
+  border-top: #b675c2 2px solid;
   overflow: scroll;
   height: 378px;
 }

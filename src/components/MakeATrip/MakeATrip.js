@@ -109,13 +109,14 @@ class NavSearch extends Component {
           <ListItem
             button
             style={{
-              backgroundColor: '#b5fffe',
+              backgroundColor: '#56315C',
               textAlign: 'center',
               width: '50%',
               display: 'inline-block',
-              borderBottom: '2px #222222 solid',
-              borderTop: '2px #222222 solid',
-              borderRight: '1px #222222 solid',
+              boxShadow: '0 2px 8px #ac61b9',
+              borderBottom: '2px #D5B0DC solid',
+              borderTop: '2px #D5B0DC solid',
+              borderRight: '1px #D5B0DC solid',
             }}
             onClick={AddLocationItem}
           >
@@ -125,14 +126,14 @@ class NavSearch extends Component {
           <ListItem
             button
             style={{
-              backgroundColor: '#b5ffb6',
+              backgroundColor: '#56315C',
               textAlign: 'center',
               width: '50%',
               display: 'inline-block',
-
-              borderBottom: '2px #222222 solid',
-              borderTop: '2px #222222 solid',
-              borderLeft: '1px #222222 solid',
+              boxShadow: '0 2px 8px #ac61b9',
+              borderBottom: '2px #D5B0DC solid',
+              borderTop: '2px #D5B0DC solid',
+              borderLeft: '1px #D5B0DC solid',
             }}
             onClick={this.saveClick}
           >
@@ -171,9 +172,19 @@ class NavSearch extends Component {
           </ListItemIcon>
           <ListItemText primary="Close" />
         </ListItem>
+        <div className="leaderboards-box-content">
+          <h2
+            style={{
+              marginTop: '33px',
+              marginBottom: '25px',
+              color: '#F5EBF6',
+            }}
+          >
+            MAKE A TRIP
+          </h2>
+        </div>
         <MakeATripTitle />
         {this.ComponentToRender}
-
         {this.ButtonToRender}
       </>
     );

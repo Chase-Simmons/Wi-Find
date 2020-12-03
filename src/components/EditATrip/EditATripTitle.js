@@ -180,8 +180,9 @@ class MakeATripItem extends Component {
             height: 75,
             fontSize: 40,
             marginTop: '8px',
-            borderBottom: '2px #222222 solid',
-            borderTop: '2px #222222 solid',
+            borderBottom: '2px #D5B0DC solid',
+            boxShadow: '0 0px 8px #AC61B9',
+            backgroundColor: '#283C5E',
           }}
         >
           <ListItemIcon>

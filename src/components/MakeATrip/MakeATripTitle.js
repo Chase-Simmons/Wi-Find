@@ -84,10 +84,13 @@ class MakeATripItem extends Component {
       return (
         <ListItem
           style={{
+            boxShadow: '0 2px 12px #AC61B9',
+            backgroundColor: '#283C5E',
+            borderTop: '2px solid #D5B0DC',
+            borderBottom: '2px solid #D5B0DC',
             height: 75,
             fontSize: 40,
             marginTop: '8px',
-            borderBottom: '2px #222222 solid',
           }}
         >
           <ListItemIcon></ListItemIcon>

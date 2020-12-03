@@ -27,7 +27,7 @@
 }
 
 .onHoverMarker {
-  filter: hue-rotate(49deg);
+  filter: hue-rotate(40deg);
 }
 
 .markerInfo {

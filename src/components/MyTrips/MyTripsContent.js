@@ -18,8 +18,6 @@ import './MyTrips.css';
 class MyTripsContent extends Component {
   state = {
     trips: null,
-    deleteColor: 'black',
-    navigateColor: 'black',
     hasLoaded: false,
   };
 
@@ -37,42 +35,6 @@ class MyTripsContent extends Component {
     });
   }
   /*-----> REDUCER -> STATE <-----*/
-
-  /*-----> ON HOVER CHANGE COLOR [DELETE] <-----*/
-  onEnterDelete = () => {
-    this.setState({
-      ...this.state,
-      deleteColor: 'red',
-    });
-  };
-  /*-----> ON HOVER CHANGE COLOR [DELETE] <-----*/
-
-  /*-----> ON LEAVE HOVER CHANGE COLOR [DELETE] <-----*/
-  onLeaveDelete = () => {
-    this.setState({
-      ...this.state,
-      deleteColor: 'black',
-    });
-  };
-  /*-----> ON LEAVE HOVER CHANGE COLOR [DELETE] <-----*/
-
-  /*-----> ON HOVER CHANGE COLOR [NAVIGATE] <-----*/
-  onEnterNavigate = () => {
-    this.setState({
-      ...this.state,
-      navigateColor: 'aqua',
-    });
-  };
-  /*-----> ON HOVER CHANGE COLOR [NAVIGATE] <-----*/
-
-  /*-----> ON LEAVE HOVER CHANGE COLOR [NAVIGATE] <-----*/
-  onLeaveNavigate = () => {
-    this.setState({
-      ...this.state,
-      navigateColor: 'black',
-    });
-  };
-  /*-----> ON LEAVE HOVER CHANGE COLOR [NAVIGATE] <-----*/
 
   /*-----> HAS DATA BEEN DELETED? <-----*/
   deleteData = () => {
@@ -150,22 +112,25 @@ class MyTripsContent extends Component {
         <ListItem
           button
           style={{
-            height: 50,
+            height: 75,
             fontSize: 40,
             marginTop: '8px',
             marginBottom: '-8px',
-            borderBottom: '1px #222222 solid',
-            borderTop: '1px #222222 solid',
+            borderBottom: '1px #D5B0DC solid',
+            borderTop: '1px #D5B0DC solid',
+            backgroundColor: '#283C5E',
+            boxShadow: '0 2px 15px #ac61b9',
           }}
         >
-          <ListItemIcon style={{ minWidth: 10 }}>
+          {/* <ListItemIcon style={{ minWidth: 10 }}>
             <DeleteIcon
-              onMouseEnter={this.onEnterDelete}
-              onMouseLeave={this.onLeaveDelete}
-              style={{ color: this.state.deleteColor }}
+              className="onHover"
               onClick={clickDelete}
+              style={{
+                marginright: '16px',
+              }}
             />
-          </ListItemIcon>
+          </ListItemIcon> */}
           <ListItemText>
             <TextField
               disabled
@@ -174,7 +139,6 @@ class MyTripsContent extends Component {
                   textAlign: 'left',
                   fontWeight: 'bold',
                   fontSize: 16,
-                  color: '#222222',
                   minWidth: '140px',
                   marginLeft: '5px',
                 },
@@ -190,7 +154,6 @@ class MyTripsContent extends Component {
                   textAlign: 'right',
                   fontWeight: 'bold',
                   fontSize: 16,
-                  color: '#222222',
                   minWidth: '120px',
                   marginLeft: '-30px',
                 },
@@ -200,13 +163,12 @@ class MyTripsContent extends Component {
           </ListItemText>
           <ListItemIcon style={{ minWidth: 10 }}>
             <NavigationIcon
-              onMouseEnter={this.onEnterNavigate}
-              onMouseLeave={this.onLeaveNavigate}
-              style={{
-                color: this.state.navigateColor,
-                marginLeft: '32px',
-                paddingRight: '-32px',
-              }}
+              style={
+                {
+                  // marginLeft: '32px',
+                }
+              }
+              className="onHover"
               onClick={clickNavigate}
             />
           </ListItemIcon>

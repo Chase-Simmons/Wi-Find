@@ -107,7 +107,13 @@ class MakeATripItem extends Component {
       return <></>;
     } else {
       return (
-        <ListItem>
+        <ListItem
+          style={{
+            borderBottom: '1px #F5EBF6 solid',
+            backgroundColor: '#283C5E',
+            boxShadow: '0 2px 15px #ac61b9',
+          }}
+        >
           <ListItemIcon>
             <DeleteIcon onClick={this.deleteContents} className="onHover" />
           </ListItemIcon>

@@ -67,6 +67,15 @@ const customTheme = createMuiTheme({
     },
     MuiInput: {
       underline: {
+        '&:hover:not($disabled):after': {
+          borderBottom: '2px solid #ac61b9',
+        },
+        '&:hover:not($disabled):before': {
+          borderBottom: '1px solid #F5EBF6',
+        },
+        '&:before': {
+          borderBottom: '1px solid #F5EBF6',
+        },
         '&:after': {
           color: '#ac61b9',
           fontWeight: 'bold',
@@ -79,7 +88,15 @@ const customTheme = createMuiTheme({
     },
     MuiFilledInput: {
       underline: {
-        color: '',
+        '&:hover:not($disabled):after': {
+          borderBottom: '2px solid #ac61b9',
+        },
+        '&:hover:not($disabled):before': {
+          borderBottom: '1px solid #F5EBF6',
+        },
+        '&:before': {
+          borderBottom: '1px solid #F5EBF6',
+        },
         '&:after': {
           color: '#ac61b9',
           fontWeight: 'bold',
@@ -108,6 +125,11 @@ const customTheme = createMuiTheme({
           backgroundColor: '#B675C2 !important',
           boxShadow: '0 0px 8px #ac61b9',
         },
+      },
+    },
+    MuiSvgIcon: {
+      root: {
+        color: '#F5EBF6',
       },
     },
   },

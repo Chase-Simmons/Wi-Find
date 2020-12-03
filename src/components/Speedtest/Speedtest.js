@@ -205,8 +205,8 @@ class Speedtest extends Component {
           <div
             className="speedtest-loader"
             style={{
-              borderBottom: '1px solid #F5EBF6',
-              borderTop: '1px solid #F5EBF6',
+              borderBottom: '1px solid #D5B0DC',
+              borderTop: '1px solid #D5B0DC',
             }}
           >
             <img src={loading} className="speedtest-gif" alt="loadingCircle" />

@@ -8,7 +8,7 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import ExploreIcon from '@material-ui/icons/Explore';
+import EmojiTransportationIcon from '@material-ui/icons/EmojiTransportation';
 /*-----> MATERIAL-UI <-----*/
 
 class NavMyTrips extends Component {
@@ -40,7 +40,11 @@ class NavMyTrips extends Component {
     return (
       <ListItem button onClick={this.open}>
         <ListItemIcon>
-          <ExploreIcon />
+          <EmojiTransportationIcon
+            style={{
+              color: '#F5EBF6',
+            }}
+          />
         </ListItemIcon>
         <ListItemText primary="My Trips" />
       </ListItem>

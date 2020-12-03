@@ -19,7 +19,11 @@ class NavHome extends Component {
       <Link to="/home">
         <ListItem button>
           <ListItemIcon>
-            <MapIcon />
+            <MapIcon
+              style={{
+                color: '#F5EBF6',
+              }}
+            />
           </ListItemIcon>
           <ListItemText primary="Home" />
         </ListItem>

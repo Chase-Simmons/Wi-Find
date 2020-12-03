@@ -34,7 +34,11 @@ class NavNearMe extends Component {
     return (
       <ListItem button onClick={this.findNearMe}>
         <ListItemIcon>
-          <RoomIcon />
+          <RoomIcon
+            style={{
+              color: '#F5EBF6',
+            }}
+          />
         </ListItemIcon>
         <ListItemText primary="Near Me" />
       </ListItem>

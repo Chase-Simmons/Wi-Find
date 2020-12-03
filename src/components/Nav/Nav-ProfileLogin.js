@@ -64,7 +64,11 @@ class NavProfileLogin extends Component {
       <Link to={this.state.link}>
         <ListItem button>
           <ListItemIcon>
-            <AccountCircleIcon />
+            <AccountCircleIcon
+              style={{
+                color: '#F5EBF6',
+              }}
+            />
           </ListItemIcon>
           <ListItemText primary={this.state.text} />
         </ListItem>

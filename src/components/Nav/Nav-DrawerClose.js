@@ -26,7 +26,11 @@ class NavDrawerClose extends Component {
   render() {
     return (
       <IconButton onClick={this.closer}>
-        <ChevronLeftIcon />
+        <ChevronLeftIcon
+          style={{
+            color: '#F5EBF6',
+          }}
+        />
       </IconButton>
     );
   }

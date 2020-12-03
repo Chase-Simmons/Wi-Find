@@ -88,7 +88,6 @@ class MakeATripItem extends Component {
             fontSize: 40,
             marginTop: '8px',
             borderBottom: '2px #222222 solid',
-            borderTop: '2px #222222 solid',
           }}
         >
           <ListItemIcon></ListItemIcon>

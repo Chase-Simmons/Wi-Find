@@ -29,10 +29,11 @@ class NavSearch extends Component {
   render() {
     return (
       <TextField
-        id="filled-basic"
         label="Search"
+        color="primary"
         variant="filled"
         onChange={this.onChange('search_input')}
+        style={{ color: '#E4E8F3' }}
       />
     );
   }

@@ -202,7 +202,13 @@ class Speedtest extends Component {
     } else if (this.state.testRan === 'running') {
       Content = (
         <>
-          <div className="speedtest-loader">
+          <div
+            className="speedtest-loader"
+            style={{
+              borderBottom: '1px solid #F5EBF6',
+              borderTop: '1px solid #F5EBF6',
+            }}
+          >
             <img src={loading} className="speedtest-gif" alt="loadingCircle" />
           </div>
         </>
@@ -211,12 +217,14 @@ class Speedtest extends Component {
       Content = (
         <>
           <div>
-            <h3>{this.state.speed}</h3>
+            <h3 style={{ color: '#F5EBF6' }}> {this.state.speed}</h3>
           </div>
           <div>
-            <h4>Would you like to submit your speed?</h4>
+            <h4 style={{ color: '#F5EBF6' }}>
+              Would you like to submit your speed?
+            </h4>
           </div>
-          <div>
+          <div style={{ marginTop: '30px' }}>
             <Button
               variant="contained"
               color="primary"
@@ -243,19 +251,28 @@ class Speedtest extends Component {
           <div>
             <h3>{this.state.speed}</h3>
           </div>
-          <div>
-            <TextField
-              label="Enter Name of Location"
-              variant="filled"
-              onChange={this.inputChange('location_name')}
-            ></TextField>
-          </div>
-          <div>
-            <TextField
-              label="Enter Full Address"
-              variant="filled"
-              onChange={this.inputChange('address')}
-            ></TextField>
+          <div
+            style={{
+              backgroundColor: '#283C5E',
+              boxShadow: '0 8px 4px #00000033',
+              borderBottom: '3px solid #D5B0DC',
+              borderTop: '3px solid #D5B0DC',
+            }}
+          >
+            <div>
+              <TextField
+                label="Enter Name of Location"
+                variant="filled"
+                onChange={this.inputChange('location_name')}
+              ></TextField>
+            </div>
+            <div>
+              <TextField
+                label="Enter Full Address"
+                variant="filled"
+                onChange={this.inputChange('address')}
+              ></TextField>
+            </div>
           </div>
           <div>
             <Button
@@ -273,7 +290,7 @@ class Speedtest extends Component {
     } else if (this.state.testRan === 'thank') {
       Content = (
         <div>
-          <h3>Thank You!</h3>
+          <h3 style={{ color: '#F5EBF6' }}>Thank You!</h3>
         </div>
       );
     }
@@ -282,10 +299,12 @@ class Speedtest extends Component {
         <ListItem
           button
           style={{
-            backgroundColor: '#ffc8b5',
+            backgroundColor: '#AC61B9',
+            boxShadow: '0 8px 4px #00000033',
             marginTop: '-8px',
             marginBottom: '-8px',
-            borderBottom: '1px #222222 solid',
+            borderBottom: '3px solid #D5B0DC',
+            color: '#F5EBF6',
           }}
           onClick={this.closeClick}
         >
@@ -297,7 +316,15 @@ class Speedtest extends Component {
         <div className="speedtest-box">
           <div className="speedtest-box-content">
             <div>
-              <h2 style={{ marginTop: '25px' }}>SPEEDTEST</h2>
+              <h2
+                style={{
+                  marginTop: '33px',
+                  marginBottom: '25px',
+                  color: '#F5EBF6',
+                }}
+              >
+                SPEEDTEST
+              </h2>
             </div>
             {Content}
           </div>

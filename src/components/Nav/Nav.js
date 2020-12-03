@@ -34,6 +34,7 @@ import NavDrawerClose from './Nav-DrawerClose';
 import NavMyTrips from './Nav-MyTrips';
 /*-----> COMPONENT <-----*/
 
+const logo = require('./wfindlogo.png');
 const drawerWidth = 320;
 
 const useStyles = makeStyles((theme) => ({
@@ -114,6 +115,11 @@ const useStyles = makeStyles((theme) => ({
   fixedHeight: {
     height: 240,
   },
+  noBorder: {
+    paperAnchorDockedLeft: {
+      borderLeftWidth: '0',
+    },
+  },
 }));
 
 function Dashboard() {
@@ -140,6 +146,7 @@ function Dashboard() {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
+        color="default"
         position="absolute"
         className={clsx(classes.appBar, open && classes.appBarShift)}
       >
@@ -154,7 +161,11 @@ function Dashboard() {
               open && classes.menuButtonHidden
             )}
           >
-            <MenuIcon />
+            <MenuIcon
+              style={{
+                color: '#F5EBF6',
+              }}
+            />
           </IconButton>
           <Typography
             component="h1"
@@ -166,9 +177,11 @@ function Dashboard() {
             <NavSearch />
           </Typography>
           <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
+            <img
+              src={logo}
+              alt="Wi-Find"
+              style={{ marginLeft: '18px', width: '80px', height: '40px' }}
+            />
           </IconButton>
         </Toolbar>
       </AppBar>
@@ -177,12 +190,21 @@ function Dashboard() {
         classes={{
           paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
         }}
+        style={{ backgroundColor: '#b7c1de' }}
         open={open}
       >
         <div className={classes.toolbarIcon}>
           <NavDrawerClose close={handleDrawerClose}></NavDrawerClose>
         </div>
-        <Divider style={{ backgroundColor: '#222222', height: 1 }} />
+        <Divider
+          style={{
+            backgroundImage:
+              'linear-gradient(#B675C2,#D5B0DC, #F5EBF6, #D5B0DC,#B675C2)',
+            height: 3,
+            marginTop: '-1px',
+            boxShadow: '0 2px 12px #ac61b9',
+          }}
+        />
         {/* NAVBAR */}
         <List style={{ paddingBottom: 0 }}>
           <NavHome superReducer={superReducer} />
@@ -205,8 +227,15 @@ function Dashboard() {
             openDrawer={handleDrawerOpen}
           />
         </List>
-        <Divider style={{ backgroundColor: '#222222', height: 3 }} />
-        {/* COMPONENTS */}
+        <Divider
+          style={{
+            backgroundImage:
+              'linear-gradient(#B675C2,#D5B0DC, #F5EBF6, #D5B0DC,#B675C2)',
+            height: 3,
+            marginTop: '10px',
+            boxShadow: '0 2px 12px #ac61b9',
+          }}
+        />
         <List style={{ paddingBottom: 0 }}>
           <NavResponsiveComponent superReducer={superReducer} />
         </List>

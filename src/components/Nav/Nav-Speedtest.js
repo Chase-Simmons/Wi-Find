@@ -44,7 +44,11 @@ class NavSpeedtest extends Component {
       <>
         <ListItem button onClick={this.open}>
           <ListItemIcon>
-            <SpeedIcon />
+            <SpeedIcon
+              style={{
+                color: '#F5EBF6',
+              }}
+            />
           </ListItemIcon>
           <ListItemText primary="Speedtest" />
         </ListItem>

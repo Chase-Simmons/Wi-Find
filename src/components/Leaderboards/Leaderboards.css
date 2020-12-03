@@ -1,0 +1,9 @@
+.leaderboards-box {
+  width: 100%;
+}
+
+.leaderboards-box-content {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}

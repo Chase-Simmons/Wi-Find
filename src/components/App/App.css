@@ -2,6 +2,7 @@ html,
 body,
 #react-root {
   height: 100%;
+  background-color: #051024;
 }
 
 body {
@@ -12,6 +13,11 @@ body {
 img {
   display: inline-block;
   max-width: 100%;
+}
+
+a {
+  color: #e4e8f3;
+  text-decoration: none;
 }
 
 /* --------------------------------------------------------------------------------

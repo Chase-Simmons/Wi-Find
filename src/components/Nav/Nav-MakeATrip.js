@@ -33,7 +33,11 @@ class NavMakeATrip extends Component {
     return (
       <ListItem button onClick={this.open}>
         <ListItemIcon>
-          <ExploreIcon />
+          <ExploreIcon
+            style={{
+              color: '#F5EBF6',
+            }}
+          />
         </ListItemIcon>
         <ListItemText primary="Make A Trip" />
       </ListItem>

@@ -26,15 +26,20 @@
   border: 2px solid #e6e6e600;
 }
 
+.onHoverMarker {
+  filter: hue-rotate(49deg);
+}
+
 .markerInfo {
   background: white;
 }
 
 .marker-popup {
-  background-color: #fefefeda;
+  background-color: #c9d1e6da;
   position: absolute;
   z-index: 100;
-  border: solid 2px #222222;
+  box-shadow: 0 2px 12px #ac61b9;
+  border: solid 2px #f5ebf6;
   border-radius: 15px;
   overflow: hidden;
 }

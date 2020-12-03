@@ -30,7 +30,11 @@ class NavLeaderboard extends Component {
     return (
       <ListItem button onClick={this.open}>
         <ListItemIcon>
-          <BarChartIcon />
+          <BarChartIcon
+            style={{
+              color: '#F5EBF6',
+            }}
+          />
         </ListItemIcon>
         <ListItemText primary="Leaderboards" />
       </ListItem>

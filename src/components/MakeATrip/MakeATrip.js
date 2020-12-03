@@ -158,9 +158,11 @@ class NavSearch extends Component {
         <ListItem
           button
           style={{
-            backgroundColor: '#ffc8b5',
+            backgroundColor: '#AC61B9',
+            boxShadow: '0 8px 4px #00000033',
             marginTop: '-8px',
             marginBottom: '-8px',
+            borderBottom: '3px solid #D5B0DC',
           }}
           onClick={this.closeClick}
         >

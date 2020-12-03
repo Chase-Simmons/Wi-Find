@@ -16,6 +16,7 @@ import LeaderboardPoints from './LeaderboardPoints';
 import LeaderboardAchievements from './LeaderboardAchievements';
 /*-----> COMPONENT <-----*/
 
+import './Leaderboards.css';
 class Leaderboards extends Component {
   state = {
     leaderType: 'points',
@@ -52,13 +53,16 @@ class Leaderboards extends Component {
       );
     }
     return (
-      <>
+      <div className="leaderboards-box">
         <ListItem
           button
           style={{
-            backgroundColor: '#ffc8b5',
+            backgroundColor: '#AC61B9',
+            boxShadow: '0 8px 4px #00000033',
             marginTop: '-8px',
             marginBottom: '-8px',
+            borderBottom: '3px solid #D5B0DC',
+            color: '#F5EBF6',
           }}
           onClick={this.closeClick}
         >
@@ -67,29 +71,31 @@ class Leaderboards extends Component {
           </ListItemIcon>
           <ListItemText primary="Close" />
         </ListItem>
-        <ListItem
-          style={{
-            marginTop: '8px',
-            textAlign: 'center',
-            width: '100%',
-            borderBottom: '1px #222222 solid',
-            borderTop: '2px #222222 solid',
-          }}
-        >
-          <ListItemText primary="LEADERBOARDS" />
-        </ListItem>
+        <div className="leaderboards-box-content">
+          <h2
+            style={{
+              marginTop: '33px',
+              marginBottom: '25px',
+              color: '#F5EBF6',
+            }}
+          >
+            LEADERBOARDS
+          </h2>
+        </div>
         <span>
           <ListItem
             button
             onClick={this.changeToPoints}
             style={{
-              backgroundColor: '#b5fffe',
               textAlign: 'center',
               width: '50%',
               display: 'inline-block',
-              borderBottom: '2px #222222 solid',
-              borderTop: '1px #222222 solid',
-              borderRight: '1px #222222 solid',
+              borderTop: '2px #D5B0DC solid',
+              borderRight: '1px #D5B0DC solid',
+              backgroundColor: '#0A3D7B',
+              boxShadow: '0 2px 12px #AC61B9',
+              borderBottom: '2px solid #D5B0DC',
+              color: '#F5EBF6',
             }}
           >
             <ListItemText primary="Points" />
@@ -99,21 +105,22 @@ class Leaderboards extends Component {
             button
             onClick={this.changeToAchievements}
             style={{
-              backgroundColor: '#b5fffe',
               textAlign: 'center',
               width: '50%',
               display: 'inline-block',
-
-              borderBottom: '2px #222222 solid',
-              borderTop: '1px #222222 solid',
-              borderLeft: '1px #222222 solid',
+              borderTop: '2px #D5B0DC solid',
+              borderLeft: '1px #D5B0DC solid',
+              backgroundColor: '#0A3D7B',
+              boxShadow: '0 2px 12px #AC61B9',
+              borderBottom: '2px solid #D5B0DC',
+              color: '#F5EBF6',
             }}
           >
             <ListItemText primary="Achievements" />
           </ListItem>
         </span>
         {this.Leaderboard}
-      </>
+      </div>
     );
   }
 }

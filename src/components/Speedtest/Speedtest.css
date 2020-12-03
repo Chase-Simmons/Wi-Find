@@ -21,6 +21,9 @@
 .speedtest-gif {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  filter: invert(100%);
+
+  mix-blend-mode: color-dodge;
   transition: all 0.2s ease;
   vertical-align: middle;
   transform: scale(2.2);

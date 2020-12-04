@@ -94,7 +94,7 @@ class NavSearch extends Component {
             textAlign: 'center',
             width: '100%',
             display: 'inline-block',
-            boxShadow: '0 2px 8px #ac61b9',
+            boxShadow: '0 2px 2px #ac61b9',
             borderBottom: '2px #D5B0DC solid',
             borderTop: '2px #D5B0DC solid',
             borderLeft: '1px #D5B0DC solid',

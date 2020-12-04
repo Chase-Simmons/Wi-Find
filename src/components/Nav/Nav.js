@@ -202,7 +202,7 @@ function Dashboard() {
               'linear-gradient(#B675C2,#D5B0DC, #F5EBF6, #D5B0DC,#B675C2)',
             height: 3,
             marginTop: '-1px',
-            boxShadow: '0 2px 12px #ac61b9',
+            boxShadow: '0 2px 8px #ac61b9',
           }}
         />
         {/* NAVBAR */}
@@ -233,7 +233,7 @@ function Dashboard() {
               'linear-gradient(#B675C2,#D5B0DC, #F5EBF6, #D5B0DC,#B675C2)',
             height: 3,
             marginTop: '10px',
-            boxShadow: '0 2px 12px #ac61b9',
+            boxShadow: '0 2px 8px #ac61b9',
           }}
         />
         <List style={{ paddingBottom: 0 }}>

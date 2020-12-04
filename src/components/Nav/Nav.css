@@ -24,3 +24,6 @@
   z-index: 5;
 }
 
+.navHover:hover {
+  background-color: #d5b0dc99;
+}

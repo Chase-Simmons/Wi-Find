@@ -146,6 +146,13 @@ const customTheme = createMuiTheme({
         boxShadow: '0px 2px 8px #ac61b9',
       },
     },
+    MuiListItem: {
+      button: {
+        '&:hover': {
+          backgroundColor: '#B675C259',
+        },
+      },
+    },
   },
 });
 

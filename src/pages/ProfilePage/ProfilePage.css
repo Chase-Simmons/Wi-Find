@@ -23,6 +23,9 @@
   color: #e4e8f3;
   border-bottom: #b675c2 solid 3px;
   box-shadow: '0 2px 8px #222222';
+  height: 133px;
+  padding-bottom: 10px;
+  z-index: 10;
 }
 
 .profile-my-trips {
@@ -55,10 +58,118 @@
   width: 10%;
 }
 
+.profile-image {
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 50%;
+  width: 109px;
+  height: 109px;
+  background-color: #f5ebf6;
+  border: 2px solid #b675c2;
+  box-shadow: 0 2px 8px #000000;
+  overflow: hidden;
+  z-index: 100;
+}
+
+.profile-image-text-circle {
+  position: absolute;
+  border-radius: 50%;
+  width: 105px;
+  height: 105px;
+  overflow: hidden;
+}
+.profile-image:hover {
+  box-shadow: 0 2px 8px #ac61b9;
+}
+.profile-image-icon {
+  background-color: black;
+}
+
+.profile-image-icon:hover {
+  cursor: pointer;
+  border: 2px solid #00000000;
+}
+
+.profile-image-icon-hover {
+  border: 2px solid #00000000;
+}
+
+.profile-image-text {
+  color: #f5ebf6;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 77px;
+  margin-left: -2px;
+  width: 109px;
+  height: 30px;
+  border-top: 2px solid #b675c2;
+  background-color: #00000090;
+  position: absolute;
+  border-radius: 0 0 50% 50%;
+  box-shadow: 0 1px 12px #ac61b9;
+  user-select: none;
+}
 .middle {
   vertical-align: middle;
 }
 
-p {
+.change-avatar-box {
+  margin-top: -109px;
+  margin-left: 63px;
+  position: absolute;
+  width: 400px;
+  height: 109px;
+  border: 2px solid #b675c2;
+  background-color: #f5ebf6;
+  box-shadow: 0 1px 12px #222222;
+  border-radius: 0 60px 60px 0;
+  z-index: -1;
+  transition-duration: 0.35s;
+  transition-timing-function: linear;
+  overflow: hidden;
+}
+
+.change-avatar-box-null {
+  margin-top: -109px;
+  margin-left: 63px;
+  position: absolute;
+  width: 0px;
+  height: 109px;
+  border: 2px solid #b675c2;
+  background-color: #f5ebf6;
+  border-radius: 0 60px 60px 0;
+  z-index: -1;
+  transition-duration: 0.35s;
+  transition-timing-function: linear;
+  overflow: hidden;
+}
+
+.name-title {
+  z-index: -2;
+}
+
+.avatar-icon {
+  cursor: pointer;
+  display: inline-block;
+  user-select: none;
+}
+.avatar-image:hover {
+  border: 1px solid #00000000;
+}
+.avatar-icon:first-child {
+  margin-left: 70px;
+}
+.avatar-icon:nth-child(13) {
+  margin-left: 70px;
+}
+.avatar-icon:nth-child(26) {
+  margin-left: 70px;
+}
+.avatar-icon:nth-child(39) {
+  margin-left: 70px;
+}
+
+.avatar-iconchil p {
   margin: 0;
 }

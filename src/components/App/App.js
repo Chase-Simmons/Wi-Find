@@ -132,6 +132,20 @@ const customTheme = createMuiTheme({
         color: '#F5EBF6',
       },
     },
+    MuiLinearProgress: {
+      bar1Determinate: {
+        backgroundColor: '#ac61b9',
+        backgroundImage:
+          'linear-gradient(#B675C2,#D5B0DC, #F5EBF6,#FFFFFF,#F5EBF6, #D5B0DC,#B675C2)',
+        borderRadius: '5px',
+        boxShadow: '4px 0px 8px #ac61b9',
+      },
+      root: {
+        backgroundColor: '#CB9CD3 !important',
+        border: '2px solid #ac61b9 !important',
+        boxShadow: '0px 2px 8px #ac61b9',
+      },
+    },
   },
 });
 

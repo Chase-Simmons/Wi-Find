@@ -35,7 +35,10 @@ class ProfilePage extends Component {
             <Grid container>
               <Grid container className="profile-details">
                 <Grid item xs={2}>
-                  <AccountCircleIcon style={{ fontSize: 125 }} />
+                  <AccountCircleIcon
+                    style={{ fontSize: 125 }}
+                    className="onHover"
+                  />
                 </Grid>
                 <Grid item xs={7}>
                   <h1 id="welcome">

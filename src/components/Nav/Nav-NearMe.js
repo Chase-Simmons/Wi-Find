@@ -2,10 +2,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import { Link } from 'react-router-dom';
 /*-----> CORE <-----*/
 
 /*-----> MATERIAL-UI <-----*/
-// import { Link } from 'react-router-dom';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -32,16 +32,18 @@ class NavNearMe extends Component {
   /*-----> GO TO MY LOCATION <-----*/
   render() {
     return (
-      <ListItem button onClick={this.findNearMe}>
-        <ListItemIcon>
-          <RoomIcon
-            style={{
-              color: '#F5EBF6',
-            }}
-          />
-        </ListItemIcon>
-        <ListItemText primary="Near Me" />
-      </ListItem>
+      <Link to="/home">
+        <ListItem button onClick={this.findNearMe}>
+          <ListItemIcon>
+            <RoomIcon
+              style={{
+                color: '#F5EBF6',
+              }}
+            />
+          </ListItemIcon>
+          <ListItemText primary="Near Me" />
+        </ListItem>
+      </Link>
     );
   }
 }

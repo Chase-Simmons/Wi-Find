@@ -55,7 +55,7 @@ class ProfilePage extends Component {
             >
               <Box className="profile-list-item-block">
                 <Box style={{ width: '20%' }}>
-                  <h4>Points UniqueTest </h4>
+                  <h4>Points</h4>
                 </Box>
                 <Box style={{ width: '10%' }}>
                   <Typography

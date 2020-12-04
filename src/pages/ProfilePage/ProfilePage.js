@@ -41,7 +41,7 @@ class ProfilePage extends Component {
                   <h1 id="welcome">
                     Welcome, {this.props.store.user.username}!
                   </h1>
-                  <h4>Title: </h4>
+                  <h4>Title: The Newcomer </h4>
                 </Grid>
                 <Grid item xs={3}>
                   <h1 id="rank">Rank: {rank}</h1>

@@ -54,7 +54,6 @@ class MARKERS extends Component {
 
     if (this.state.popup === true) {
       Style = {
-        filter: 'grayscale(100%)',
         filter: 'brightness(100)',
         border: '2px solid #e6e6e600',
       };

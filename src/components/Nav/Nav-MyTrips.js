@@ -11,23 +11,29 @@ import ListItemText from '@material-ui/core/ListItemText';
 import EmojiTransportationIcon from '@material-ui/icons/EmojiTransportation';
 /*-----> MATERIAL-UI <-----*/
 
+import swal from 'sweetalert';
+
 class NavMyTrips extends Component {
   state = {};
 
   /*-----> OPEN DRAWER IF CLOSED <-----*/
   open = () => {
-    this.props.openDrawer();
-    this.props.dispatch({
-      type: 'HANDLE_CURRENT_TRIP',
-      payload: {
-        data: '',
-        id: this.props.store.make_a_trip_title.id,
-        call: 'DELETE',
-      },
-    });
-    setTimeout(() => {
-      this.dispatch();
-    }, 100);
+    if (!this.props.store.user.id) {
+      swal('Please Login To Use This Feature!');
+    } else {
+      this.props.openDrawer();
+      this.props.dispatch({
+        type: 'HANDLE_CURRENT_TRIP',
+        payload: {
+          data: '',
+          id: this.props.store.make_a_trip_title.id,
+          call: 'DELETE',
+        },
+      });
+      setTimeout(() => {
+        this.dispatch();
+      }, 100);
+    }
   };
   /*-----> OPEN DRAWER IF CLOSED <-----*/
 

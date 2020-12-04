@@ -11,6 +11,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import SpeedIcon from '@material-ui/icons/Speed';
 /*-----> MATERIAL-UI <-----*/
 
+import swal from 'sweetalert';
+
 class NavSpeedtest extends Component {
   state = {
     speedAlert: false,
@@ -18,18 +20,22 @@ class NavSpeedtest extends Component {
 
   /*-----> OPEN DRAWER IF CLOSED <-----*/
   open = () => {
-    this.props.openDrawer();
-    this.props.dispatch({
-      type: 'HANDLE_CURRENT_TRIP',
-      payload: {
-        data: '',
-        id: this.props.store.make_a_trip_title.id,
-        call: 'DELETE',
-      },
-    });
-    setTimeout(() => {
-      this.dispatch();
-    }, 100);
+    if (!this.props.store.user.id) {
+      swal('Please Login To Use This Feature!');
+    } else {
+      this.props.openDrawer();
+      this.props.dispatch({
+        type: 'HANDLE_CURRENT_TRIP',
+        payload: {
+          data: '',
+          id: this.props.store.make_a_trip_title.id,
+          call: 'DELETE',
+        },
+      });
+      setTimeout(() => {
+        this.dispatch();
+      }, 100);
+    }
   };
   /*-----> OPEN DRAWER IF CLOSED <-----*/
 

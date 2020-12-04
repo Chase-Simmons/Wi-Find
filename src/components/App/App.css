@@ -125,3 +125,34 @@ input {
   left: 0;
   right: 0;
 }
+
+.swal-modal {
+  background-color: #283c5e;
+  box-shadow: 0 1px 12px #ac61b9;
+  border: 2px solid #f5ebf6;
+}
+
+.swal-text {
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.swal-button {
+  background-color: #ac61b9;
+  box-shadow: 0 0px 4px #ac61b9;
+  margin-top: -8px;
+  margin-bottom: -8px;
+  border: 2px solid #d5b0dc;
+  border-bottom: 3px solid #d5b0dc;
+  color: #f5ebf6;
+}
+
+.swal-button:hover {
+  background-color: #b675c2;
+  box-shadow: 0 0px 8px #ac61b9;
+}
+
+.swal-footer {
+  text-align: center;
+  padding-bottom: 30px;
+}

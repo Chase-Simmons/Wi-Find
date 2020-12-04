@@ -21,6 +21,7 @@ class ProfilePage extends Component {
   state = {
     hover: false,
     change: false,
+    changeText: 'Change',
   };
 
   mouseEnter = () => {
@@ -42,11 +43,13 @@ class ProfilePage extends Component {
       this.setState({
         ...this.state,
         change: true,
+        changeText: 'Close',
       });
     } else {
       this.setState({
         ...this.state,
         change: false,
+        changeText: 'Change',
       });
     }
   };
@@ -85,7 +88,7 @@ class ProfilePage extends Component {
             style={{ width: '25px', height: '25px' }}
           >
             <img
-              id={i}
+              id={i + 1}
               onClick={this.selectAvatar}
               src={imageInFolder}
               style={{
@@ -104,7 +107,7 @@ class ProfilePage extends Component {
       ChangeAvatarOption = (
         <div className="profile-image-text-circle">
           <p disabled className="profile-image-text" onClick={this.changeClick}>
-            Change
+            {this.state.changeText}
           </p>
         </div>
       );

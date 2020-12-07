@@ -23,8 +23,8 @@ router.get('/:id', (req, res) => {
 router.post('/:id', (req, res) => {
   pool
     .query(
-      `INSERT INTO "user_stats" ("user_id")
-      VALUES ($1);`,
+      `INSERT INTO "user_stats" ("user_id", "avatar")
+      VALUES ($1, 0);`,
       [req.params.id]
     )
     .then((result) => {
@@ -37,12 +37,12 @@ router.post('/:id', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-  console.log(req.body);
+  console.log(req.body, req.params.id);
   pool
     .query(
       `UPDATE "user_stats"
   SET "avatar" = $2
-  WHERE id=$1;`,
+  WHERE "user_id"=$1;`,
       [req.params.id, req.body.avatar]
     )
     .then(() => {

@@ -51,7 +51,6 @@ router.delete('/:id', (req, res) => {
           console.log(err);
           res.sendStatus(500);
         });
-      res.sendStatus(200);
     })
     .catch((err) => {
       console.log('Failed to delete trip data ', err);

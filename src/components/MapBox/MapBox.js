@@ -28,7 +28,7 @@ class MapBox extends Component {
         width: '100vw',
         height: '100vh',
         bearing: 0,
-        pitch: 0,
+        pitch: 45,
       },
     };
   }

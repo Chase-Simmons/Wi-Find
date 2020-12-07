@@ -33,6 +33,11 @@ function* currentMakeATrip(action) {
           type: 'SET_TRIP_TITLE',
           payload: { data: '', id: null, call: 'NONE' },
         });
+        yield put({ type: 'GET_USER_TRIPS', payload: action.payload.data.id });
+        yield put({
+          type: 'GET_TRIP_LOCATIONS',
+          payload: action.payload.id,
+        });
       }
     }
 

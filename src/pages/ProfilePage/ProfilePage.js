@@ -56,10 +56,13 @@ class ProfilePage extends Component {
 
   selectAvatar = (event) => {
     this.props.dispatch({
-      type: 'POST_USER_AVATAR',
+      type: 'PUT_USER_STATS',
       payload: {
         id: this.props.store.user.id,
         avatar: parseInt(event.target.id),
+        points: this.props.store.user_stats.points,
+        speedtest: this.props.store.user_stats.unique_speedtest,
+        connection: this.props.store.user_stats.unique_connection,
       },
     });
   };

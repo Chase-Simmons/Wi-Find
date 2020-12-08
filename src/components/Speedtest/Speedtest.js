@@ -108,7 +108,7 @@ class Speedtest extends Component {
         this.state.location_name
       );
 
-      /*-----> WIP CONDITIONAL <-----*/
+      /*-----> ASSIGN SPEEDTEST TO LOCATION BY FILTERING <-----*/
 
       let match = false;
       for (let i = 0; i < this.props.store.locations.length; i++) {
@@ -130,6 +130,17 @@ class Speedtest extends Component {
                   user_id: this.props.store.user.id,
                   location_id: this.props.store.locations[i].id,
                   speed: this.state.speedNum,
+                },
+              });
+
+              this.props.dispatch({
+                type: 'PUT_USER_STATS',
+                payload: {
+                  id: this.props.store.user.id,
+                  avatar: this.props.store.user_stats.avatar,
+                  points: this.props.store.user_stats.points + 1,
+                  speedtest: this.props.store.user_stats.unique_speedtest,
+                  connection: this.props.store.user_stats.unique_connection,
                 },
               });
               return;
@@ -154,6 +165,16 @@ class Speedtest extends Component {
             location_address: this.state.address,
             user_id: this.props.store.user.id,
             speed: this.state.speedNum,
+          },
+        });
+        this.props.dispatch({
+          type: 'PUT_USER_STATS',
+          payload: {
+            id: this.props.store.user.id,
+            avatar: this.props.store.user_stats.avatar,
+            points: this.props.store.user_stats.points + 10,
+            speedtest: this.props.store.user_stats.unique_speedtest,
+            connection: this.props.store.user_stats.unique_connection,
           },
         });
       }

@@ -17,7 +17,7 @@ import getLeader_achievementsSaga from './leaderboardSagas/leader_achievementsSa
 import getSSIDSaga from './getSSID.saga';
 import postLocationSaga from './locationSagas/postLocationSaga';
 import postSpeedtestSaga from './speedtestSagas/postSpeedtestSaga';
-import postUserAvatarSaga from './user_statsSaga/postAvatar';
+import putUserStatsSaga from './user_statsSaga/putUser_statsSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -46,6 +46,6 @@ export default function* rootSaga() {
     getSSIDSaga(),
     postLocationSaga(),
     postSpeedtestSaga(),
-    postUserAvatarSaga(),
+    putUserStatsSaga(),
   ]);
 }

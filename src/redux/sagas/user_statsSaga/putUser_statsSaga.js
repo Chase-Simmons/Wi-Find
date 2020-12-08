@@ -1,15 +1,18 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
-function* postUser_avatar(action) {
+function* putUserStats(action) {
   try {
     yield axios
       .put(`/api/user_stats/${action.payload.id}`, {
         avatar: action.payload.avatar,
+        points: action.payload.points,
+        speedtest: action.payload.speedtest,
+        connection: action.payload.connection,
       })
       .then()
       .catch((err) => {
-        console.log('error in POST_USER_AVATAR', err);
+        console.log('error in PUT_USER_STATS', err);
       });
     yield put({
       type: 'GET_USER_STATS',
@@ -20,8 +23,8 @@ function* postUser_avatar(action) {
   }
 }
 
-function* postUser_avatarSaga() {
-  yield takeLatest('POST_USER_AVATAR', postUser_avatar);
+function* putUserStatsSaga() {
+  yield takeLatest('PUT_USER_STATS', putUserStats);
 }
 
-export default postUser_avatarSaga;
+export default putUserStatsSaga;

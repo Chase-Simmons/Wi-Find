@@ -41,9 +41,15 @@ router.put('/:id', (req, res) => {
   pool
     .query(
       `UPDATE "user_stats"
-  SET "avatar" = $2
+  SET "avatar" = $2, "points" = $3, "unique_speedtest" = $4, "unique_connection" = $5
   WHERE "user_id"=$1;`,
-      [req.params.id, req.body.avatar]
+      [
+        req.params.id,
+        req.body.avatar,
+        req.body.points,
+        req.body.speedtest,
+        req.body.connection,
+      ]
     )
     .then(() => {
       res.sendStatus(200);

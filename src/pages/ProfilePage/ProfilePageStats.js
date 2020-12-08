@@ -32,14 +32,58 @@ class ProfilePage extends Component {
   }
   /*-----> REDUCER -> STATE <-----*/
   render() {
-    /*-----> PROGRESSION CALCULATION [NOT COMPLETE] <-----*/
-    const tier1 = 200;
-    const pointProgress = (this.props.store.user_stats.points / tier1) * 100;
-    const connectionProgress =
-      (this.props.store.user_stats.unique_connection / tier1) * 100;
-    const speedtestProgress =
-      (this.props.store.user_stats.unique_speedtest / tier1) * 100;
-    /*-----> PROGRESSION CALCULATION [NOT COMPLETE] <-----*/
+    /*-----> PROGRESSION CALCULATION <-----*/
+    console.log(this.props.store.user_stats.points);
+    let userPoints = this.props.store.user_stats.points;
+    let userSpeedtest = this.props.store.user_stats.unique_speedtest;
+    let userConnection = this.props.store.user_stats.unique_connection;
+    let pointsTier = 1;
+    let speedtestTier = 1;
+    let connectionTier = 1;
+    let pointsNeeded = 20;
+    let lastPointsNeeded = 0;
+    let speedtestNeeded = 5;
+    let lastSpeedtestNeeded = 0;
+    let connectionNeeded = 8;
+    let lastConnectionNeeded = 0;
+
+    const TierHandler = () => {
+      if (userPoints >= pointsNeeded) {
+        pointsTier++;
+        lastPointsNeeded = pointsNeeded;
+        pointsNeeded = parseInt(pointsNeeded ** 1.01 + 10);
+        TierHandler();
+      }
+      if (userSpeedtest >= speedtestNeeded) {
+        speedtestTier++;
+        lastSpeedtestNeeded = speedtestNeeded;
+        speedtestNeeded = parseInt(speedtestNeeded ** 1.01 + 2);
+        TierHandler();
+      }
+      if (userConnection >= connectionNeeded) {
+        connectionTier++;
+        lastConnectionNeeded = connectionNeeded;
+        connectionNeeded = parseInt(connectionNeeded ** 1.01 + 3);
+        TierHandler();
+      }
+    };
+    TierHandler();
+    const pointProgress = Math.floor(
+      ((userPoints - lastPointsNeeded) / (pointsNeeded - lastPointsNeeded)) *
+        100
+    );
+    const speedtestProgress = Math.floor(
+      ((userSpeedtest - lastSpeedtestNeeded) /
+        (speedtestNeeded - lastSpeedtestNeeded)) *
+        100
+    );
+    const connectionProgress = Math.floor(
+      ((userConnection - lastConnectionNeeded) /
+        (connectionNeeded - lastConnectionNeeded)) *
+        100
+    );
+
+    /*-----> PROGRESSION CALCULATION <-----*/
     return (
       <>
         {/*  */}
@@ -69,10 +113,11 @@ class ProfilePage extends Component {
                       marginTop: '22px',
                     }}
                   >
-                    {`${this.props.store.user_stats.points} / ${tier1}`}
+                    {`${this.props.store.user_stats.points} / ${pointsNeeded}`}
                   </Typography>
                 </Box>
                 <Box style={{ width: '65%' }}>
+                  <p className="profile-stats-tier">Tier : {pointsTier}</p>
                   <LinearProgress
                     color="primary"
                     style={{
@@ -131,10 +176,11 @@ class ProfilePage extends Component {
                       marginTop: '22px',
                     }}
                   >
-                    {`${this.props.store.user_stats.unique_speedtest} / ${tier1}`}
+                    {`${this.props.store.user_stats.unique_speedtest} / ${speedtestNeeded}`}
                   </Typography>
                 </Box>
                 <Box style={{ width: '65%' }}>
+                  <p className="profile-stats-tier">Tier : {speedtestTier}</p>
                   <LinearProgress
                     color="primary"
                     style={{
@@ -193,10 +239,11 @@ class ProfilePage extends Component {
                       marginTop: '23px',
                     }}
                   >
-                    {`${this.props.store.user_stats.unique_connection} / ${tier1}`}
+                    {`${this.props.store.user_stats.unique_connection} / ${connectionNeeded}`}
                   </Typography>
                 </Box>
                 <Box style={{ width: '65%' }}>
+                  <p className="profile-stats-tier">Tier : {connectionTier}</p>
                   <LinearProgress
                     color="primary"
                     style={{

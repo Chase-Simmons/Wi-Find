@@ -18,6 +18,8 @@ function* putUserStats(action) {
       type: 'GET_USER_STATS',
       payload: action.payload.id,
     });
+    yield put({ type: 'GET_LEADER_POINTS' });
+    yield put({ type: 'GET_LEADER_ACHIEVEMENTS' });
   } catch (err) {
     console.log(err);
   }

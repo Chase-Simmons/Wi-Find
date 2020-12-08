@@ -34,6 +34,9 @@ class NavResponsiveComponent extends Component {
     /*-----> CHECKS SUPERREDUCER COMPONENT TO SEE IF A UPDATE IS NEEDED <-----*/
     if (this.state.reload === true) {
       setTimeout(() => {
+        if (this.props.store.user.id === undefined) {
+          this.props.superReducer({ call: 'SET', data: 'none' });
+        }
         if (this.props.superReducer({ call: 'GET' }) === 'make') {
           this.callReload({ type: 'make' });
         } else if (this.props.superReducer({ call: 'GET' }) === 'edit') {

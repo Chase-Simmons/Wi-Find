@@ -32,7 +32,8 @@ let speedtest = new FastSpeedtest({
   urlCount: 5, // default: 5
   bufferSize: 8, // default: 8
   unit: FastSpeedtest.UNITS.Mbps, // default: Bps
-  proxy: 'http://wi-find.herokuapp.com'
+  proxy: 'http://wi-find.herokuapp.com',
+});
 /*-----> SPEEDTEST-API <-----*/
 
 class Speedtest extends Component {

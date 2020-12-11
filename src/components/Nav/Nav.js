@@ -190,7 +190,7 @@ function Dashboard() {
         classes={{
           paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
         }}
-        style={{ backgroundColor: '#b7c1de', height: '100%' }}
+        style={{ backgroundColor: '#b7c1de', height: '100vh' }}
         open={open}
       >
         <div className={classes.toolbarIcon}>

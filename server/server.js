@@ -30,6 +30,11 @@ app.use(sessionMiddleware);
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
+
 /* Routes */
 app.use('/api/user', userRouter);
 app.use('/api/location', locationRouter);

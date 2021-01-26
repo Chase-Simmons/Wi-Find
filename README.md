@@ -5,7 +5,7 @@
 
 # Wi-Find
 
-## Disclaimer - Due to CORS blocks the live deployment is not fully functional. I am working on a resolve for the issue.
+### Disclaimer - Due to CORS blocks the live deployment is not fully functional. I am working on a resolve for the issue.
 
 ## Description
 
